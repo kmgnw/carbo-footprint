@@ -4,8 +4,8 @@ import { hoverGrow } from '../../../shared/animation/hovergrow';
 function GNBCell({ title, img }){
     return(
         <MainLayout>
-        <StyledIcon src={img} />
-        <StyledTitle>{title}</StyledTitle>
+            <StyledIcon src={img} />
+            <StyledTitle>{title}</StyledTitle>
         </MainLayout>
     )
 }
@@ -15,6 +15,8 @@ export default GNBCell;
 const MainLayout = styled.div`
 display: flex;
 flex-direction: column;
+justify-content: center;
+align-items: center;
 cursor: pointer;
 ${hoverGrow}
 `

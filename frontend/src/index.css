@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+html{
+  display: flex;
+  justify-content: center;
+  background-color: black;;
+  padding: 0px;
+  margin: 0px
+}
+
+body{
+  background-color: white;
+  width: 430px;
+  height: 100%;
+  padding: 0px;
+  margin: 0px
+}
+
+button {
+  padding: 0px;
+  margin: 0px
+}

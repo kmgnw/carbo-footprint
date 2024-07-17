@@ -7,7 +7,6 @@ function GNB (){
         <MainLayout>
             <GNBCell title={"식단 추천"} img={card} />
             <GNBCell title={"탄수 카운팅"} img={card} />
-            <GNBCell title={"활동량 계산"} img={card} />
             <GNBCell title={"중독 테스트"} img={card} />
             <GNBCell title={"커뮤니티"} img={card} />
         </MainLayout>

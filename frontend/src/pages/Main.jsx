@@ -3,6 +3,7 @@ import Calendar from "../shared/components/calendar/Calendar.jsx"
 import GNB from "../entities/Main/ui/GNB.jsx"
 import Slider from '../shared/components/slider/Slider.jsx'
 import FootprintCounter from "../entities/Main/ui/FootprintCounter.jsx"
+import StandardButton from "../shared/components/StandardButton/StandardButton.jsx"
 
 function Main() {
 

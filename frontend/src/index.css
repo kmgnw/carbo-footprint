@@ -7,7 +7,7 @@ html{
   justify-content: center;
   background-color: black;;
   padding: 0px;
-  margin: 0px
+  margin: 0px;
 }
 
 body{
@@ -16,6 +16,18 @@ body{
   height: 100%;
   padding: 0px;
   margin: 0px
+}
+
+/* root rem 설정 */
+html, body {
+  font-size: 62.5%;
+  line-height: 1.285;
+}
+
+@media (max-width: 428px) {
+  body {
+    width: 100%; /* 작은 화면에서 너비를 100%로 설정 */
+  }
 }
 
 button {

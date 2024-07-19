@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { augustState } from '../../state/calendar';
 import { useRecoilState } from 'recoil';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PlusCircle from '../../../assets/PlusCircle.svg'
+import X from '../../../assets/X.svg'
+import randomImage from '../../../assets/randomImage.png'
 
-
-function Modal ({ setIsModalVisible, index }){
+function Modal ({ setIsModalVisible, index, day }){
 
     const [isReadOnly, setIsReadOnly] = useState(true)
 
@@ -35,35 +37,61 @@ function Modal ({ setIsModalVisible, index }){
         setSchedule(updatedSchedule);
     }
 
-
     return(
         <StyledWrap>
             <StyledHeader>
                 {/* 레이아웃 용 빈 div */}
-                <div />
+                <div style={{width: '24px'}}/>
 
-                <StyledTitle>8월 {index}일</StyledTitle>
+                <StyledTitle>8월 {index+1}일 {day}요일</StyledTitle>
 
-                <StyledButton onClick={handleBtnClick}>완료</StyledButton>
+                <StyledButton onClick={handleBtnClick}>
+                    <img src= {X} />
+                </StyledButton>
+
             </StyledHeader>
 
             <StyledFlexbox>
+
+                <StyledImgWrap>
+                    <img src={PlusCircle} />
+                </StyledImgWrap>
+
                 <StyledAddButton onClick={handleAddScheduleClick}>일정추가</StyledAddButton>
+
             </StyledFlexbox>
 
             <StyledScheduleWrap>
+                <StyledScheduleContainer>
 
-                {schedule[index].map((e, i)=>(
-                    <StyledInput
-                    key={i}
-                    value={e}
-                    placeholder={e}
-                    readOnly={isReadOnly}
-                    onChange={(text) => handleScheduleChange(text, i)}
-                />
-                ))}
+                    {schedule[index].map((e, i)=>(
+                        <StyledInput
+                        key={i}
+                        value={e}
+                        placeholder={e}
+                        readOnly={isReadOnly}
+                        onChange={(text) => handleScheduleChange(text, i)}
+                    />
+                    ))}
+
+                    <StyledButtonWrap>
+
+                        {/* 임시 */}
+                        <img style={{
+                            width: '24px',
+                        }} src={randomImage} />
+
+                        <img style={{
+                            width: '24px',
+                        }} src={randomImage} />
+
+                    </StyledButtonWrap>
+                    
+
+                </StyledScheduleContainer>
                 
             </StyledScheduleWrap>
+
         </StyledWrap>
     )
 }
@@ -85,6 +113,22 @@ border-bottom: 1px solid #D9D9D9;
 padding: 0 16px 0 16px;
 `
 
+const StyledFlexbox = styled.div`
+display: flex;
+justify-content: end;
+padding-right: 16px;
+margin-top: 21px;
+gap: 4px;
+margin-bottom: 16px
+`
+
+const StyledImgWrap = styled.div`
+width: 20px;
+display: flex;
+justify-content: center;
+align_items: center;
+`
+
 const StyledTitle = styled.div`
 color: #000;
 text-align: center;
@@ -93,6 +137,7 @@ font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+
 `
 
 const StyledButton = styled.button`
@@ -112,11 +157,12 @@ display: flex;
 flex-direction: column;
 `
 
-const StyledFlexbox = styled.div`
+const StyledScheduleContainer = styled.div`
 display: flex;
-justify-content: end;
-padding-right: 16px;
-margin-top: 21px;
+justify-content: space-between;
+padding: 20px 16px;
+border-top: 1px solid var(--Gray2, #E3E5E7);
+border-bottom: 1px solid var(--Gray2, #E3E5E7);
 `
 
 const StyledAddButton = styled.div`
@@ -126,6 +172,12 @@ font-size: 14px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+padding-top: 2px;
+`
+
+const StyledButtonWrap = styled.div`
+display: flex;
+gap: 8px;
 `
 
 const StyledInput =  styled.input`
@@ -136,7 +188,7 @@ border: none;
     }
 
 &[readonly] {
-background-color: #f5f5f5;
+background-color: #fffff;
 }
 
 `

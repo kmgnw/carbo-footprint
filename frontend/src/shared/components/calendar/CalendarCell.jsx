@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Modal from './Modal';
 
-function CalendarCell({ schedule, index, today }) {
+function CalendarCell({ schedule, index, day, today }) {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -37,7 +37,7 @@ function CalendarCell({ schedule, index, today }) {
             {isModalVisible && (
                 <StyledModalContainer onClick={handleModalClick}>
                     <StyledModal onClick={(e) => e.stopPropagation()}>
-                        <Modal setIsModalVisible={setIsModalVisible} index={index}/>
+                        <Modal setIsModalVisible={setIsModalVisible} index={index} day={day}/>
                     </StyledModal>
                 </StyledModalContainer>
             )}
@@ -58,7 +58,7 @@ const StyledContainer = styled.div`
     cursor: pointer;
     transition: background-color 0.3s ease;
     &:hover {
-        background: #DEDEDE;
+        background: white;
     }
 `;
 
@@ -66,7 +66,7 @@ const StyledDate = styled.div`
     background-color:${props => props.isToday ? '#FF6464' : 'transparent'};
     border-radius: 50%;
     padding: 2px;
-    color: #000;
+    color:${props => props.isToday ? 'white' : 'black'};
     text-align: center;
     font-family: "Pretendard Variable";
     font-size: 10px;
@@ -77,20 +77,24 @@ const StyledDate = styled.div`
 `
 
 const StyledScheduleContainer = styled.div`
-
     width: 100%;
-    background-color: white;
+    background-color: #FCD8BE;
     padding: 1px 2px;
-    font-family: "Pretendard Variable";
-    font-size: 10px;
+    color: var(--Gray8, #262829);
+    font-family: "Noto Sans KR";
+    font-size: 0.95rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     overflow: hidden;
     white-space: nowrap;
     // text-overflow: ellipsis;
-    max-width: 9ch;
+    max-width: 8.5ch;
     margin-bottom: 3px;
+
+    @media (max-width: 428px){
+    font-size: 2vw;
+    }
 `
 
 const StyledModalContainer = styled.div`
@@ -113,4 +117,8 @@ const StyledModal = styled.div`
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    @media(max-width: 428px) {
+        width:88%
+    }
 `;

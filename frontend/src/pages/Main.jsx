@@ -3,11 +3,16 @@ import Calendar from "../shared/components/calendar/Calendar.jsx"
 import GNB from "../entities/Main/ui/GNB.jsx"
 import Slider from '../shared/components/slider/Slider.jsx'
 import FootprintCounter from "../entities/Main/ui/FootprintCounter.jsx"
+import Header from "../entities/Main/ui/Header.jsx"
+import randomImage from '../assets/randomImage.png'
 
 function Main() {
 
     return (
         <MainLayout>
+
+            <Header />
+
             <Slider contents={[
                 (<div>slider1</div>),
                 (<div>slider2</div>),

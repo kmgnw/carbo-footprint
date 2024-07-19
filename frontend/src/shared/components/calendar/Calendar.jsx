@@ -16,6 +16,29 @@ function Calendar() {
     const [day, setDay] = useState(0);
 
     const days = ["월", "화", "수", "목", "금", "토", "일"]
+    
+    function getDayofAugust(n){
+        let remainder = n%7
+        switch (remainder) {
+            case 0:
+                return days[3]
+
+            case 1:
+                return days[4]
+                
+            case 2:
+                return days[5]
+                
+            case 3:
+                return days[6]
+                
+            case 4:
+                return days[0]
+
+            case 5:
+                return days[1]
+        }
+    }
 
     useEffect(() => {
         const today = new Date();
@@ -63,13 +86,13 @@ function Calendar() {
 
                 {july.map((e, index) => (
                     <SnappingEndPoint key={index}>
-                        <CalendarCell schedule={[]} index={e[0]} today={day} />
+                        <CalendarCell schedule={[]} index={e[0]} today={day} day={getDayofAugust(index+1)}/>
                     </SnappingEndPoint>
                 ))}
 
                 {august.map((e, index) => (
                     <SnappingEndPoint key={index} >
-                        <CalendarCell schedule={e} index={index} today={day} />
+                        <CalendarCell schedule={e} index={index} today={day-1} />
                     </SnappingEndPoint>
                 ))}
 

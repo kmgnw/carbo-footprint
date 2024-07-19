@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Modal from './Modal';
+import { hoverGrow } from '../../animation/hovergrow';
 
 function CalendarCell({ schedule, index, day, today }) {
 
@@ -56,10 +57,13 @@ const StyledContainer = styled.div`
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    padding-top:0.6rem;
     transition: background-color 0.3s ease;
     &:hover {
         background: white;
     }
+
+    ${hoverGrow}
 `;
 
 const StyledDate = styled.div`

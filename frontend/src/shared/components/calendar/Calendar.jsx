@@ -8,7 +8,7 @@ import { useRecoilValue } from 'recoil';
 function Calendar() {
     const gridRef = useRef(null);
 
-    const july = [[28], [29], [30], [31]]
+    const july = [[27], [28], [29], [30]]
     const august = useRecoilValue(augustState)
     const september = useRecoilValue(septemberState)
 
@@ -123,7 +123,7 @@ scrollbar-width: none;
 const StyledDays = styled.div`
 display: flex;
 justify-content: space-evenly;
-margin-bottom: 16px
+margin-bottom: 16px;
 `
 
 const Month = styled.div`

@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 import PlusCircle from '../../../assets/PlusCircle.svg'
 import X from '../../../assets/X.svg'
 import randomImage from '../../../assets/randomImage.png'
+import { useNavigate } from "react-router-dom";
 
 function Modal ({ setIsModalVisible, index, day }){
+
+    const navigate = useNavigate()
 
     const [isReadOnly, setIsReadOnly] = useState(true)
 
@@ -18,8 +21,10 @@ function Modal ({ setIsModalVisible, index, day }){
     }
 
     function handleAddScheduleClick(){
-        if(isReadOnly){setIsReadOnly(false)}
-        else {setIsReadOnly(true)}
+        // if(isReadOnly){setIsReadOnly(false)}
+        // else {setIsReadOnly(true)}
+
+        navigate('/add-schedule')
     }
 
     function handleScheduleChange(e, i) {

@@ -1,18 +1,40 @@
 import styled from "styled-components";
 import randomImage from '../../../assets/randomImage.png'
+import Unchecked from '../../../assets/Uncheck.svg'
+import Checked from '../../../assets/Check.svg'
 import { newScheduleState } from "../../../shared/state/AddSchedule";
 import { useRecoilState } from "recoil";
+import { useState } from "react";
+import StandardInput from "../../../shared/components/StandardInput/StandardInput";
 
 function TitleSection(){
+    const [isChecked, setIsChecked] = useState(false)
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
-    function inputChangeHandler(e) {
+    function handleInputChange(e) {
         setNewSchedule((prev) => ({
             ...prev,
             title: e.target.value
         }));
         console.log(newSchedule)
+    }
+
+    function handleCheckboxClick(){
+        if(isChecked){
+            setIsChecked(false)
+            setNewSchedule((prev) => ({
+                ...prev,
+                isKakao: false
+            }));
+        }
+        else{
+            setIsChecked(true)
+            setNewSchedule((prev) => ({
+                ...prev,
+                isKakao: true
+            }));
+        }
     }
     
     return(
@@ -20,15 +42,22 @@ function TitleSection(){
 
             <TitleWrap>
                 <img style={{width: '32px'}}src={randomImage} />
-                <Title>일정제목</Title>
+                <Title>일정 제목</Title>
             </TitleWrap>
 
-            <InputWrap>
-                <Input
-                placeholder="일정 제목을 입력해주세요."
-                onChange={(e)=>inputChangeHandler(e)}
-                />
-            </InputWrap>
+            <StandardInput placeholder="일정 제목을 입력해주세요." onChange={handleInputChange} />
+
+            <KakaoCheckboxWrap onClick={handleCheckboxClick}>
+
+                <StyledCheckbox isChecked={isChecked}>
+                    <img src={isChecked ? Checked: Unchecked} />
+                </StyledCheckbox>
+
+                <CheckboxTitle>
+                    카톡으로 식단 추천 받기
+                </CheckboxTitle>
+
+            </KakaoCheckboxWrap>
 
         </MainLayout>
     )
@@ -39,7 +68,8 @@ const MainLayout = styled.div`
 display: flex;
 flex-direction: column;
 width: 100%;
-padding: 2.4rem 2rem 2.4rem 2rem
+padding: 2.4rem 2rem 2.4rem 2rem;
+background-color: #F2F3F5
 `
 
 const TitleWrap = styled.div`
@@ -58,32 +88,25 @@ font-weight: 700;
 line-height: normal;
 `
 
-const InputWrap = styled.div`
-width: 100%;
-height: 4.8rem;
-padding: 1.4rem 1.8rem;
-border-radius: 8px;
-border: 1px solid #D9D9D9;
-margin-bottom: 1.4rem
+const KakaoCheckboxWrap = styled.div`
+display: flex;
+align-items: center;
+gap: 0.8rem;
 `
 
-const Input = styled.input`
-border: none;
-outline: none;
-width:100%;
-height: 100%;
-color: black;
+const StyledCheckbox = styled.div`
+width: 2.4rem;
+height: 2.4rem;
+padding: 0.4rem;
+border-radius: 4px;
+background-color: ${({ isChecked }) => isChecked ? '#EF6038' : '#E3E5E7'};
+`
+
+const CheckboxTitle = styled.div`
+color: #000;
 font-family: "Noto Sans KR";
-font-size: 16px;
+font-size: 14px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
-&::placeholder{
-    color: #D9D9D9;
-    font-family: "Noto Sans KR";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
 `

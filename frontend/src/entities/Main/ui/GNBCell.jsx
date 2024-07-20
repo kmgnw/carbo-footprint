@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { hoverGrow } from '../../../shared/animation/hovergrow';
+import { hoverGrow } from '../../../shared/animation/hoverGrow';
 
 function GNBCell({ title, img }){
     return(

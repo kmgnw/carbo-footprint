@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { hoverGrow } from "../../../shared/animation/hovergrow";
 import card from '../../../assets/randomImage.png'
 
 function FootprintCounter(){
@@ -25,7 +24,6 @@ margin-bottom: 24px;
 border-radius: 24px;
 padding: 0 20px 0 20px;
 box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.20);
-${hoverGrow}
 `
 
 const Img = styled.img`

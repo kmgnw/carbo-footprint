@@ -1,10 +1,21 @@
 import styled from "styled-components";
 import BackButton from '../../../assets/BackButton.svg'
+import { useNavigate } from "react-router-dom";
 
 function Header (){
+
+    const navigate = useNavigate()
+
+    function handleBackButtonClick(){
+        navigate(-1)
+    }
+
     return(
         <MainLayout>
-            <StyledBackButton src={BackButton} />
+            <StyledBackButton
+            src={BackButton}
+            onClick={handleBackButtonClick}
+            />
         </MainLayout>
     )
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Modal from './Modal';
-import { hoverGrow } from '../../animation/hovergrow';
+import { hoverGrow } from '../../animation/hoverGrow';
 
 function CalendarCell({ schedule, index, day, today }) {
 

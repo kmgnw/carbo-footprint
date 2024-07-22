@@ -4,7 +4,7 @@ import close from '../../../assets/X.svg';
 import X from '../../../assets/X.svg';
 import { useRecoilState } from 'recoil';
 import { galleryState,selectedImgState } from '../../../shared/state/Gallery';
-import { hoverGrow } from '../../../shared/animation/hovergrow';
+import { hoverGrow } from '../../../shared/animation/hoverGrow';
 
 
 function Modal({ isOpen, onClose }) {

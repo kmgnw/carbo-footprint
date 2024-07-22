@@ -4,6 +4,7 @@ import close from '../../../assets/X.svg';
 import X from '../../../assets/X.svg';
 import { useRecoilState } from 'recoil';
 import { galleryState,selectedImgState } from '../../../shared/state/Gallery';
+import { hoverGrow } from '../../../shared/animation/hovergrow';
 
 
 function Modal({ isOpen, onClose }) {
@@ -12,8 +13,9 @@ function Modal({ isOpen, onClose }) {
 
   const handleImageClick = (src) => {
     setSelectedImage(prevSelectedImage => 
-      prevSelectedImage === src ? null : src
+      prevSelectedImage === src ? [] : src
     );
+    
   };
 
   const handleFileChange = (event) => {
@@ -22,15 +24,15 @@ function Modal({ isOpen, onClose }) {
     setImages(prevImages => [...prevImages, ...imageUrls]);
   };
 
+
   const handleButtonClick = () => {
     document.getElementById('file-input').click();
+
   };
 
   const handlePutImg = () => {
-    console.log("선택된 사진" + selectedImg);
-    onClose();
-  }
-
+      onClose();
+  };
  
   if (!isOpen) return null;
 
@@ -51,7 +53,7 @@ function Modal({ isOpen, onClose }) {
             <Img
               key={index}
               src={src}
-              alt={`random-img-${index}`}
+              alt={'내 이미지'}
               onClick={() => handleImageClick(src)}
               selected={src === selectedImg}
             />
@@ -59,7 +61,7 @@ function Modal({ isOpen, onClose }) {
         </GalleryContainer>
 
         <ButtonContainer>
-          <CustomButton disabled={!selectedImg} onClick={handlePutImg}>선택한 사진 등록하기</CustomButton>
+          <CustomButton disabled={selectedImg.length == 0} onClick={handlePutImg}>선택한 사진 등록하기</CustomButton>
           <CustomButton onClick={handleButtonClick}>사진 불러오기</CustomButton>
           <input
             type="file"
@@ -172,6 +174,7 @@ const Img = styled.img`
   object-fit: cover;
   cursor: pointer;
   border: ${({ selected }) => (selected ? '3px solid #EF6038' : 'none')};
+  ${hoverGrow}
 
   @media (max-width: 378px) {
     flex: 1 0 45%;

@@ -9,3 +9,8 @@ export const septemberState = atom({
     key: 'septemberState',
     default: new Array(30).fill([])
 })
+
+export const crntClickedDayState = atom({
+    key: 'crntClickedDayState',
+    default: -1
+})

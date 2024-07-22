@@ -1,21 +1,26 @@
 import styled, { css } from 'styled-components';
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import './Choices.css';
+import { newScheduleState } from '../../state/AddSchedule';
 
-function Choices({ title, choices }) {
-    const [crntType, setCrntType] = useState([]);
-    
+function Choices({ title, choices, type }) {
+    const [crntSchedule, setCrntSchedule] = useRecoilState(newScheduleState);
 
     function choiceClickedHandler(choice) {
-        setCrntType((prev) => {
-            if (prev.includes(choice)) {
-                return prev.filter(item => item !== choice);
+        setCrntSchedule((prev) => {
+            if (prev[type]?.includes(choice)) {
+                return {
+                    ...prev,
+                    [type]: prev[type].filter((item) => item !== choice),
+                };
             } else {
-                return [...prev, choice];
+                return {
+                    ...prev,
+                    [type]: [...prev[type], choice],
+                };
             }
         });
     }
-
 
     return (
         <div>
@@ -27,15 +32,14 @@ function Choices({ title, choices }) {
 
             <div className="ob_choices-wrap">
                 {choices.map((choice, index) => {
-                    const cn = crntType.includes(choice) ? 'ob_choice-selected' : 'ob_choice';
-                    const cnTitle = crntType.includes(choice) ? 'ob_title-selected' : 'ob_title';
+                    const isSelected = crntSchedule[type]?.includes(choice);
+                    const cn = isSelected ? 'ob_choice-selected' : 'ob_choice';
+                    const cnTitle = isSelected ? 'ob_title-selected' : 'ob_title';
                     return (
                         <ChoiceWrapper
                             key={index}
                             className={cn}
-                            onMouseDown={() => {
-                                choiceClickedHandler(choice);
-                            }}
+                            onMouseDown={() => choiceClickedHandler(choice)}
                         >
                             <div className={cnTitle}>
                                 {choice}
@@ -48,13 +52,12 @@ function Choices({ title, choices }) {
     );
 }
 
-
 const hoverGrow = css`
   transition: transform 0.3s ease;
   &:hover {
     transform: scale(1.1);
     background-color: #EF6038;
-    color:white
+    color: white;
   }
 `;
 

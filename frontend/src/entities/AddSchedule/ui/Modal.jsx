@@ -103,5 +103,5 @@ const ButtonWrap = styled.div`
 display: flex;
 justify-content: space-between;
 gap: 1.6rem;
-margin-top: 3.6rem;
+margin-top: 3.2rem;
 `

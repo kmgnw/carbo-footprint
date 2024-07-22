@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { hoverGrow } from '../../animation/hovergrow'
+import { hoverGrow } from '../../animation/hoverGrow'
 
 function StandardButton({ width, height, title, onClick, backgroundColor="black", color='white'}) {
     return (

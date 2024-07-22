@@ -61,7 +61,7 @@ function CameraComponent({ onRetake }) {
       setCameraState('none');
 
       canvas.toBlob(blob => {
-        const file = new File([blob], 'fileName.jpg', { type: 'image/jpeg' });
+        const file = new File([blob], 'tantanmen.jpg', { type: 'image/jpeg' });
         console.log('File created:', file);
       }, 'image/jpeg');
 

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import randomImage from '../../../assets/randomImage.png'
+import dietLog from '../../../assets/DietLog.svg'
 import Choices from '../../../shared/components/choices/Choices'
 
 function DietLog(){
@@ -7,7 +7,7 @@ function DietLog(){
         <MainLayout>
             <TitleWrap>
 
-                <img src={randomImage}
+                <img src={dietLog}
                 style={{
                     width:'3.2rem'
                 }} 
@@ -23,10 +23,10 @@ function DietLog(){
 
             </TitleWrap>
 
-            <Choices title='한 끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} />
-            <Choices title='두 끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} />
-            <Choices title='세 끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} />
-            <Choices title='더 먹끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} />
+            <Choices title='한 끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} type='firstMeal' />
+            <Choices title='두 끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} type='secondMeal'/>
+            <Choices title='세 끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} type='thirdMeal'/>
+            <Choices title='더 먹끼' choices={['중식', '일식', '한식', '양식', '샐러드', '빵', '과일', '기타' ]} type='extraMeal'/>
 
         </MainLayout>
     )

@@ -1,13 +1,19 @@
 import styled from "styled-components";
-import card from '../../../assets/randomImage.png'
+import Logo_orange from '../../../assets/Logo_orange.svg'
 
 function FootprintCounter(){
     return(
         <MainLayout>
-            <Img src={card} />
+
+            <LogoWrap>
+                <img src={Logo_orange} />
+            </LogoWrap>
+
+
             <div>
             <Content>탄수 발자국 연속 <Count>24</Count>회째</Content>
             </div>
+
         </MainLayout>
     )
 }
@@ -24,11 +30,6 @@ margin-bottom: 24px;
 border-radius: 24px;
 padding: 0 20px 0 20px;
 box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.20);
-`
-
-const Img = styled.img`
-width: 48px;
-height: 48px;
 `
 
 const Content = styled.div`
@@ -49,4 +50,16 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 padding: 0 4px 0 4px;
+`
+
+const LogoWrap = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 4.8rem;
+height: 4.8rem;
+padding: 1.8rem;
+border-radius: 20px;
+border: 1px solid var(--Gray2, #E3E5E7);
+background: var(--Gray1, #F2F3F5);
 `

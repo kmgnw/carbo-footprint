@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import randomImage from '../../../assets/randomImage.png'
+import calendar from '../../../assets/Calendar.svg'
 import Unchecked from '../../../assets/Uncheck.svg'
 import Checked from '../../../assets/Check.svg'
 import { newScheduleState } from "../../../shared/state/AddSchedule";
@@ -15,7 +15,7 @@ function TitleSection(){
     function handleInputChange(e) {
         setNewSchedule((prev) => ({
             ...prev,
-            title: e.target.value
+            title: e
         }));
         console.log(newSchedule)
     }
@@ -41,11 +41,11 @@ function TitleSection(){
         <MainLayout>
 
             <TitleWrap>
-                <img style={{width: '32px'}}src={randomImage} />
+                <img style={{width: '32px'}}src={calendar} />
                 <Title>일정 제목</Title>
             </TitleWrap>
 
-            <StandardInput placeholder="일정 제목을 입력해주세요." onChange={handleInputChange} />
+            <StandardInput placeholder="일정 제목을 입력해주세요." onChange={(e)=>handleInputChange(e)} />
 
             <KakaoCheckboxWrap onClick={handleCheckboxClick}>
 
@@ -92,6 +92,7 @@ const KakaoCheckboxWrap = styled.div`
 display: flex;
 align-items: center;
 gap: 0.8rem;
+margin-top: 1.6rem
 `
 
 const StyledCheckbox = styled.div`

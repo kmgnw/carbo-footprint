@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import randomImage from '../../../assets/randomImage.png'
+import Logo_orange from '../../../assets/Logo_orange.svg'
 
 function HeadingTitle(){
     return(
     <MainLayout>
         
-        <img style={{width: '40px'}} src={randomImage} />
+        <img style={{width: '40px'}} src={Logo_orange} />
 
         <Title>오늘의 탄수 발자국을 기록해보세요.</Title>
     </MainLayout>

@@ -4,7 +4,8 @@ import GNB from "../entities/Main/ui/GNB.jsx"
 import Slider from '../shared/components/slider/Slider.jsx'
 import FootprintCounter from "../entities/Main/ui/FootprintCounter.jsx"
 import Header from "../entities/Main/ui/Header.jsx"
-import randomImage from '../assets/randomImage.png'
+import Chatbot_floating from '../assets/Chatbot_floating.svg'
+import { hoverGrow } from "../shared/animation/hoverGrow.jsx"
 
 function Main() {
 
@@ -18,16 +19,27 @@ function Main() {
                 (<div>slider2</div>),
                 (<div>slider3</div>)
             ]} />
+
             <GNB />
+
             <SubLayout>
+                
                 <FootprintCounter>탄수 발자국</FootprintCounter>
+            
                 <Calendar />
+
             </SubLayout>
+
+            <FloatingChatbotWrap>
+                <img src={Chatbot_floating} />
+            </FloatingChatbotWrap>
+
         </MainLayout>
     )
 }
 
 const MainLayout = styled.div`
+position: relative;
 width: 100%;
 // height: 1000px;
 `
@@ -37,6 +49,25 @@ width: 100%;
 height: 700px;
 padding: 16px 20px 0px 20px;
 background-color: #F4F4F4;
+position: relative
+`
+
+const FloatingChatbotWrap = styled.div`
+position: absolute;
+bottom: 1rem;
+right:1rem;
+display: flex;
+width: 6rem;
+height: 6rem;
+padding: 1.6rem 1.5rem;
+justify-content: center;
+align-items: center;
+gap: 1rem;
+background-color:black;
+border-radius: 3rem;
+background: #000;
+box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.20);
+${hoverGrow}
 `
 
 export default Main;

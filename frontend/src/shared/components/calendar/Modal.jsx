@@ -6,6 +6,8 @@ import PlusCircle from '../../../assets/PlusCircle.svg'
 import X from '../../../assets/X.svg'
 import randomImage from '../../../assets/randomImage.png'
 import { useNavigate } from "react-router-dom";
+import ActivityLog from '../../../assets/ActivityLog.svg'
+import DietLog from '../../../assets/DietLog.svg'
 
 function Modal ({ setIsModalVisible, index, day }){
 
@@ -84,11 +86,11 @@ function Modal ({ setIsModalVisible, index, day }){
                         {/* 임시 */}
                         <img style={{
                             width: '24px',
-                        }} src={randomImage} />
+                        }} src={DietLog} />
 
                         <img style={{
                             width: '24px',
-                        }} src={randomImage} />
+                        }} src={ActivityLog} />
 
                     </StyledButtonWrap>
                     

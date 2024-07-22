@@ -2,13 +2,18 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Modal from './Modal';
 import { hoverGrow } from '../../animation/hoverGrow';
+import { crntClickedDayState } from '../../state/calendar';
+import { useRecoilState } from 'recoil';
 
 function CalendarCell({ schedule, index, day, today }) {
 
+    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleCellClick = () => {
         setIsModalVisible(true);
+        setCrntClickedDay(index)
+        console.log(crntClickedDay)
     };
 
     const handleModalClick = () => {

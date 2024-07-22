@@ -21,7 +21,6 @@ height: ${({ height }) => height};
 padding: 1.4rem 1.6rem 1.4rem 1.8rem;
 border-radius: 8px;
 border: 1px solid #D9D9D9;
-// margin-bottom: 1.4rem;
 background-color: white
 `
 

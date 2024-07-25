@@ -9,6 +9,7 @@ import SelectedComponent from "./SelectedComponent";
 import {useNavigate} from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { galleryState, selectedImgState } from "../../../shared/state/Gallery";
+import bread from "../../../assets/breadIcon.svg";
 
 function ChoosePic() {
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ function ChoosePic() {
       <CameraContainer>
         {!isCameraActive && (selectedImg.length > 0 ? <SelectedComponent/> : 
         <DefaultComponent>
-          <DefaultIcon src={test}/>
+          <DefaultIcon src={bread}/>
           <DefaultAleart>아직 업로드한 사진이 없어요.</DefaultAleart>
         </DefaultComponent>
         )}

@@ -132,6 +132,11 @@ const Choice = styled.div`
     border-radius: 5rem;
     background: #F2F3F5;
     color: #BABEC0;
+    @media(max-width: 428px){
+    &:hover{
+    transform: scale(1)
+    }
+}
 `;
 
 const SelectedChoice = styled(Choice)`

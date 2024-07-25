@@ -39,7 +39,10 @@ function CalendarCell({ schedule, index, day, today }) {
             {isModalVisible && (
                 <StyledModalContainer onClick={handleModalClick}>
                     <StyledModal onClick={(e) => e.stopPropagation()}>
-                        <Modal setIsModalVisible={setIsModalVisible} index={index} day={day}/>
+                        <Modal
+                        setIsModalVisible={setIsModalVisible}
+                        index={index}
+                        day={day}/>
                     </StyledModal>
                 </StyledModalContainer>
             )}

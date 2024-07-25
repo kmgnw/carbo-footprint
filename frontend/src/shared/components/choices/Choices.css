@@ -1,25 +1,25 @@
-.ob_title-wrap{
+.ob_title-wrap {
     display: flex;
     margin-top: 1.6rem;
 }
 
-.ob_choices-title{
+.ob_choices-title {
     color: #262829;
     font-family: "Noto Sans KR";
-    font-size: 16px;
+    font-size: 1.6rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
-.ob_choices-wrap{
-    
+.ob_choices-wrap {
+
     display: flex;
     justify-content: space-between;
     /* margin-bottom: 8rem; */
 }
 
-.ob_choice{
+.ob_choice {
     /* width: 100%; */
     padding: 1rem 1.2rem 1rem 1.2rem;
     display: flex;
@@ -28,18 +28,18 @@
     border-radius: 5rem;
     background: #F2F3F5;
     color: #BABEC0;
-    
+
 }
 
-.ob_choice-selected{
+.ob_choice-selected {
     padding: 1rem 1.2rem 1rem 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5rem;
-    background-color:#EF6038;
+    background-color: #EF6038;
     color: #FFF;
-    
+
 }
 
 .ob_title {
@@ -51,6 +51,7 @@
     line-height: normal;
 }
 
+
 .ob_title-selected {
     text-align: center;
     font-family: "Pretendard Variable";
@@ -58,4 +59,44 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+@media (max-width: 428px) {
+    .ob_title {
+        font-size: 1rem;
+    }
+
+    .ob_choice {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .ob_choice-selected {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .ob_title-selected {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 328px) {
+    .ob_title {
+        font-size: 0.8rem;
+    }
+
+    .ob_choice {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .ob_choice-selected {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .ob_title-selected {
+        font-size: 0.8rem;
+    }
 }

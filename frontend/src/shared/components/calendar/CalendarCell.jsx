@@ -7,23 +7,19 @@ import { useRecoilState } from 'recoil';
 
 function CalendarCell({ schedule, index, day, today }) {
 
-    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const [_, setCrntClickedDay] = useRecoilState(crntClickedDayState)
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleCellClick = () => {
         setIsModalVisible(true);
         setCrntClickedDay(index)
-        console.log(crntClickedDay)
     };
 
     const handleModalClick = () => {
         setIsModalVisible(false);
     };
 
-    useEffect(()=>{
-        console.log('there')
-        console.log(schedule)
-    }, [])
+    const isEmpty = (schedule.length === 1 && schedule[0].title==='')
 
     return (
         <>
@@ -31,9 +27,9 @@ function CalendarCell({ schedule, index, day, today }) {
 
                 <StyledDate isToday={today === index}>{index+1}</StyledDate>
                 
-                    {schedule.map((e,i)=>(
+                    {!isEmpty && schedule.map((e,i)=>(
                         <StyledScheduleContainer>
-                            {e}
+                            {e.title}
                         </StyledScheduleContainer>
                     ))}
                 

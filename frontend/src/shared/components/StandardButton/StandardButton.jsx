@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { hoverGrow } from '../../animation/hoverGrow'
 
-function StandardButton({ width, height, title, onClick, backgroundColor="black", color='white'}) {
+function StandardButton({ width, height, title, onClick, backgroundColor="black", color='white', padding='1.4rem 1.8rem'}) {
     return (
         <MainLayout
         width={width}
         height={height}
         onClick={onClick}
         backgroundColor={backgroundColor}
+        padding={padding}
         >
             <Title
             color={color}
@@ -25,7 +26,7 @@ width: ${({ width }) => width};
 background-color: ${({ backgroundColor }) => backgroundColor};
 border-radius: 8px;
 ${hoverGrow};
-padding: 1.4rem 1.8rem;
+padding: ${({padding})=> padding};
 cursor: pointer;
 display: flex;
 justify-content: center;

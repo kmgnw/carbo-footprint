@@ -1,12 +1,13 @@
 import styled from "styled-components"
 
-function StandardInput({placeholder, onChange, width,height}) {
+function StandardInput({placeholder, onChange, width,height,value}) {
     return (
         <InputWrap width={width} height={height}>
 
             <StyledInput
                 placeholder={placeholder}
                 onChange={(e) => onChange(e.target.value)}
+                value={value}
             />
 
         </InputWrap>

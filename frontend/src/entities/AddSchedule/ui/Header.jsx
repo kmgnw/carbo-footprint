@@ -2,8 +2,12 @@ import styled from "styled-components";
 import BackButton from '../../../assets/BackButton.svg'
 import { useState } from "react";
 import Modal from './Modal'
+import { crntClickedDayState } from '../../../shared/state/calendar'
+import { useRecoilState } from 'recoil'
 
 function Header (){
+
+    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
 
     const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -21,6 +25,18 @@ function Header (){
             src={BackButton}
             onClick={handleBackButtonClick}
             />
+
+            <Date>
+                8월 {crntClickedDay}일 요일
+            </Date>
+
+            {/* Layout용 히든 컴포넌트*/}
+            <StyledBackButton
+            src={BackButton}
+            onClick={handleBackButtonClick}
+            style={{visibility:'hidden'}}
+            />
+
 
             {/* 모달 */}
             {isModalVisible && (
@@ -42,6 +58,16 @@ display:flex;
 justify-content: space-between;
 align-items: center;
 padding: 0 2rem 0 2rem;
+`
+
+const Date = styled.div`
+color: #262829;
+text-align: center;
+font-family: "Noto Sans KR";
+font-size: 1.6rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
 `
 
 const StyledBackButton = styled.img`
@@ -73,4 +99,4 @@ const StyledModal = styled.div`
     @media(max-width: 428px) {
         width:88%
     }
-`;  
+`;

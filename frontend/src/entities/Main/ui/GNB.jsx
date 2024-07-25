@@ -5,14 +5,18 @@ import GNB3 from '../../../assets/GNB3.svg'
 import GNB4 from '../../../assets/GNB4.svg'
 
 import GNBCell from './GNBCell'
+import { useNavigate } from "react-router-dom";
 
 function GNB (){
+
+    const navigate = useNavigate()
+
     return(
         <MainLayout>
-            <GNBCell title={"식단 추천"} img={GNB1} />
-            <GNBCell title={"탄수 카운팅"} img={GNB2} />
-            <GNBCell title={"중독 테스트"} img={GNB3} />
-            <GNBCell title={"커뮤니티"} img={GNB4} />
+            <GNBCell title={"식단 추천"} img={GNB1} onClick={()=>navigate('/diet-recommend')}/>
+            <GNBCell title={"탄수 카운팅"} img={GNB2} onClick={()=>navigate('/carb-counting')} />
+            <GNBCell title={"중독 테스트"} img={GNB3} onClick={()=>navigate('/carb-test')}/>
+            <GNBCell title={"커뮤니티"} img={GNB4} onClick={()=>navigate('/community')}/>
         </MainLayout>
     )
 }

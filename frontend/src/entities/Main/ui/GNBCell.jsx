@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { hoverGrow } from '../../../shared/animation/hoverGrow';
 
-function GNBCell({ title, img }){
+function GNBCell({ title, img, onClick }){
     return(
-        <MainLayout>
+        <MainLayout onClick={onClick}>
             <StyledIcon src={img} />
             <StyledTitle>{title}</StyledTitle>
         </MainLayout>

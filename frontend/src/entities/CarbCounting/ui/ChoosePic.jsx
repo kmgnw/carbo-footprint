@@ -40,7 +40,7 @@ function ChoosePic() {
     if (selectedImg) {
       const pngFile = blobToFile(selectedImg, 'tantanmen.png');
       console.log(pngFile);
-      navigate("/");
+      navigate("/carb-counting-result");
 
       // const formData = new FormData();
       // formData.append('file', pngFile);

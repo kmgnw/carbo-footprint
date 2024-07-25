@@ -31,7 +31,7 @@ function Main() {
             </SubLayout>
 
             <FloatingChatbotWrap>
-                <img src={Chatbot_floating} />
+                <Img src={Chatbot_floating} />
             </FloatingChatbotWrap>
 
         </MainLayout>
@@ -54,8 +54,8 @@ position: relative
 
 const FloatingChatbotWrap = styled.div`
 position: absolute;
-bottom: 1rem;
-right:1rem;
+bottom: 11.7rem;
+right:2rem;
 display: flex;
 width: 6rem;
 height: 6rem;
@@ -67,6 +67,16 @@ background-color:black;
 border-radius: 3rem;
 background: #000;
 box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.20);
+${hoverGrow}
+
+@media (max-width: 428px){
+position: fixed;
+bottom: 3.7rem;
+right:2rem;
+}
+`
+
+const Img = styled.img`
 ${hoverGrow}
 `
 

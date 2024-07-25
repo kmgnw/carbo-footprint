@@ -1,1 +1,1 @@
-export const baseUrl = 'https://jsonplaceholder.typicode.com/todos/1'
+export const baseUrl = 'http://3.34.246.40:8080/api'

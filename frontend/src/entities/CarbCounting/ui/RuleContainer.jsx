@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import checkbox from '../../../assets/checkbox.svg';
+import rule1 from "../../../assets/rule1Icon.svg";
+import rule2 from "../../../assets/rule2Icon.svg";
+import rule3 from "../../../assets/rule3Icon.svg";
 
 function RuleContainer(){
     return(
@@ -9,14 +12,17 @@ function RuleContainer(){
             <Content>
                 <Checkbox src={checkbox}/>
                 <RuleContent>음식을 <span style={{color: "#EF6038"}}>한 화면 안</span>에 위치해주세요</RuleContent>
+                <Img src={rule1}/>
             </Content>
             <Content>
                 <Checkbox src={checkbox}/>
                 <RuleContent>음식이 <span style={{color: "#EF6038"}}>정중앙</span>에 위치하도록 해주세요</RuleContent>
+                <Img src={rule2}/>
             </Content>
             <Content>
                 <Checkbox src={checkbox}/>
                 <RuleContent>음식이 가려지거나<br></br><span style={{color: "#EF6038"}}>겹치지 않도록 정리</span>해주세요</RuleContent>
+                <Img src={rule3}/>
             </Content>
             
         </Wrapper>
@@ -86,4 +92,11 @@ font-size: 14px;
 font-style: normal;
 font-weight: 500;
 line-height: 150%; /* 21px */
+`
+
+const Img = styled.img`
+width: 6.4rem;
+height: 6.4rem;
+position: absolute;
+right : 0.8rem;
 `

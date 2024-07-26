@@ -4,10 +4,12 @@ import StandardButton from "../../../shared/components/StandardButton/StandardBu
 
 import { newScheduleState } from "../../../shared/state/AddSchedule"
 import { useRecoilState } from "recoil"
+import { useNavigate } from "react-router-dom"
 
 function InputCalorie(){
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
+    const navigate = useNavigate()
 
     function handleInputChange(value){
         
@@ -19,7 +21,7 @@ function InputCalorie(){
     }
 
     function handleBtnClick(){
-        
+        navigate('/carb-counting')
     }
 
     return(

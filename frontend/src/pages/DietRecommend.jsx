@@ -8,6 +8,8 @@ import StandardButton from "../shared/components/StandardButton/StandardButton";
 import { newAllergyTypeState, newEatingHabitTypeState } from "../shared/state/DietRecommend";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
+import { recommendedResultState } from "../shared/state/DietRecommendResult";
+import { sendPreferences } from "../entities/DietRecommend/api/api";
 
 function DietRecommend() {
     const btnRef = useRef();
@@ -15,6 +17,7 @@ function DietRecommend() {
     const [tab, setTab] = useState(0);
     const [newAllergyType, setNewAllergyType] = useRecoilState(newAllergyTypeState);
     const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState);
+    const [_, setRecommendedResult] = useRecoilState(recommendedResultState)
     const [isActivate, setIsActivate] = useState(false);
 
     function renderContent() {
@@ -27,7 +30,13 @@ function DietRecommend() {
 
     function handleButtonClick() {
         if (isActivate) {
-            navigate('/diet-recommend-result');
+            sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult)
+            .then(()=>{
+                navigate('/diet-recommend-result');
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
         }
     }
 

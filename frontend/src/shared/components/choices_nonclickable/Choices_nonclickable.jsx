@@ -44,13 +44,15 @@ function Choices_nonclickable({
                 </NotPickyContainer>
 
             ) : (
-                eatingHabits.map((e, index) => (
-                    <AllergyWrap>
+                <AllergyWrap>
+                {eatingHabits.map((e, index) => (
+                    
                         <AllergyContainer key={index}>
                             <AllergyTitle>{e}</AllergyTitle>
                         </AllergyContainer>
-                    </AllergyWrap>
-                ))
+                    
+                ))}
+                </AllergyWrap>
             )}
 
 

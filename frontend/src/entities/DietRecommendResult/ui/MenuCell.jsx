@@ -64,7 +64,7 @@ box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.20);
 margin-bottom: 0.8rem
 `
 
-const ImgWrap = styled.div`
+const ImgWrap = styled.img`
 min-width: 12.9rem;
 height: 12.9rem;
 background-color: lightgrey;

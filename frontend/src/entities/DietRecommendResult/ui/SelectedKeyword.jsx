@@ -1,18 +1,25 @@
 import styled from "styled-components"
 import Choices_nonclickable from "../../../shared/components/choices_nonclickable/Choices_nonclickable"
-
+import { useRecoilValue } from "recoil"
+import { newAllergyTypeState, newEatingHabitTypeState } from "../../../shared/state/DietRecommend"
 
 
 function SelectedKeyword(){
+
+    const newAllergyType = useRecoilValue(newAllergyTypeState)
+    const newEatingHabitType = useRecoilValue(newEatingHabitTypeState)
+
+
     return(
         <MainLayout>
             <Title>선택한 키워드</Title>
-
-            <Choices_nonclickable
-            allergies={['메밀', '땅콩']}
-            eatingHabits_free={true}
-            eatingHabits={[]}
-            />
+            {newAllergyType.map(()=>(
+                <Choices_nonclickable
+                allergies={newAllergyType}
+                eatingHabits={newEatingHabitType}
+                />
+            ))}
+            
         </MainLayout>
     )
 }

@@ -1,8 +1,13 @@
 import styled from "styled-components"
 import pretzel from '../../../assets/Pretzel.svg'
 import MenuCell from "./MenuCell"
+import { recommendedResultState } from "../../../shared/state/DietRecommendResult";
+import { useRecoilValue } from "recoil";
 
 function ResultMenu(){
+
+    const recommendedResult = useRecoilValue(recommendedResultState)
+
     return(
         <MainLayout>
 
@@ -11,27 +16,16 @@ function ResultMenu(){
                 <Title>이런 메뉴는 어떤가요?</Title>
             </TitleWrap>
             
-            <MenuCell
-            title='음식 이름'
-            categories={['카테고리','카테고리']}
-            calories='000'
-            carb='00'
-            sugar='00'
-            />
-            <MenuCell
-            title='음식 이름'
-            categories={['카테고리','카테고리']}
-            calories='000'
-            carb='00'
-            sugar='00'
-            />
-            <MenuCell
-            title='음식 이름'
-            categories={['카테고리','카테고리']}
-            calories='000'
-            carb='00'
-            sugar='00'
-            />
+            {recommendedResult.map((e)=>(
+                <MenuCell
+                title={e.name}
+                img={e.image_url}
+                categories={['카테고리','카테고리']}
+                calories={e.calorie}
+                carb={e.carbohydrate}
+                sugar={e.saccharide}
+                />
+            ))}
 
             
         </MainLayout>
@@ -44,6 +38,7 @@ const MainLayout = styled.div`
 background-color: #F2F3F5;
 height: 57rem;
 padding: 2.4rem 2rem;
+overflow-y: auto;
 `
 
 const TitleWrap = styled.div`

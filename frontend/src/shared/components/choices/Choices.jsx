@@ -66,7 +66,7 @@ const ChoiceWrapper = styled.div`
 ${hoverGrow}
 @media(max-width: 428px){
 &:hover{
-transform: scale(1)
+pointer-events: none;
 }
 }
 `;

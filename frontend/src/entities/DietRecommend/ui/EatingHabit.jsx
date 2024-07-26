@@ -5,13 +5,9 @@ import NotPickyButton from "./NotPickyButton";
 import { newEatingHabitTypeState } from "../../../shared/state/DietRecommend";
 import { useRecoilState } from "recoil";
 
-function Allergy() {
+function EatingHabit() {
 
     const [_, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState)
-
-    function handleNotPickyButtonClick() {
-        setNewEatingHabitType([])
-    }
 
     return (
         <MainLayout>
@@ -34,7 +30,7 @@ function Allergy() {
 
             <NotPickyButton
                 title='가리는 것 없음'
-                onClick={handleNotPickyButtonClick}
+                type='eating-habit'
             />
 
             <Height22REM />
@@ -43,7 +39,7 @@ function Allergy() {
     )
 }
 
-export default Allergy;
+export default EatingHabit;
 
 const MainLayout = styled.div`
 padding: 9.2rem 1.9rem;

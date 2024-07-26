@@ -9,10 +9,6 @@ function Allergy() {
 
     const [_, setNewAllergyType] = useRecoilState(newAllergyTypeState)
 
-    function handleNotPickyButtonClick() {
-        setNewAllergyType(['가리는 것 없음'])
-    }
-
     return (
         <MainLayout>
             <img src={Dislike} />
@@ -34,7 +30,7 @@ function Allergy() {
 
             <NotPickyButton
                 title='가리는 것 없음'
-                onClick={handleNotPickyButtonClick}
+                type='allergy'
             />
 
         </MainLayout>

@@ -44,9 +44,6 @@ function Choices({ title, choices, type }) {
 
             return updatedType;
         });
-
-        console.log(newAllergyType)
-        console.log(newEatingHabitType)
     }
 
     return (

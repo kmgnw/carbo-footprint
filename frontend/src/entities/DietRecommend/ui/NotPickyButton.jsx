@@ -3,10 +3,50 @@ import styled from "styled-components";
 import check from '../../../assets/Check_notpickybutton.svg';
 import uncheck from '../../../assets/Uncheck_notpickybutton.svg';
 import { hoverGrow } from "../../../shared/animation/hoverGrow";
+import { newAllergyTypeState, newEatingHabitTypeState } from '../../../shared/state/DietRecommend';
+import { useRecoilState } from 'recoil';
 
-function NotPickyButton({ title, onClick }) {
+function NotPickyButton({ title, type }) {
     const [isHovered, setIsHovered] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+
+    const [newAllergyType, setNewAllergyType] = useRecoilState(newAllergyTypeState)
+    const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState)
+
+    useEffect(()=>{
+        if(type == 'allergy'){
+            if(newAllergyType.length === 1 && newAllergyType.includes('없음')){
+                setIsClicked(true)
+            }else {
+                setIsClicked(false)
+            }
+        }else if(type == 'eating-habit'){
+            if(newEatingHabitType.length === 1 &&newEatingHabitType.includes('없음')){
+                setIsClicked(true)
+            }else {
+                setIsClicked(false)
+            }
+        }
+
+        console.log(newAllergyType, newEatingHabitType)
+    }, [newAllergyType, newEatingHabitType])
+
+    useEffect(()=>{
+        if(type=='allergy'){
+            if(!isClicked){
+                setNewAllergyType((prev) => {
+                    return prev.filter((e) => e !== '없음');
+                });
+            }
+        } else if (type=='eating-habit'){
+            if(!isClicked){
+                setNewEatingHabitType((prev) => {
+                    return prev.filter((e) => e !== '없음');
+                });
+            }
+        }
+        
+    }, [isClicked])
 
     return (
         <NotPickyButtonWrap
@@ -14,8 +54,21 @@ function NotPickyButton({ title, onClick }) {
             onMouseLeave={() => setIsHovered(false)}
             isClicked={isClicked}
             onClick={() => {
-                setIsClicked(!isClicked);
-                onClick();
+
+                if(type === 'allergy'){
+                    if(newAllergyType.includes('없음')){
+                        setNewAllergyType([])
+                    }else {
+                        setNewAllergyType(['없음'])
+                    } 
+                }else if(type === 'eating-habit'){
+                    if(newEatingHabitType.includes('없음')){
+                        setNewEatingHabitType([])
+                    }else {
+                        setNewEatingHabitType(['없음'])
+                    } 
+                }
+
             }}
         >
             <NotPickyButtonText>

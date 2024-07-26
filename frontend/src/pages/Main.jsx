@@ -1,11 +1,12 @@
 import styled from "styled-components"
 import Calendar from "../shared/components/calendar/Calendar.jsx"
 import GNB from "../entities/Main/ui/GNB.jsx"
-import Slider from '../shared/components/slider/Slider.jsx'
+import Slider from '../shared/components/Slider/Slider.jsx'
 import FootprintCounter from "../entities/Main/ui/FootprintCounter.jsx"
 import Header from "../entities/Main/ui/Header.jsx"
 import Chatbot_floating from '../assets/Chatbot_floating.svg'
 import { hoverGrow } from "../shared/animation/hoverGrow.jsx"
+import banner1 from '../assets/banner1.svg'
 
 function Main() {
 
@@ -14,11 +15,7 @@ function Main() {
 
             <Header />
 
-            <Slider contents={[
-                (<div>slider1</div>),
-                (<div>slider2</div>),
-                (<div>slider3</div>)
-            ]} />
+            <Slider />
 
             <GNB />
 

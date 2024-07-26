@@ -23,7 +23,6 @@ function ShareResult() {
       };
 
     return (<>
-        <div style={{height:"3rem", marginBottom: "1.5rem"}}><CustomAlert message={alert.message} visible={alert.visible} success={alert.success} /></div>
         <MainLayout>
             <Title>추천 식단을 공유해보세요</Title>
 

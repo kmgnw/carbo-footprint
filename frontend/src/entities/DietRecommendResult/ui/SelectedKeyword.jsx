@@ -13,12 +13,11 @@ function SelectedKeyword(){
     return(
         <MainLayout>
             <Title>선택한 키워드</Title>
-            {newAllergyType.map(()=>(
+            
                 <Choices_nonclickable
                 allergies={newAllergyType}
                 eatingHabits={newEatingHabitType}
                 />
-            ))}
             
         </MainLayout>
     )

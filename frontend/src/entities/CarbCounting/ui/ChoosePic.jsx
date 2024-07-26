@@ -3,27 +3,34 @@ import styled from "styled-components";
 import StandardButton from "../../../shared/components/StandardButton/StandardButton";
 import CameraComponent from "./CameraComponent";
 import test from "../../../assets/testImg.svg";
-import Modal from './Modal';
+import Modal from "./Modal";
 import RuleContainer from "./RuleContainer";
 import SelectedComponent from "./SelectedComponent";
-import {useNavigate} from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { galleryState, selectedImgState } from "../../../shared/state/Gallery";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  fileState,
+  galleryState,
+  resultDataState,
+  selectedImgState,
+} from "../../../shared/state/Gallery";
 import bread from "../../../assets/breadIcon.svg";
+import { sendClassification } from "../api/api";
 
 function ChoosePic() {
   const navigate = useNavigate();
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const file = useRecoilValue(fileState);
   const selectedImg = useRecoilValue(selectedImgState);
+  const gallery = useRecoilValue(galleryState);
+  const [data, setData] = useRecoilState(resultDataState);
 
   const handleTakePicture = () => {
     setIsCameraActive(true);
   };
 
   const handleOpenModal = () => {
-
     setIsCameraActive(false);
     setIsModalOpen(true);
   };
@@ -32,56 +39,60 @@ function ChoosePic() {
     setIsModalOpen(false);
   };
 
-  function blobToFile(blob, fileName) {
-    const file = new File([blob], fileName, { type: 'image/png' });
-    return file;
-  }
-
-  const handleResult = () =>{
-    if (selectedImg) {
-      const pngFile = blobToFile(selectedImg, 'tantanmen.png');
-      console.log(pngFile);
-      navigate("/carb-counting-result");
-
-      // const formData = new FormData();
-      // formData.append('file', pngFile);
-  
-      // axios.post('baseurl/', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data'
-      //   }
-      // })
-      // .then(response => {
-      //   console.log("서버 응답:", response.data);
-      // })
-      // .catch(error => {
-      //   console.error("전송 중 오류 발생:", error);
-      // });
-  
+  const handleResult = async () => {
+    if (selectedImg >= 0 && file[selectedImg]) {
+        console.log("선택된 파일:", file[selectedImg]);
+        try {
+            const nuetritionList = await sendClassification(file[selectedImg]);
+            setData(nuetritionList);
+            console.log("영양성분 목록:", nuetritionList);
+            navigate("/carb-counting-result");
+        } catch (error) {
+            console.error("통신 중 오류 발생:", error);
+        }
+    } else {
+        console.log("유효한 이미지가 선택되지 않았습니다.");
     }
-  }
+};
 
   return (
     <>
       <ButtonContainer>
-        <StandardButton title="사진 찍기" width="18.7rem" height="4rem" onClick={handleTakePicture}/>
-        <StandardButton title="사진 등록" width="18.7rem" height="4rem" onClick={handleOpenModal}/>
+        <StandardButton
+          title="사진 찍기"
+          width="18.7rem"
+          height="4rem"
+          onClick={handleTakePicture}
+        />
+        <StandardButton
+          title="사진 등록"
+          width="18.7rem"
+          height="4rem"
+          onClick={handleOpenModal}
+        />
       </ButtonContainer>
 
       <Title>업로드한 사진</Title>
       <CameraContainer>
-        {!isCameraActive && (selectedImg.length > 0 ? <SelectedComponent/> : 
-        <DefaultComponent>
-          <DefaultIcon src={bread}/>
-          <DefaultAleart>아직 업로드한 사진이 없어요.</DefaultAleart>
-        </DefaultComponent>
+        {!isCameraActive &&
+          (selectedImg !== null && selectedImg >= 0 && selectedImg < file.length ? (
+            <SelectedComponent />
+          ) : (
+            <DefaultComponent>
+              <DefaultIcon src={bread} />
+              <DefaultAleart>아직 업로드한 사진이 없어요.</DefaultAleart>
+            </DefaultComponent>
+          ))}
+        {isCameraActive && (
+          <CameraComponent onRetake={() => setIsCameraActive(false)} />
         )}
-        {isCameraActive && <CameraComponent onRetake={() => setIsCameraActive(false)} />}
       </CameraContainer>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <div style={{padding : '2.4rem 2rem 0 2rem'}} ><StandardButton title="탄수화물 함량 확인하기" onClick={handleResult}/></div>
-      <div style={{padding : '4rem 2rem 0 2rem'}} >
+      <div style={{ padding: "2.4rem 2rem 0 2rem" }}>
+        <StandardButton title="탄수화물 함량 확인하기" onClick={handleResult} />
+      </div>
+      <div style={{ padding: "4rem 2rem 0 2rem" }}>
         <RuleContainer></RuleContainer>
       </div>
     </>
@@ -117,10 +128,10 @@ const CameraContainer = styled.div`
 `;
 
 const DefaultComponent = styled.div`
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 1.6rem;
@@ -129,16 +140,16 @@ const DefaultComponent = styled.div`
 const DefaultIcon = styled.img`
   width: 13rem;
   height: 13rem;
-`
+`;
 
 const DefaultAleart = styled.div`
-color: var(--Gray4, #BABEC0);
-text-align: center;
-font-family: "Noto Sans KR";
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-`
+  color: var(--Gray4, #babec0);
+  text-align: center;
+  font-family: "Noto Sans KR";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
 
 export default ChoosePic;

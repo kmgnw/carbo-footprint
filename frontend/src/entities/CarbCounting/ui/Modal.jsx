@@ -3,27 +3,29 @@ import styled from 'styled-components';
 import close from '../../../assets/X.svg';
 import X from '../../../assets/X.svg';
 import { useRecoilState } from 'recoil';
-import { galleryState,selectedImgState } from '../../../shared/state/Gallery';
+import { fileState, galleryState,selectedImgState } from '../../../shared/state/Gallery';
 import { hoverGrow } from '../../../shared/animation/hoverGrow';
 
 
 function Modal({ isOpen, onClose }) {
   const [images, setImages] = useRecoilState(galleryState);
   const [selectedImg, setSelectedImage] = useRecoilState(selectedImgState);
+  const [file, setFiles] = useRecoilState(fileState);
+  
 
-  const handleImageClick = (src) => {
-    setSelectedImage(prevSelectedImage => 
-      prevSelectedImage === src ? [] : src
-    );
-    
+  const handleImageClick = (index) => {
+    setSelectedImage(index);
+    console.log("Selected index: " + index);
   };
 
   const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    const imageUrls = files.map(file => URL.createObjectURL(file));
-    setImages(prevImages => [...prevImages, ...imageUrls]);
+    const selectedFiles = Array.from(event.target.files);
+    
+    const imageUrls = selectedFiles.map(file => URL.createObjectURL(file));
+    
+    setImages(prevGallery => [...prevGallery, ...imageUrls]);
+    setFiles(prevFiles => [...prevFiles, ...selectedFiles]);
   };
-
 
   const handleButtonClick = () => {
     document.getElementById('file-input').click();
@@ -54,8 +56,8 @@ function Modal({ isOpen, onClose }) {
               key={index}
               src={src}
               alt={'내 이미지'}
-              onClick={() => handleImageClick(src)}
-              selected={src === selectedImg}
+              onClick={() => handleImageClick(index)}
+              selected={index === selectedImg}
             />
           ))}
         </GalleryContainer>

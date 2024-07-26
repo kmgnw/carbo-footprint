@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import { selectedImgState } from '../../../shared/state/Gallery';
+import { galleryState, selectedImgState } from '../../../shared/state/Gallery';
 
 function SelectedComponent() {
   const selectedImg = useRecoilValue(selectedImgState);
-  return <Img src={selectedImg} alt="Selected" />;
+  const gallery = useRecoilValue(galleryState);
+
+
+  return (<Img src={gallery[selectedImg]} />);
 }
 
 export default SelectedComponent;

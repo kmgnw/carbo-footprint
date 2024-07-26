@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { selectedImgState } from "../../../shared/state/Gallery";
+import { selectedImgState, galleryState, resultDataState } from "../../../shared/state/Gallery";
 import test from "../../../assets/testImg.svg";
 import icon from "../../../assets/pretzelIcon.svg";
 import link from '../../../assets/Link.svg'
@@ -15,8 +15,8 @@ import MenuCarousel from "./MenuCarousel";
 
 function MainContent() {
   const selectedImg = useRecoilValue(selectedImgState);
-  const [foodCnt, setFoodCnt] = useState("00"); //음식개수
-  const [calCnt, setcalCnt] = useState("000"); //칼로리
+  const gallery = useRecoilValue(galleryState);
+  const kcal = useRecoilValue(resultDataState)
   const [alert, setAlert] = useState({ visible: false, message: '', success: true });
 
   const copyLink = () => {
@@ -34,7 +34,7 @@ function MainContent() {
     <Wrapper>
       <Title>업로드한 사진</Title>
       <PicContainer>
-        <Img src={selectedImg} />
+        <Img src={gallery[selectedImg]} />
       </PicContainer>
 
       <ResultContainer>
@@ -44,13 +44,13 @@ function MainContent() {
 
       <CntContainer>
         <FontContainer>총</FontContainer>
-        <FoodCntContainer>{foodCnt}</FoodCntContainer>
+        <FoodCntContainer>01</FoodCntContainer>
         <FontContainer>개의 음식</FontContainer>
       </CntContainer>
 
       <CntContainer style={{ marginTop: "0.8rem" }}>
         <FontContainer>총</FontContainer>
-        <FoodCntContainer>{calCnt}</FoodCntContainer>
+        <FoodCntContainer>{kcal.calorie}</FoodCntContainer>
         <FontContainer>kcal</FontContainer>
       </CntContainer>
 
@@ -60,7 +60,7 @@ function MainContent() {
       <Carousel />
 
       <FontContainer style={{ marginTop: "3.2rem", marginLeft: "2rem" }}>
-        메뉴별 분석&nbsp;<span style={{ color: "#EF6038" }}>{foodCnt}</span>
+        메뉴별 분석&nbsp;<span style={{ color: "#EF6038" }}>01</span>
       </FontContainer>
       <MenuCarousel />
 

@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { resultDataState } from "../../../shared/state/Gallery";
 
 function Carousel() {
-  const [nutrients, setNutrients] = useState([
-    { name: "단백질", amount: "100" },
-    { name: "탄수화물", amount: "80" },
-    { name: "dsfdsf", amount: "324" },
-    { name: "fvdds", amount: "34" },
-    { name: "단백질", amount: "100" },
-    { name: "탄수화물", amount: "80" },
-    { name: "dsfdsf", amount: "324" },
-    { name: "fvdds", amount: "34" },
-  ]);
+  const [nutrients, setNutrients] = useState([]);
+  const data = useRecoilValue(resultDataState);
 
-  //   useEffect(() => {
-  //     const fetchNutrients = async () => {
-  //       try {
-  //         const response = await axios.get('');
-  //         setNutrients(response.data);
-  //       } catch (error) {
-  //         console.error('Failed to fetch nutrients', error);
-  //       }
-  //     };
-
-  //     fetchNutrients();
-  //   }, []);
+  useEffect(() => {
+    if (data) {
+      const nutrientArray = [
+        { name: "탄수화물", amount: data.carb },
+        { name: "단백질", amount: data.prot },
+        { name: "지방", amount: data.fat },
+        { name: "당류", amount: data.sugar },
+      ];
+      setNutrients(nutrientArray);
+    }
+  }, [data]);
 
   return (
     <CarouselWrapper>
@@ -82,25 +75,6 @@ const FontContainer = styled.div`
 
 const Unit = styled(FontContainer)`
   font-size: 1.4rem;
-`;
-
-// const CarouselWrapper = styled.div`
-//   display: flex;
-//   overflow-x: scroll;
-//   scroll-snap-type: x mandatory;
-// `;
-
-const NutrientName = styled.div`
-  color: var(--Gray8, #262829);
-  font-family: "Noto Sans KR";
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-`;
-
-const NutrientAmount = styled.div`
-  font-size: 16px;
 `;
 
 const ContentWrapper = styled.div`

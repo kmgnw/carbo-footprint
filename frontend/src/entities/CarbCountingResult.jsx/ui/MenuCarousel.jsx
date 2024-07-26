@@ -1,108 +1,49 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { resultDataState } from "../../../shared/state/Gallery";
 
 function MenuCarousel() {
-  const [menu, setMenu] = useState([
-    {
-      name: "메뉴 이름",
-      amount: "100",
-      calorie: "000",
-      carb: "000",
-      prot: "000",
-      fat: "000",
-      etc: "000",
-    },
-    {
-      name: "메뉴 이름",
-      amount: "100",
-      calorie: "000",
-      carb: "000",
-      prot: "000",
-      fat: "000",
-      etc: "000",
-    },
-    {
-      name: "메뉴 이름",
-      amount: "100",
-      calorie: "000",
-      carb: "000",
-      prot: "000",
-      fat: "000",
-      etc: "000",
-    },
-    {
-      name: "메뉴 이름",
-      amount: "100",
-      calorie: "000",
-      carb: "000",
-      prot: "000",
-      fat: "000",
-      etc: "000",
-    },
-    {
-      name: "메뉴 이름",
-      amount: "100",
-      calorie: "000",
-      carb: "000",
-      prot: "000",
-      fat: "000",
-      etc: "000",
-    },
-  ]);
-
-  //   useEffect(() => {
-  //     const fetchNutrients = async () => {
-  //       try {
-  //         const response = await axios.get('');
-  //         setNutrients(response.data);
-  //       } catch (error) {
-  //         console.error('Failed to fetch nutrients', error);
-  //       }
-  //     };
-
-  //     fetchNutrients();
-  //   }, []);
+  const data = useRecoilValue(resultDataState);
 
   return (
     <CarouselWrapper>
-      {menu.map((menu, index) => (
-        <CarouselContent key={index}>
-          <ContentWrapper>
-            <IntroContainer>
-              <MenuName>{menu.name}</MenuName>
-              <MenuAmount>1인분&nbsp;{menu.amount}g</MenuAmount>
-            </IntroContainer>
+      <CarouselContent>
+        <ContentWrapper>
+          <IntroContainer>
+            <MenuName>{data.name}</MenuName>
+            <MenuAmount>1인분&nbsp;{data.amount}g</MenuAmount>
+          </IntroContainer>
 
-            <CalorieWrapper>
-              <div>
-                <Font style={{ color: "#262829", fontSize: "1.4rem" }}>
-                  총 칼로리
-                </Font>
-                <Font>탄수화물</Font>
-                <Font>단백질</Font>
-                <Font>지방</Font>
-                <Font>기타</Font>
-              </div>
+          <CalorieWrapper>
+            <div>
+              <Font style={{ color: "#262829", fontSize: "1.4rem" }}>
+                총 칼로리
+              </Font>
+              <Font>탄수화물</Font>
+              <Font>단백질</Font>
+              <Font>지방</Font>
+              <Font>당류</Font>
+            </div>
 
-              <div>
-                <Font
-                  style={{
-                    color: "#262829",
-                    fontSize: "1.4rem",
-                    fontWeight: "700",
-                  }}
-                >
-                  {menu.calorie}kcal
-                </Font>
-                <Font>{menu.carb}g</Font>
-                <Font>{menu.prot}g</Font>
-                <Font>{menu.fat}g</Font>
-                <Font>{menu.etc}g</Font>
-              </div>
-            </CalorieWrapper>
-          </ContentWrapper>
-        </CarouselContent>
-      ))}
+            <div>
+              <Font
+                style={{
+                  color: "#262829",
+                  fontSize: "1.4rem",
+                  fontWeight: "700",
+                }}
+              >
+                {data.calorie}kcal
+              </Font>
+              <Font>{data.carb}g</Font>
+              <Font>{data.prot}g</Font>
+              <Font>{data.fat}g</Font>
+              <Font>{data.sugar}g</Font>
+            </div>
+          </CalorieWrapper>
+        </ContentWrapper>
+      </CarouselContent>
     </CarouselWrapper>
   );
 }
@@ -120,7 +61,7 @@ const CarouselWrapper = styled.div`
   scroll-snap-type: x mandatory;
   white-space: nowrap;
   &::-webkit-scrollbar {
-    display: none; /* Hide the scrollbar */
+    display: none;
   }
 `;
 
@@ -129,7 +70,7 @@ const CarouselContent = styled.div`
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
-  padding: 1.2rem 1rem;
+  padding:  0.5rem 1.2rem 1rem;
 `;
 
 const ContentWrapper = styled.div`
@@ -142,7 +83,7 @@ const IntroContainer = styled.div`
   justify-content: space-between;
   height: 3.2rem;
   border-bottom: 1px solid #d9d9d9;
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.8rem;
 `;
 
 const MenuName = styled.div`

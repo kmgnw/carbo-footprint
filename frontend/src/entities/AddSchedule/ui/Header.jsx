@@ -27,7 +27,7 @@ function Header (){
             />
 
             <Date>
-                8월 {crntClickedDay}일 요일
+                8월 {crntClickedDay+1}일 요일
             </Date>
 
             {/* Layout용 히든 컴포넌트*/}

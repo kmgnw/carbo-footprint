@@ -4,23 +4,14 @@ export const augustState = atom({
     key: 'augustState',
     default: new Array(31).fill(null).map(() => ([
         {
-            title: '일정은여섯글자',
+            title: '',
             firstMeal: [],
             secondMeal: [],
             thirdMeal: [],
             extraMeal: [],
             workoutTime: '',
             stepCount: ''
-        },
-        {
-            title: '일정은여섯글자',
-            firstMeal: [],
-            secondMeal: [],
-            thirdMeal: [],
-            extraMeal: [],
-            workoutTime: '',
-            stepCount: ''
-        },
+        }
     ]))
 });
 
@@ -33,7 +24,7 @@ export const septemberState = atom({
         thirdMeal: [],
         extraMeal: [],
         workoutTime: '',
-        stepCount: 'h'
+        stepCount: ''
     }]))
 });
 

@@ -10,6 +10,7 @@ import ActivityLog from '../../../assets/ActivityLog.svg'
 import DietLog from '../../../assets/DietLog.svg'
 import ActivityLog_clicked from '../../../assets/ActivityLog_clicked.svg'
 import DietLog_clicked from '../../../assets/DietLog_clicked.svg'
+import bread from '../../../assets/breadIcon.svg'
 
 function Modal({ setIsModalVisible, index, day }) {
 
@@ -35,8 +36,8 @@ function Modal({ setIsModalVisible, index, day }) {
 
 
     function isActivityLog(e) {
-        if (e.workoutTime !== '' ||
-            e.stepCount !== ''
+        if (e.workoutTime && e.workoutTime !== '' ||
+            e.stepCount && e.stepCount !== ''
         ) { return true }
         else { return false }
     }
@@ -58,7 +59,7 @@ function Modal({ setIsModalVisible, index, day }) {
             if (dayIndex === index) {
                 return daySchedule.map((item, itemIndex) => {
                     if (itemIndex === i) {
-                        return { ...item, title: e.target.value }; // Fixing the title change issue
+                        return { ...item, title: e.target.value };
                     }
                     return item;
                 });
@@ -93,47 +94,40 @@ function Modal({ setIsModalVisible, index, day }) {
             </StyledFlexbox>
 
             <StyledScheduleWrap>
-                {august[index].length === 1 &&
-                    august[index][0].title === '' &&
-                    (
-                        <>
-                        <>식빵</>
+                {august[index].length === 1 && august[index][0].title === '' ? (
+                    <>
+                        <ImgWrap>
+                            <Img src={bread} />
+                        </ImgWrap>
                         <NoScheduleText>
-                            아직 기록이 없습니다.<br/>
-                            오늘 당신의 탄수발자국을남겨보세요!
+                            아직 기록이 없습니다.<br />
+                            오늘 당신의 탄수발자국을 남겨보세요!
                         </NoScheduleText>
-                        </>
-                    )
-                }
-
-                {august[index].length !== 1 &&
-
-                august[index].map((e, i) => (
-                    <StyledScheduleContainer key={i}>
-
-                        <StyledInput
-                            value={e.title}
-                            placeholder={e.title}
-                            readOnly={isReadOnly}
-                            onChange={(text) => handleScheduleChange(text, i)}
-                        />
-
-                        <StyledButtonWrap>
-
-                            <img style={{
-                                width: '24px',
-                            }} src={isDietLog(e) ? DietLog_clicked : DietLog} alt="Diet Log" />
-
-                            <img style={{
-                                width: '24px',
-                            }} src={isActivityLog(e) ? ActivityLog_clicked : ActivityLog} alt="Activity Log" />
-
-                        </StyledButtonWrap>
-
-                    </StyledScheduleContainer>
-                ))
-                }
-
+                    </>
+                ) : (
+                    august[index].map((e, i) => (
+                        <StyledScheduleContainer key={i}>
+                            <StyledInput
+                                value={e.title}
+                                placeholder={e.title}
+                                readOnly={isReadOnly}
+                                onChange={(text) => handleScheduleChange(text, i)}
+                            />
+                            <StyledButtonWrap>
+                                <img
+                                    style={{ width: '24px' }}
+                                    src={isDietLog(e) ? DietLog_clicked : DietLog}
+                                    alt="Diet Log"
+                                />
+                                <img
+                                    style={{ width: '24px' }}
+                                    src={isActivityLog(e) ? ActivityLog_clicked : ActivityLog}
+                                    alt="Activity Log"
+                                />
+                            </StyledButtonWrap>
+                        </StyledScheduleContainer>
+                    ))
+                )}
             </StyledScheduleWrap>
 
         </StyledWrap>
@@ -200,10 +194,13 @@ const StyledScheduleWrap = styled.div`
 display: flex;
 flex-direction: column;
 border-bottom: 1px solid var(--Gray2, #E3E5E7);
+justify-content:center;
+align-items: center
 `
 
 const StyledScheduleContainer = styled.div`
 display: flex;
+width: 100%;
 justify-content: space-between;
 padding: 20px 16px;
 border-top: 1px solid var(--Gray2, #E3E5E7);
@@ -244,4 +241,15 @@ font-size: 16px;
 font-style: normal;
 font-weight: 700;
 line-height: 150%; /* 24px */
+`
+
+const ImgWrap = styled.div`
+width: 18.6rem;
+height: 18.6rem;
+object-fit: contain;
+margin-bottom: 3.7rem;
+`
+
+const Img = styled.img`
+width:100%;
 `

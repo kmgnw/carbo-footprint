@@ -31,11 +31,13 @@ function InputCalorie(){
                 <StandardInput
                 placeholder="섭취 칼로리 직접 입력"
                 onChange={handleInputChange}
+                padding="0"
                 />
 
                 <StandardButton
                 title="식단 사진으로 계산하기"
                 onClick={handleBtnClick}
+                padding= "1.2rem 1.8rem"
                 />
 
             </InputWrap>

@@ -15,7 +15,7 @@ function DietRecommendResultCell(){
 
             <Choices_nonclickable
             allergies={['메밀', '땅콩']}
-            eatingHabits_free={true}
+            eatingHabits={['없음']}
             />
 
             <StandardButton title='결과보기'/>

@@ -4,36 +4,61 @@ import StandardButton from '../../../shared/components/StandardButton/StandardBu
 import { newScheduleState } from '../../../shared/state/AddSchedule'
 import { useRecoilState } from "recoil";
 import activityLog from '../../../assets/ActivityLog.svg'
-
+import { augustState, crntClickedDayState } from "../../../shared/state/calendar";
+import { useNavigate } from "react-router-dom";
 
 function ActivityLog() {
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
+    const [august, setAugust] = useRecoilState(augustState)
+    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const navigate = useNavigate()
 
-
-    function handleWorkoutTimeChange (value){
+    function handleWorkoutTimeChange(value) {
         setNewSchedule((prev) => ({
             ...prev,
             workoutTime: value
         }));
     }
 
-    function handleStepCountChange (value){
+    function handleStepCountChange(value) {
         setNewSchedule((prev) => ({
             ...prev,
             stepCount: value
         }));
     }
 
-    function handleSaveButtonClick(){
-        
+    function handleSaveButtonClick() {
+
+        if (newSchedule.title && newSchedule.title !== '') {
+            setAugust((prev) => {
+                const list = [...prev];
+                if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
+                    list[crntClickedDay] = [newSchedule];
+                    return list
+                } else {
+                    list[crntClickedDay] = [...list[crntClickedDay], newSchedule];
+                    return list;
+                }
+            });
+
+            navigate('/')
+            setNewSchedule({
+                firstMeal: [],
+                secondMeal: [],
+                thirdMeal: [],
+                extraMeal: []
+            })
+        } else {
+            window.alert('제목')
+        }
     }
 
 
 
     return (
         <MainLayout>
-            
+
             <TitleWrap>
 
                 <img src={activityLog}
@@ -56,12 +81,12 @@ function ActivityLog() {
 
                     <StandardInputWrap>
 
-                        <StandardInput placeholder='운동 시간 입력' onChange={(e)=>handleWorkoutTimeChange(e)} />
+                        <StandardInput placeholder='운동 시간 입력' onChange={(e) => handleWorkoutTimeChange(e)} />
 
                         <InputTrailingText>분</InputTrailingText>
 
                     </StandardInputWrap>
-                    
+
                 </WorkoutTimeWrap>
 
                 <WorkoutTimeWrap>
@@ -70,19 +95,19 @@ function ActivityLog() {
 
                     <StandardInputWrap>
 
-                        <StandardInput placeholder='걸음수 입력' onChange={(e)=>handleStepCountChange(e)} />
+                        <StandardInput placeholder='걸음수 입력' onChange={(e) => handleStepCountChange(e)} />
 
                         <InputTrailingText>걸음</InputTrailingText>
 
                     </StandardInputWrap>
-                    
+
                 </WorkoutTimeWrap>
 
             </InputWrap>
 
-            <StandardButton title='저장하기' onClick={handleSaveButtonClick}/>
+            <StandardButton title='저장하기' onClick={handleSaveButtonClick} />
 
-            <div style={{height: '1.1rem'}} />
+            <div style={{ height: '1.1rem' }} />
         </MainLayout>
     )
 }
@@ -138,7 +163,7 @@ align-items: center;
 gap: 0.8rem
 `
 
-const InputTrailingText =  styled.div`
+const InputTrailingText = styled.div`
 color: #BABEC0;
 font-family: "Noto Sans KR";
 font-size: 1.6rem;

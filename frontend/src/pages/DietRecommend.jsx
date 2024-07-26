@@ -43,9 +43,9 @@ function DietRecommend() {
     useEffect(() => {
         if (
             newAllergyType.length !== 0 &&
-            newAllergyType[0] !== '가리는 것 없음' &&
-            newEatingHabitType.length !== 0 &&
-            newEatingHabitType[0] !== '가리는 것 없음'
+            // newAllergyType[0] !== '가리는 것 없음' &&
+            newEatingHabitType.length !== 0 
+            // newEatingHabitType[0] !== '가리는 것 없음'
         ) {
             setIsActivate(true);
         } else {
@@ -74,7 +74,7 @@ function DietRecommend() {
 export default DietRecommend;
 
 const MainLayout = styled.div`
-    height: 100vh;
+    height: 100%;
 `;
 
 const ButtonWrap = styled.div`

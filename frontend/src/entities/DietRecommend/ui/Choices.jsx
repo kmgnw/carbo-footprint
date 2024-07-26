@@ -130,9 +130,7 @@ const Choice = styled.div`
     background: #F2F3F5;
     color: #BABEC0;
     @media(max-width: 428px){
-    &:hover{
     pointer-events: none;
-    }
 }
 `;
 

@@ -65,9 +65,7 @@ const hoverGrow = css`
 const ChoiceWrapper = styled.div`
 ${hoverGrow}
 @media(max-width: 428px){
-&:hover{
 pointer-events: none;
-}
 }
 `;
 

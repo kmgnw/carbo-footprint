@@ -120,7 +120,6 @@ const ChoicesWrap = styled.div`
 `;
 
 const Choice = styled.div`
-    ${hoverGrow}
     width: 9.2rem;
     height: 4rem;
     display: flex;
@@ -129,9 +128,9 @@ const Choice = styled.div`
     border-radius: 5rem;
     background: #F2F3F5;
     color: #BABEC0;
-    @media(max-width: 428px){
-    pointer-events: none;
-}
+    @media (hover: hover) {
+	${hoverGrow}
+    }
 `;
 
 const SelectedChoice = styled(Choice)`

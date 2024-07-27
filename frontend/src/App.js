@@ -11,6 +11,7 @@ import CarbTestResult from "./pages/CarbTestResult";
 import Chatbot from "./pages/Chatbot";
 import Community from "./pages/Community";
 import CommunityChat from "./pages/CommunityChat";
+import Contributor from './pages/Contributor'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route path="chatbot" element={<Chatbot/>}/>
       <Route path="community" element={<Community/>}/>
       <Route path="community-chat" element={<CommunityChat/>}/>
+      <Route path="contributor" element={<Contributor />}/>
     </Routes>
   );
 }

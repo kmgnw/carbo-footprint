@@ -2,11 +2,12 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import banner1 from '../../../assets/banner1.svg';
 import banner2 from '../../../assets/banner2.svg';
+import banner3 from '../../../assets/banner3.svg';
 
 function Slider() {
     const contentWrapRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const images = [banner1, banner2]
+    const images = [banner1, banner2, banner3]
 
     const handleScroll = () => {
         if (contentWrapRef.current) {

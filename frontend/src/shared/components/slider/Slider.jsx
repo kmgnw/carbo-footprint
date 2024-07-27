@@ -3,11 +3,18 @@ import styled from 'styled-components';
 import banner1 from '../../../assets/banner1.svg';
 import banner2 from '../../../assets/banner2.svg';
 import banner3 from '../../../assets/banner3.svg';
+import { useNavigate } from 'react-router-dom';
 
 function Slider() {
     const contentWrapRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const images = [banner1, banner2, banner3]
+    const navigate = useNavigate()
+
+    const images = [
+        { src: banner1, onClick: () => navigate('/chatbot') },
+        { src: banner2, onClick: () => navigate('/carb-counting') },
+        { src: banner3, onClick: () => navigate('/contributor') }
+    ];
 
     const handleScroll = () => {
         if (contentWrapRef.current) {
@@ -47,7 +54,12 @@ function Slider() {
         <MainLayout>
             <ContentWrap ref={contentWrapRef} onTransitionEnd={handleTransitionEnd}>
                 {images.map((image, index) => (
-                    <img key={index} src={image} alt={`Banner ${index + 1}`} />
+                    <img
+                        key={index}
+                        src={image.src}
+                        alt={`Banner ${index + 1}`}
+                        onClick={image.onClick}
+                    />
                 ))}
             </ContentWrap>
             <Dots>
@@ -80,6 +92,7 @@ const ContentWrap = styled.div`
     & > img {
         flex: 0 0 100%;
         width: 100%;
+        cursor: pointer;  /* Add cursor pointer to indicate clickability */
     }
 `;
 
@@ -90,7 +103,7 @@ const Dots = styled.div`
     transform: translateX(-50%);
     display: flex;
     gap: 5px;
-    align-items:center;
+    align-items: center;
 `;
 
 const Dot = styled.div`

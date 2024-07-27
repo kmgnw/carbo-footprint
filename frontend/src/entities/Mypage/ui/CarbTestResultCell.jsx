@@ -62,7 +62,7 @@ function CarbTestResultCell({type}){
                 <Img src={cellInfo.img} alt={cellInfo.result} />
             </ImgWrap>
 
-            <CheckCount>cellInfo.checkCount</CheckCount>
+            <CheckCount>00개 체크</CheckCount>
 
             <Result>{cellInfo.result}</Result>
         </MainLayout>
@@ -95,18 +95,18 @@ background: #BABEC0;
 `
 
 const CheckCount = styled.div`
-color: var(--Gray5, #7D7F82);
+color: #7D7F82;
 font-family: "Noto Sans KR";
-font-size: 10px;
+font-size: 1rem;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
 `
 
 const Result = styled.div`
-color: var(--Gray8, #262829);
+color: #262829;
 font-family: "Noto Sans KR";
-font-size: 16px;
+font-size: 1.6rem;
 font-style: normal;
 font-weight: 700;
 line-height: normal;

@@ -7,6 +7,8 @@ import SectionContent from "../entities/Mypage/ui/GoToDietRecommend";
 import DietRecommendResultTab from "../entities/Mypage/ui/DietRecommendResultTab";
 import CarbCountingResultTab from "../entities/Mypage/ui/CarbCountingResultTab";
 import CarbTestResultTab from "../entities/Mypage/ui/CarbTestResultTab";
+import CommunityTab from "../entities/Mypage/ui/CommunityTab";
+
 import { useNavigate } from "react-router-dom";
 
 function Mypage (){
@@ -47,7 +49,7 @@ function Mypage (){
         } else if (tab === 2) {
             return <CarbTestResultTab />;
         } else if (tab === 3) {
-            return <>커뮤니티</>;
+            return <CommunityTab />;
         }
     }
 

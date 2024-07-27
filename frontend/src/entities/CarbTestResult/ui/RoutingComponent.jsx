@@ -93,7 +93,9 @@ padding: 2rem 3.2rem;
 align-items: center;
 gap: 0.5rem;
 justify-content: space-between;
-${hoverGrow}
+@media (hover: hover) {
+	${hoverGrow}
+    }
 `
 
 const BannerTitle = styled.div`

@@ -18,7 +18,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 cursor: pointer;
-${hoverGrow}
+@media (hover: hover) {
+	${hoverGrow}
+    }
 `
 
 const StyledIcon = styled.img`

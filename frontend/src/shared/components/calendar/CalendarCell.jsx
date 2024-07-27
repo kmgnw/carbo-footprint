@@ -67,7 +67,9 @@ const StyledContainer = styled.div`
         background: white;
     }
 
-    ${hoverGrow}
+    @media (hover: hover) {
+	${hoverGrow}
+    }
 `;
 
 const StyledDate = styled.div`

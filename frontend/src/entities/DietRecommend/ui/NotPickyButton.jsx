@@ -94,7 +94,9 @@ const NotPickyButtonWrap = styled.div`
   overflow: hidden;
   transition: all 0.25s ease-in-out;
   color: ${props => props.isClicked ? 'white' : '#7D7F82'};
-  ${hoverGrow}
+  @media (hover: hover) {
+	${hoverGrow}
+    }
   position: relative;
 
   &::after {

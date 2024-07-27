@@ -25,7 +25,9 @@ const MainLayout = styled.div`
 width: ${({ width }) => width};
 background-color: ${({ backgroundColor }) => backgroundColor};
 border-radius: 8px;
-${hoverGrow};
+@media (hover: hover) {
+	${hoverGrow}
+    }
 padding: ${({padding})=> padding};
 cursor: pointer;
 display: flex;

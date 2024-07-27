@@ -217,10 +217,14 @@ width: 4.8rem;
 height: 4.8rem;
 background-color: white;
 border-radius: 50%;
-${hoverGrow}
+@media (hover: hover) {
+	${hoverGrow}
+    }
 `
 
 const IconImg = styled.img`
-${hoverGrow}
+@media (hover: hover) {
+	${hoverGrow}
+    }
 cursor: pointer;
 `

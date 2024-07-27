@@ -64,7 +64,9 @@ background-color:black;
 border-radius: 3rem;
 background: #000;
 box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.20);
-${hoverGrow}
+@media (hover: hover) {
+	${hoverGrow}
+    }
 
 @media (max-width: 428px){
 position: fixed;
@@ -74,7 +76,9 @@ right:2rem;
 `
 
 const Img = styled.img`
-${hoverGrow}
+@media (hover: hover) {
+	${hoverGrow}
+    }
 `
 
 export default Main;

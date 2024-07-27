@@ -176,7 +176,9 @@ const Img = styled.img`
   object-fit: cover;
   cursor: pointer;
   border: ${({ selected }) => (selected ? '3px solid #EF6038' : 'none')};
-  ${hoverGrow}
+  @media (hover: hover) {
+	${hoverGrow}
+    }
 
   @media (max-width: 378px) {
     flex: 1 0 45%;

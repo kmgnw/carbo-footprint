@@ -142,5 +142,7 @@ const Button = styled.div`
   font-weight: 700;
   line-height: 150%;
   cursor: pointer;
-  ${hoverGrow}
+  @media (hover: hover) {
+	${hoverGrow}
+    }
 `;

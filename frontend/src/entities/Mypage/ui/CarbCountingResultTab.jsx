@@ -1,15 +1,20 @@
 import styled from "styled-components"
 import CarbCountingResultCell from "./CarbCountingResultCell";
+import NoData from './NoData'
 
-function CarbCountingResultTab(){
-    return(
-    <CellWrap>
-        
-        <CarbCountingResultCell />
-        <CarbCountingResultCell />
-        <CarbCountingResultCell />
-        
-    </CellWrap>
+function CarbCountingResultTab() {
+    return (
+        <CellWrap>
+            
+            {true ? (
+                <>
+                    <CarbCountingResultCell />
+                    <CarbCountingResultCell />
+                    <CarbCountingResultCell />
+                </>
+            ) : <NoData />}
+
+        </CellWrap>
     )
 }
 

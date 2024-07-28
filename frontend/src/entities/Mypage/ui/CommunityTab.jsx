@@ -1,11 +1,15 @@
 import styled from "styled-components"
 import CommunityCell from './CommunityCell'
-
+import NoData from "./NoData"
 
 function CommunityTab(){
     return(
         <MainLayout>
-            <CommunityCell />
+            {true ? (
+                <>
+                    <CommunityCell />
+                </>
+            ) : <NoData />}
         </MainLayout>
     )
 }

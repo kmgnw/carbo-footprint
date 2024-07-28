@@ -1,14 +1,21 @@
 import styled from "styled-components"
 import CarbTestResultCell from "./CarbTestResultCell"
+import NoData from './NoData'
 
 function CarbTestResultTab() {
     return (
-        <CellWrap>
-            <CarbTestResultCell type='양호'/>
-            <CarbTestResultCell type='주의'/>
-            <CarbTestResultCell type='위험'/>
-            <CarbTestResultCell type='중독'/>
-        </CellWrap>
+
+        <>
+            {true ? (
+                <CellWrap>
+                    <CarbTestResultCell type='양호' />
+                    <CarbTestResultCell type='주의' />
+                    <CarbTestResultCell type='위험' />
+                    <CarbTestResultCell type='중독' />
+                </CellWrap>
+            ) : <NoData />}
+        </>
+
     )
 }
 

@@ -7,9 +7,7 @@ function MenuCarousel() {
   const data = useRecoilValue(resultDataState);
 
   return (
-    <CarouselWrapper>
       <CarouselContent>
-        <ContentWrapper>
           <IntroContainer>
             <MenuName>{data.name}</MenuName>
             <MenuAmount>1인분&nbsp;{data.amount}g</MenuAmount>
@@ -34,7 +32,7 @@ function MenuCarousel() {
                   fontWeight: "700",
                 }}
               >
-                {data.calorie}kcal
+                5kcal
               </Font>
               <Font>{data.carb}g</Font>
               <Font>{data.prot}g</Font>
@@ -42,39 +40,20 @@ function MenuCarousel() {
               <Font>{data.sugar}g</Font>
             </div>
           </CalorieWrapper>
-        </ContentWrapper>
       </CarouselContent>
-    </CarouselWrapper>
   );
 }
 
 export default MenuCarousel;
 
-const CarouselWrapper = styled.div`
-  display: flex;
-  margin-top: 0.8rem;
-  height: 20rem;
-  padding: 0 2rem;
-  gap: 0.8rem;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  white-space: nowrap;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
 const CarouselContent = styled.div`
+  width: 100%
   height: 17.9rem;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
   padding:  0.5rem 1.2rem 1rem;
-`;
-
-const ContentWrapper = styled.div`
-  width: 27.2rem;
+  margin: 0.8rem 2rem 0rem 2rem;
 `;
 
 const IntroContainer = styled.div`

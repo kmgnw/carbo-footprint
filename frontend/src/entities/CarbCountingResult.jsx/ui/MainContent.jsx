@@ -42,12 +42,6 @@ function MainContent() {
         <ResultTitle>식단 분석 결과</ResultTitle>
       </ResultContainer>
 
-      <CntContainer>
-        <FontContainer>총</FontContainer>
-        <FoodCntContainer>01</FoodCntContainer>
-        <FontContainer>개의 음식</FontContainer>
-      </CntContainer>
-
       <CntContainer style={{ marginTop: "0.8rem" }}>
         <FontContainer>총</FontContainer>
         <FoodCntContainer>{kcal.calorie}</FoodCntContainer>
@@ -60,7 +54,7 @@ function MainContent() {
       <Carousel />
 
       <FontContainer style={{ marginTop: "3.2rem", marginLeft: "2rem" }}>
-        메뉴별 분석&nbsp;<span style={{ color: "#EF6038" }}>01</span>
+        메뉴 분석
       </FontContainer>
       <MenuCarousel />
 

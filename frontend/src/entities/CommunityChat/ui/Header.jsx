@@ -11,6 +11,7 @@ function Header({ roomName }) {
             <img
                 src={backButton}
                 onClick={() => navigate(-1)}
+                style={{cursor:"pointer"}}
             />
 
             <Title>roomName</Title>

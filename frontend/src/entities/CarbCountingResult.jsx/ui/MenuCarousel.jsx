@@ -32,7 +32,7 @@ function MenuCarousel() {
                   fontWeight: "700",
                 }}
               >
-                5kcal
+                {data.calorie}kcal
               </Font>
               <Font>{data.carb}g</Font>
               <Font>{data.prot}g</Font>

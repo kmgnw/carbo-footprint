@@ -49,13 +49,13 @@ function TitleSection(){
 
             <KakaoCheckboxWrap onClick={handleCheckboxClick}>
 
-                <StyledCheckbox isChecked={isChecked}>
+                {/* <StyledCheckbox isChecked={isChecked}>
                     <img src={isChecked ? Checked: Unchecked} />
                 </StyledCheckbox>
 
                 <CheckboxTitle>
                     카톡으로 식단 추천 받기
-                </CheckboxTitle>
+                </CheckboxTitle> */}
 
             </KakaoCheckboxWrap>
 

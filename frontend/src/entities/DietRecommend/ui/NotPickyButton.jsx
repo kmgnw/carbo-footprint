@@ -83,6 +83,7 @@ function NotPickyButton({ title, type }) {
 export default NotPickyButton;
 
 const NotPickyButtonWrap = styled.div`
+cursor: pointer;
   margin-top: 4rem;
   display: flex;
   justify-content: space-between;

@@ -24,4 +24,5 @@ export default Tabbar
 
 const MainLayout = styled.div`
 display: flex;
+cursor: pointer;
 `

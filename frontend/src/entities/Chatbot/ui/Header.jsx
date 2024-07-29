@@ -27,6 +27,7 @@ const Wrapper = styled.div`
 `
 
 const Back = styled.img`
+cursor:pointer;
     width: 3.6rem;
     height: 3.6rem;
     position: absolute;

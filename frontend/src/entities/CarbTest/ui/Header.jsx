@@ -30,6 +30,7 @@ const Back = styled.img`
     height: 3.6rem;
     position: absolute;
     left: 2rem;
+    cursor: pointer;
 
 `
 

@@ -71,7 +71,7 @@ function Modal({ setIsModalVisible, index, day }) {
                 <StyledTitle>8월 {index + 1}일 {day}요일</StyledTitle>
 
                 <StyledButton onClick={handleBtnClick}>
-                    <img src={X} alt="Close" />
+                    <img src={X} alt="Close" style={{cursor:'pointer'}}/>
                 </StyledButton>
 
             </StyledHeader>
@@ -209,6 +209,7 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 padding-top: 2px;
+cursor: pointer;
 `
 
 const StyledButtonWrap = styled.div`

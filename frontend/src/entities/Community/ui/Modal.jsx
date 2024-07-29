@@ -51,7 +51,7 @@ function Modal({ setIsModalVisible }) {
                     alt="Close"
                 />
                 방만들기
-                <img src={X} onClick={handleCancelClick} alt="Close" />
+                <img src={X} onClick={handleCancelClick} alt="Close" style={{cursor:"pointer"}}/>
             </Header>
 
             <InputSection>

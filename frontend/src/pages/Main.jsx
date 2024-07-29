@@ -79,6 +79,7 @@ right:2rem;
 `
 
 const Img = styled.img`
+cursor: pointer;
 @media (hover: hover) {
 	${hoverGrow}
     }

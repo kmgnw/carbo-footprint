@@ -11,7 +11,8 @@ function Header(){
         <MainLayout>
             <img
             onClick={()=>navigate(-1)}
-            src={backButton} />
+            src={backButton} 
+            style={{cursor:"pointer"}}/>
 
             <Title>커뮤니티</Title>
 

@@ -22,18 +22,25 @@ function ShareResult() {
         });
       };
 
-    return (<>
+    return (
+        <>
+        
         <MainLayout>
-            <Title>추천 식단을 공유해보세요</Title>
+        <div style={{
+          height:"3rem",
+          width: "100%",
+          // marginBottom: "1.5rem"
+          position: 'absolute',
+          top: '-4.5rem',
+          left: '0'
+          }}><CustomAlert message={alert.message} visible={alert.visible} success={alert.success} /></div>
 
+            <Title>테스트 결과를 공유하세요!</Title>
             <ButtonWrap>
-
                 <CopyLinkWrap>
                     <Img src={link} onClick={copyLink}/>
                 </CopyLinkWrap>
-
                 <Img src={kakao} onClick={shareKakao}/>
-
             </ButtonWrap>
         </MainLayout>
         </>
@@ -49,7 +56,8 @@ align-items: center;
 width: 100%;
 height: 8rem;
 padding: 1.6rem 1.8rem;
-background-color: black
+background-color: black;
+position:relative
 `
 
 const Title = styled.div`

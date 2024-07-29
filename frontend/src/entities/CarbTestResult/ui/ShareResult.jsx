@@ -7,7 +7,6 @@ import { shareKakao } from "../../../util/kakaoLink"
 import CustomAlert from "../../CarbCountingResult.jsx/ui/CustomAlert"
 import { useState } from "react"
 
-
 function ShareResult() {
 
     const [alert, setAlert] = useState({ visible: false, message: '', success: true });
@@ -25,7 +24,11 @@ function ShareResult() {
 
     return (
         <>
-        <div style={{height:"3rem", marginBottom: "1.5rem"}}><CustomAlert message={alert.message} visible={alert.visible} success={alert.success} /></div>
+        <div style={{
+          height:"3rem",
+          marginBottom: "1.5rem"
+          }}><CustomAlert message={alert.message} visible={alert.visible} success={alert.success} /></div>
+        
         <MainLayout>
             <Title>테스트 결과를 공유하세요!</Title>
             <ButtonWrap>
@@ -48,7 +51,7 @@ align-items: center;
 width: 100%;
 height: 8rem;
 padding: 1.6rem 1.8rem;
-background-color: black
+background-color: black;
 `
 
 const Title = styled.div`

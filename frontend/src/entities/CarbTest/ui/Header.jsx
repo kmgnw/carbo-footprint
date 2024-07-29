@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import back from "../../../assets/BackButton.svg";
+import { useNavigate } from "react-router-dom";
 
 function Header(){
+
+    const navigate = useNavigate(-1)
+
     return(
     <Wrapper>
-        <Back src={back}/>
+        <Back src={back} onClick={()=>navigate(-1)}/>
         <Title>탄수화물 중독 테스트</Title>
     </Wrapper>
     )

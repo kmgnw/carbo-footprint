@@ -1,6 +1,5 @@
 import styled from "styled-components";
-
-import randomImage from '../../../assets/randomImage.png'
+import logo from '../../../assets/main_logo.svg'
 
 function Header(){
     return(
@@ -12,7 +11,7 @@ function Header(){
                 로그인
             </StyledLogin>
 
-            <StyledLogo src={randomImage}/>
+            <StyledLogo src={logo}/>
 
             <StyledLogin>
                 로그인

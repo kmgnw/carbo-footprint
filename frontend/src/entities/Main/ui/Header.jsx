@@ -1,19 +1,21 @@
 import styled from "styled-components";
 import logo from '../../../assets/main_logo.svg'
+import { useNavigate } from "react-router-dom";
 
 function Header(){
+
+    const navigate = useNavigate()
+
     return(
         <MainLayout>
             {/* 레이아웃 용 hidden 컴포넌트 */}
             <StyledLogin style={{
                 visibility: 'hidden'
-            }}>
-                로그인
-            </StyledLogin>
+            }}>로그인</StyledLogin>
 
             <StyledLogo src={logo}/>
 
-            <StyledLogin>
+            <StyledLogin onClick={()=>navigate('/login')}>
                 로그인
             </StyledLogin>
 

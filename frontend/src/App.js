@@ -12,6 +12,7 @@ import Chatbot from "./pages/Chatbot";
 import Community from "./pages/Community";
 import CommunityChat from "./pages/CommunityChat";
 import Contributor from './pages/Contributor'
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path="community" element={<Community/>}/>
       <Route path="community-chat" element={<CommunityChat/>}/>
       <Route path="contributor" element={<Contributor />}/>
+      <Route path="login" element={<Login />}/>
     </Routes>
   );
 }

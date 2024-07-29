@@ -107,6 +107,8 @@ const Title = styled.div`
   font-weight: 700;
   line-height: normal;
   margin-left: 2rem;
+  margin-top: 2.4rem;
+  margin-bottom: 0.8rem
 `;
 
 const Img = styled.img`

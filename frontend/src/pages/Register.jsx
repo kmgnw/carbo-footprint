@@ -110,6 +110,7 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 margin-top: 1.6rem;
+margin-bottom: 27rem;
 `
 
 const Span=styled.span`

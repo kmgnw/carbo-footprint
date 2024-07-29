@@ -19,21 +19,21 @@ function Login() {
 
     return (
         <Wrapper>
-            <Title>로그인</Title>
+            <Title>회원가입</Title>
             <Logo src={logo} />
-            <Container>
+            <Container style={{height: "10rem"}} >
                 <div>아이디</div>
                 <Input placeholder="아이디를 입력해주세요" error={error} />
+                {error && <Warning>이미 존재하는 아이디입니다</Warning>}
             </Container>
-            <Container style={{ marginTop: "2.4rem", marginBottom: "4rem", height: "10rem" }}>
+            <Container style={{ marginTop: "2.4rem", marginBottom:"4rem", height: "10rem" }}>
                 <div>비밀번호</div>
-                <Input type="password" placeholder="비밀번호를 입력해주세요" error={error} />
-                {error && <Warning>아이디 또는 비밀번호가 잘못되었습니다</Warning>}
+                <Input type="password" placeholder="비밀번호를 입력해주세요" />
             </Container>
-            <StandardButton title="로그인" width="100%" height="4.8rem" onClick={handleLogin} />
+            <StandardButton title="회원가입" width="100%" height="4.8rem" onClick={handleLogin} />
             <Register>
-                아직 회원이 아니신가요? &nbsp;&nbsp;
-                <Span style={{color:"#262829", fontWeight:"700"}} onClick={() => navigate('/register')}>회원가입하기</Span>
+                이미 회원이신가요? &nbsp;&nbsp;
+                <Span style={{color:"#262829", fontWeight:"700"}} onClick={() => navigate('/login')}>로그인하기</Span>
             </Register>
         </Wrapper>
     );

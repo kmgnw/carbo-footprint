@@ -18,7 +18,7 @@ function Header(){
 
     return(
         <MainLayout>
-            <img src={BackButton} onClick={handleBackButtonClick}/>
+            <img src={BackButton} onClick={handleBackButtonClick} style={{cursor: "pointer"}}/>
             <Title>식단 추천</Title>
             <img
             style={{visibility: 'hidden'}}

@@ -50,6 +50,7 @@ function ShareResult() {
 export default ShareResult
 
 const MainLayout = styled.div`
+margin-top: 4rem;
 display: flex;
 justify-content: space-between;
 align-items: center;

@@ -20,7 +20,7 @@ function RoutingComponent(){
 
         <BannerContainer>
             
-            <Banner onClick={()=>navigate('/')}>
+            <Banner onClick={()=>navigate('/chatbot')}>
                 <div style={{display: "flex", flexDirection:"column"}}>
                 <BannerTitle>탄수화물에 대해 더 알고싶다면?</BannerTitle>
                 <BannerComment>탄수 발자국<br/><span style={{color: "#EF6038"}}>챗봇에게</span> 물어보기</BannerComment>
@@ -36,7 +36,7 @@ function RoutingComponent(){
                 <div style={{display: "flex", alignItems:"center"}}><Icon src={scale}/></div>
             </Banner>
 
-            <Banner onClick={()=>navigate('/carb-counting')}>
+            <Banner onClick={()=>navigate('/diet-recommend')}>
                 <div style={{display: "flex", flexDirection:"column"}}>
                 <BannerTitle>내 취향에 맞는 건강식단이 궁금하다면?</BannerTitle>
                 <BannerComment>나에게 <span style={{color: "#EF6038"}}>딱 맞는 식단</span><br/>추천받기</BannerComment>

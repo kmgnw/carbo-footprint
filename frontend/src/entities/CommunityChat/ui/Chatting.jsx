@@ -87,7 +87,7 @@ function Chatting() {
                     />
                 </InputContainer>
 
-                <Img src={isActive ? send_active : send} />
+                <Img src={isActive ? send_active : send} style={{cursor:"pointer"}}/>
             </InputWrap>
         </>
     );

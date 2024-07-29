@@ -12,12 +12,14 @@ import { shareKakao } from "../../../util/kakaoLink";
 import { useState, useEffect } from "react";
 import { hoverGrow } from "../../../shared/animation/hoverGrow";
 import MenuCarousel from "./MenuCarousel";
+import {useNavigate} from "react-router-dom";
 
 function MainContent() {
   const selectedImg = useRecoilValue(selectedImgState);
   const gallery = useRecoilValue(galleryState);
   const kcal = useRecoilValue(resultDataState)
   const [alert, setAlert] = useState({ visible: false, message: '', success: true });
+  const navigate = useNavigate();
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -77,12 +79,13 @@ function MainContent() {
       </ShareContainer>
 
       <ButtonContainer>
-        <StandardButton title="다시 해보기" width="18.7rem" height="4rem" />
+        <StandardButton title="다시 해보기" width="18.7rem" height="4rem" onClick={() => navigate('/carb-counting')}/>
         <StandardButton
           title="총 칼로리 기록하기"
           width="18.7rem"
           height="4rem"
           backgroundColor="#EF6038"
+          
         />
       </ButtonContainer>
     </Wrapper>

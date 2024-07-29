@@ -55,6 +55,7 @@ function Choices({ title, choices, type }) {
 
 const hoverGrow = css`
   transition: transform 0.3s ease;
+  cursor:pointer;
   &:hover {
     transform: scale(1.1);
     background-color: #EF6038;

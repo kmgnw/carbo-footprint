@@ -73,6 +73,7 @@ line-height: normal;
 const StyledBackButton = styled.img`
 width:3.6rem;
 height:3.6rem;
+cursor:pointer;
 `
 
 const StyledModalContainer = styled.div`

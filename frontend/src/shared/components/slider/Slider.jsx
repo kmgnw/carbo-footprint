@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 function Slider() {
     const contentWrapRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [touchStartX, setTouchStartX] = useState(0);
+    const [touchEndX, setTouchEndX] = useState(0);
 
     const images = [
         { src: banner1, onClick: () => navigate('/chatbot') },
@@ -16,43 +18,49 @@ function Slider() {
         { src: banner3, onClick: () => navigate('/contributor') }
     ];
 
-    const handleScroll = () => {
-        if (contentWrapRef.current) {
-            const scrollPosition = contentWrapRef.current.scrollLeft;
-            const scrollWidth = contentWrapRef.current.offsetWidth;
-            const index = Math.round(scrollPosition / scrollWidth) % images.length;
-            setCurrentIndex(index);
-        }
-    };
-
     useEffect(() => {
-        const contentWrap = contentWrapRef.current;
-        if (contentWrap) {
-            contentWrap.addEventListener('scroll', handleScroll);
-            return () => contentWrap.removeEventListener('scroll', handleScroll);
-        }
-    }, []);
+        const interval = setInterval(() => {
+            setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, [images.length]);
 
     useEffect(() => {
         if (contentWrapRef.current) {
             const scrollWidth = contentWrapRef.current.offsetWidth;
-            contentWrapRef.current.scrollLeft = currentIndex * scrollWidth;
+            contentWrapRef.current.style.transform = `translateX(-${currentIndex * scrollWidth}px)`;
         }
     }, [currentIndex]);
 
-    const handleTransitionEnd = () => {
-        if (contentWrapRef.current) {
-            const scrollWidth = contentWrapRef.current.offsetWidth;
-            const maxScroll = scrollWidth * (images.length - 1);
-            if (contentWrapRef.current.scrollLeft >= maxScroll) {
-                contentWrapRef.current.scrollLeft = 0;
-            }
+    const handleTouchStart = (e) => {
+        setTouchStartX(e.targetTouches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+        setTouchEndX(e.targetTouches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (touchStartX - touchEndX > 50) {
+            // swipe left
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }
+
+        if (touchStartX - touchEndX < -50) {
+            // swipe right
+            setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
         }
     };
 
     return (
         <MainLayout>
-            <ContentWrap ref={contentWrapRef} onTransitionEnd={handleTransitionEnd}>
+            <ContentWrap
+                ref={contentWrapRef}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
                 {images.map((image, index) => (
                     <img
                         key={index}
@@ -81,14 +89,8 @@ const MainLayout = styled.div`
 
 const ContentWrap = styled.div`
     display: flex;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
+    transition: transform 0.5s ease-in-out;
     width: 100%;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    &::-webkit-scrollbar {
-        display: none;  /* Chrome, Safari, and Opera */
-    }
     & > img {
         flex: 0 0 100%;
         width: 100%;

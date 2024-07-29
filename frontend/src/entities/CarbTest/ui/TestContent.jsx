@@ -112,6 +112,15 @@ const TestItem = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: 150%; 
+    @media (max-width: 397px) {
+    font-size: 1.5rem; 
+    @media (max-width: 380px) {
+    font-size: 1.4rem; 
+    @media (max-width: 360px) {
+    font-size: 1.3rem; 
+    @media (max-width: 345px) {
+    font-size: 1.2rem; 
+    }
 `;
 
 const Source = styled.div`
@@ -143,6 +152,15 @@ const Reset = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: 150%; 
+    @media (max-width: 397px) {
+    font-size: 1.5rem; 
+    @media (max-width: 380px) {
+    font-size: 1.4rem; 
+    @media (max-width: 360px) {
+    font-size: 1.3rem; 
+    @media (max-width: 345px) {
+    font-size: 1.2rem; 
+    }
 `;
 
 const Icon = styled.img`

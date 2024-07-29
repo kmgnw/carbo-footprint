@@ -105,6 +105,10 @@ font-size: 1.2rem;
 font-style: normal;
 font-weight: 500;
 line-height: 150%;
+@media (max-width: 370px) {
+    font-size: 1.1rem; }
+    @media (max-width: 355px) {
+    font-size: 1rem; }
 `
 
 const BannerComment = styled(BannerTitle)`

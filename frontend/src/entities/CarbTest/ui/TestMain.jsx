@@ -9,7 +9,7 @@ export default function TestMain(){
 
         <TitleContainer>
             <Icon src={icon}/>
-            <div>자신에게 해당하는 질문에 체크하세요.</div>
+            <Div>자신에게 해당하는 질문에 체크하세요.</Div>
         </TitleContainer>
 
         <TestContent/>
@@ -20,6 +20,18 @@ export default function TestMain(){
 const Wrapper = styled.div`
 background: #F2F3F5;
 padding: 2.5rem 2rem 1.6rem 2rem;
+`
+
+const Div= styled.div`
+@media (max-width: 397px) {
+    font-size: 1.5rem; 
+    @media (max-width: 380px) {
+    font-size: 1.4rem; 
+    @media (max-width: 360px) {
+    font-size: 1.3rem; 
+    @media (max-width: 345px) {
+    font-size: 1.2rem; 
+    }
 `
 
 const TitleContainer = styled.div`

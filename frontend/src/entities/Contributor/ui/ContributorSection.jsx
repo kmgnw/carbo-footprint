@@ -33,7 +33,7 @@ function ContributorSection() {
 
     return (
         <MainLayout>
-            
+
             <Title>탄수 발자국 제작자</Title>
 
             {contributors.map((e)=>(

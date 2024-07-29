@@ -1,9 +1,18 @@
 import styled from "styled-components";
+import logo from '../../../assets/logo_contributor.svg'
 
-function YourChat({ date, chat }) {
+function YourChat({ name, date, chat }) {
     return (
         <MainLayout>
             <ChatWrap>
+
+                <ProfileWrap>
+                    <ProfilePicWrap>
+                        <Img src={logo} />
+                    </ProfilePicWrap>
+
+                    <Name>{name}</Name>
+                </ProfileWrap>
 
                 <Chat>
                     {chat}
@@ -57,4 +66,32 @@ font-weight: 500;
 line-height: 150%; /* 21px */
 max-width: 26ch;
 overflow-wrap: break-word;
+`
+
+const ProfileWrap = styled.div`
+
+`
+const ProfilePicWrap = styled.div`
+width: 4rem;
+height: 4rem;
+border: 1px solid #E3E5E7;
+border-radius: 50%;
+background-color: white;
+object-fit: contain;
+padding: 0.5rem;
+margin-bottom: 0.4rem;
+`
+
+const Img = styled.img`
+width: 100%;
+`
+
+const Name = styled.div`
+color: #262829;
+text-align: center;
+font-family: "Pretendard Variable";
+font-size: 1rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
 `

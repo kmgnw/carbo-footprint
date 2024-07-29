@@ -7,8 +7,11 @@ import Header from "../entities/Main/ui/Header.jsx"
 import Chatbot_floating from '../assets/Chatbot_floating.svg'
 import { hoverGrow } from "../shared/animation/hoverGrow.jsx"
 import banner1 from '../assets/banner1.svg'
+import { useNavigate } from "react-router-dom"
 
 function Main() {
+
+    const navigate = useNavigate()
 
     return (
         <MainLayout>
@@ -28,7 +31,7 @@ function Main() {
             </SubLayout>
 
             <FloatingChatbotWrap>
-                <Img src={Chatbot_floating} />
+                <Img src={Chatbot_floating} onClick={()=>navigate('/chatbot')}/>
             </FloatingChatbotWrap>
 
         </MainLayout>

@@ -24,7 +24,8 @@ function Chatting() {
         {
             type: 'you',
             date: '00:00',
-            chat: '열여섯글자까지만나오고다음은넘어가게'
+            chat: '열여섯글자까지만나오고다음은넘어가게',
+            name: '아이디'
         },
         {
             type: 'in',
@@ -54,6 +55,7 @@ function Chatting() {
                                 key={index}
                                 date={e.date}
                                 chat={e.chat}
+                                name={e.name}
                             />
                         );
                     } else if (e.type === 'in') {

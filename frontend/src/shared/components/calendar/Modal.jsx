@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { augustState } from '../../state/calendar';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PlusCircle from '../../../assets/PlusCircle.svg'
 import X from '../../../assets/X.svg'
 import randomImage from '../../../assets/randomImage.png'
@@ -20,10 +20,6 @@ function Modal({ setIsModalVisible, index, day }) {
 
     const [schedule, setSchedule] = useRecoilState(augustState)
     const august = useRecoilValue(augustState)
-
-    useEffect(() => {
-        console.log(august[index]);
-    }, []);
 
     function isDietLog(e) {
         if (e.firstMeal.length !== 0 ||
@@ -48,9 +44,6 @@ function Modal({ setIsModalVisible, index, day }) {
     }
 
     function handleAddScheduleClick() {
-        // if(isReadOnly){setIsReadOnly(false)}
-        // else {setIsReadOnly(true)}
-
         navigate('/add-schedule')
     }
 
@@ -93,9 +86,9 @@ function Modal({ setIsModalVisible, index, day }) {
 
             </StyledFlexbox>
 
-            <StyledScheduleWrap>
+            
                 {august[index].length === 1 && august[index][0].title === '' ? (
-                    <>
+                    <NoScheduleWrap>
                         <ImgWrap>
                             <Img src={bread} />
                         </ImgWrap>
@@ -103,9 +96,10 @@ function Modal({ setIsModalVisible, index, day }) {
                             아직 기록이 없습니다.<br />
                             오늘 당신의 탄수발자국을 남겨보세요!
                         </NoScheduleText>
-                    </>
+                    </NoScheduleWrap>
                 ) : (
                     august[index].map((e, i) => (
+                        <StyledScheduleWrap>
                         <StyledScheduleContainer key={i}>
                             <StyledInput
                                 value={e.title}
@@ -126,9 +120,10 @@ function Modal({ setIsModalVisible, index, day }) {
                                 />
                             </StyledButtonWrap>
                         </StyledScheduleContainer>
+                        </StyledScheduleWrap>
                     ))
                 )}
-            </StyledScheduleWrap>
+            
 
         </StyledWrap>
     )
@@ -252,4 +247,10 @@ margin-bottom: 3.7rem;
 
 const Img = styled.img`
 width:100%;
+`
+
+const NoScheduleWrap = styled.div`
+display:flex;
+flex-direction: column;
+align-items: center
 `

@@ -56,8 +56,10 @@ export default function TestContent() {
         <>
             <Wrapper>
                 {icons.map((icon, index) => (
-                    <CheckBoxWrapper key={index}>
-                        <CheckBox src={icon} onClick={() => handleIconClick(index)} />
+                    <CheckBoxWrapper key={index}
+                    onClick={() => handleIconClick(index)} 
+                    >
+                        <CheckBox src={icon} />
                         <TestItem>{testItems[index]}</TestItem>
                     </CheckBoxWrapper>
                 ))}

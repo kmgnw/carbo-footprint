@@ -13,6 +13,7 @@ import Community from "./pages/Community";
 import CommunityChat from "./pages/CommunityChat";
 import Contributor from './pages/Contributor'
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path="community-chat" element={<CommunityChat/>}/>
       <Route path="contributor" element={<Contributor />}/>
       <Route path="login" element={<Login />}/>
+      <Route path="register" element={<Register />}/>
     </Routes>
   );
 }

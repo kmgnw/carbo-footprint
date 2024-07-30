@@ -4,20 +4,16 @@ import StandardButton from "../shared/components/StandardButton/StandardButton";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleLogin } from "../entities/Login/api/login";
-import { useRecoilState } from "recoil";
-import { userInfoState } from "../shared/state/User";
 
 
 function Login() {
     const [loginId, setloginId] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [userInfo, setUserInfo] = useRecoilState(userInfoState);
     const navigate = useNavigate();
 
     const onLoginClick = async () => {
-        await handleLogin(loginId, password, setError, navigate, setUserInfo);
-        console.log(userInfo);
+        await handleLogin(loginId, password, setError, navigate);
     };
 
     return (

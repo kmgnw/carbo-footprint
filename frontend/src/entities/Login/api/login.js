@@ -1,6 +1,6 @@
 import { baseUrl } from "../../../shared/config/baseurl";
 
-export async function handleLogin(loginId, password, setError, navigate, setUserInfo) {
+export async function handleLogin(loginId, password, setError, navigate) {
     try {
         const response = await fetch(`${baseUrl}/login`, {
             method: "POST",
@@ -13,16 +13,13 @@ export async function handleLogin(loginId, password, setError, navigate, setUser
             }),
         });
 
+        const responseData = await response.json();
+
         if (response.ok) {
-            setUserInfo({
-                userId: loginId,
-                flag: 1
-            });
-            console.log(response);
+            sessionStorage.setItem("token", responseData.result.token);
+            sessionStorage.setItem("userId", loginId);
             navigate("/");
-        } 
-        else {
-            const errorData = await response.json();
+        } else {
             if (response.status === 400) {
                 setError("아이디 또는 비밀번호가 잘못되었습니다.");
             } else {

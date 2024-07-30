@@ -3,18 +3,21 @@ import logo from "../assets/loginLogo.svg";
 import StandardButton from "../shared/components/StandardButton/StandardButton";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { handleLogin } from "../entities/Login/api/login";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../shared/state/User";
+
 
 function Login() {
-    const [error, setError] = useState(false);
+    const [loginId, setloginId] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [userInfo, setUserInfo] = useRecoilState(userInfoState);
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        const loginSuccess = false;
-        if (!loginSuccess) {
-            setError(true);
-        } else {
-            setError(false);
-        }
+    const onLoginClick = async () => {
+        await handleLogin(loginId, password, setError, navigate, setUserInfo);
+        console.log(userInfo);
     };
 
     return (
@@ -23,17 +26,38 @@ function Login() {
             <Logo src={logo} />
             <Container>
                 <div>아이디</div>
-                <Input placeholder="아이디를 입력해주세요" error={error} />
+                <Input
+                    placeholder="아이디를 입력해주세요"
+                    error={!!error}
+                    value={loginId}
+                    onChange={(e) => setloginId(e.target.value)}
+                />
             </Container>
             <Container style={{ marginTop: "2.4rem", marginBottom: "4rem", height: "10rem" }}>
                 <div>비밀번호</div>
-                <Input type="password" placeholder="비밀번호를 입력해주세요" error={error} />
-                {error && <Warning>아이디 또는 비밀번호가 잘못되었습니다</Warning>}
+                <Input
+                    type="password"
+                    placeholder="비밀번호를 입력해주세요"
+                    error={!!error}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                {error && <Warning>{error}</Warning>}
             </Container>
-            <StandardButton title="로그인" width="100%" height="4.8rem" onClick={handleLogin} />
+            <StandardButton
+                title="로그인"
+                width="100%"
+                height="4.8rem"
+                onClick={onLoginClick}
+            />
             <Register>
                 아직 회원이 아니신가요? &nbsp;&nbsp;
-                <Span style={{color:"#262829", fontWeight:"700"}} onClick={() => navigate('/register')}>회원가입하기</Span>
+                <Span
+                    style={{ color: "#262829", fontWeight: "700" }}
+                    onClick={() => navigate('/register')}
+                >
+                    회원가입하기
+                </Span>
             </Register>
         </Wrapper>
     );

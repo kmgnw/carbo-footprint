@@ -1,24 +1,42 @@
-import styled from "styled-components"
-import { useState } from "react"
-import StandardButton from "../../../shared/components/StandardButton/StandardButton"
-import RoomCell from "./RoomCell"
-import Modal from './Modal'
-import { RoomState } from "../../../shared/state/Community"
-import { useRecoilValue } from "recoil"
+import styled from "styled-components";
+import { useEffect, useState } from "react";
+import axios from 'axios';
+import StandardButton from "../../../shared/components/StandardButton/StandardButton";
+import RoomCell from "./RoomCell";
+import Modal from './Modal';
+import { RoomState } from "../../../shared/state/Community";
+import { useRecoilState } from "recoil";
 
 function RoomList() {
-
-    const rooms = useRecoilValue(RoomState)
-    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [rooms, setRooms] = useRecoilState(RoomState);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    
     const handleModalClick = () => {
         setIsModalVisible(false);
     };
+
+    useEffect(() => {
+        const fetchRooms = async () => {
+            try {
+                const response = await fetch('http://3.34.246.40:8080/api/chat/rooms');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchRooms();
+    }, []);
 
     return (
         <>
             <MainLayout>
                 <Heading>
-
                     <TitleWrap>
                         <SubTitle>같은 목표를 가지고 대화하기</SubTitle>
                         <Title>이런 챌린지를 하고 있어요</Title>
@@ -29,22 +47,17 @@ function RoomList() {
                         padding="1.2rem 2rem"
                         onClick={() => setIsModalVisible(true)}
                     />
-
                 </Heading>
 
                 <RoomWrap>
-                    {
-                        rooms.map((e, i) => (
-                            <RoomCell
-                                key={i}
-                                title={e.title}
-                                count={e.count}
-                            />
-
-                        ))
-                    }
+                    {rooms.map((e, i) => (
+                        <RoomCell
+                            key={i}
+                            title={e.title}
+                            count={e.count}
+                        />
+                    ))}
                 </RoomWrap>
-
             </MainLayout>
 
             {isModalVisible && (
@@ -55,48 +68,48 @@ function RoomList() {
                 </StyledModalContainer>
             )}
         </>
-    )
+    );
 }
 
-export default RoomList
+export default RoomList;
 
 const MainLayout = styled.div`
-padding:4.2rem 2rem;
-background-color: #F2F3F5;
-width: 100%;
-`
+    padding: 4.2rem 2rem;
+    background-color: #F2F3F5;
+    width: 100%;
+`;
 
 const Heading = styled.div`
-display: flex;
-justify-content: space-between;
-margin-bottom: 2.4rem
-`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.4rem;
+`;
 
-const TitleWrap = styled.div``
+const TitleWrap = styled.div``;
 
 const SubTitle = styled.div`
-color: #7D7F82;
-font-family: "Noto Sans KR";
-font-size: 1.2rem;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-`
+    color: #7D7F82;
+    font-family: "Noto Sans KR";
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+`;
 
 const Title = styled.div`
-color: #262829;
-font-family: "Noto Sans KR";
-font-size: 2rem;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-`
+    color: #262829;
+    font-family: "Noto Sans KR";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`;
 
 const RoomWrap = styled.div`
-display: flex;
-flex-direction:column;
-gap: 1.6rem;
-`
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+`;
 
 const StyledModalContainer = styled.div`
     position: fixed;
@@ -118,7 +131,7 @@ const StyledModal = styled.div`
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-    @media(max-width: 428px) {
-        width:88%
+    @media (max-width: 428px) {
+        width: 88%;
     }
 `;

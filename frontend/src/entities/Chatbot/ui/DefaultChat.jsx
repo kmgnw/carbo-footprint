@@ -4,84 +4,97 @@ import { chatbotQuestionState } from "../../../shared/state/Chatbot";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { hoverGrow } from "../../../shared/animation/hoverGrow";
+import { sendQuestion } from "../api/chatbotApi";
 
 export default function AiChat() {
-  const [question, setQuestions] = useRecoilState(chatbotQuestionState);
+  const [questions, setQuestions] = useRecoilState(chatbotQuestionState);
   const [currentTime, setCurrentTime] = useState("");
 
-  {
-    /*여기서 백엔드한테 전송*/
-  }
-  const handleBtnClick1 = () => {
+  const handleBtnClick = async (isRecommend, question) => {
     setQuestions((prevQuestions) => [
       ...prevQuestions,
-      { key: "0", question: "외식 메뉴 추천받기" },
-    ]);
+      { key: "0", question: question },
+  ]);
+      try {
+          const result = await sendQuestion(isRecommend, question);
+          console.log("Question sent successfully:", result);
+
+          setQuestions((prevQuestions) => [
+              ...prevQuestions,
+              { key: "1", question: result.result.answer },
+          ]);
+      } catch (error) {
+          console.error("Error sending question:", error);
+      }
+  };
+
+  const handleBtnClick1 = () => {
+      handleBtnClick("true", "외식 메뉴 추천받기");
   };
 
   const handleBtnClick2 = () => {
-    setQuestions((prevQuestions) => [
-      ...prevQuestions,
-      { key: "0", question: "건강한 탄수화물이란?" },
-    ]);
+      handleBtnClick("true", "건강한 탄수화물이란?");
   };
 
   const handleBtnClick3 = () => {
-    setQuestions((prevQuestions) => [
-      ...prevQuestions,
-      { key: "0", question: "과일도 탄수화물?" },
-    ]);
+      handleBtnClick("true", "과일도 탄수화물?");
   };
 
   useEffect(() => {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    setCurrentTime(`${hours}:${minutes}`);
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      setCurrentTime(`${hours}:${minutes}`);
   }, []);
 
   return (
-    <>
-      <Wrapper>
-        <Profile src={profile} />
-        <MessageContainer>
-          <Answer>어떤 궁금증이 있으신가요?</Answer>
-          <Time>{currentTime}</Time>
-        </MessageContainer>
-      </Wrapper>
-      <Wrapper>
-        <Profile src={profile} style={{ visibility: "hidden" }} />
-        <MessageContainer>
-          <Answer style={{ display: "flex", flexDirection: "column" }}>
-            <div
-              style={{
-                fontSize: "1.6rem",
-                fontWeight: "700",
-                marginTop: "1.2rem",
-              }}
-            >
-              다양한 탄수화물 관련
-              <br />
-              궁금증을 해결해보세요!
-            </div>
-            <Button style={{ marginTop: "2.4rem" }} onClick={handleBtnClick1}>
-              외식 메뉴 추천받기
-            </Button>
-            <Button style={{ marginTop: "0.8rem" }} onClick={handleBtnClick2}>
-              건강한 탄수화물이란?
-            </Button>
-            <Button
-              style={{ marginTop: "0.8rem", marginBottom: "2.4rem" }}
-              onClick={handleBtnClick3}
-            >
-              과일도 탄수화물?
-            </Button>
-            이외에도 궁금한 질문사항을 자유롭게 질문해보세요!
-          </Answer>
-          <Time>{currentTime}</Time>
-        </MessageContainer>
-      </Wrapper>
-    </>
+      <>
+          <Wrapper>
+              <Profile src={profile} />
+              <MessageContainer>
+                  <Answer>어떤 궁금증이 있으신가요?</Answer>
+                  <Time>{currentTime}</Time>
+              </MessageContainer>
+          </Wrapper>
+          <Wrapper>
+              <Profile src={profile} style={{ visibility: "hidden" }} />
+              <MessageContainer>
+                  <Answer style={{ display: "flex", flexDirection: "column" }}>
+                      <div
+                          style={{
+                              fontSize: "1.6rem",
+                              fontWeight: "700",
+                              marginTop: "1.2rem",
+                          }}
+                      >
+                          다양한 탄수화물 관련
+                          <br />
+                          궁금증을 해결해보세요!
+                      </div>
+                      <Button
+                          style={{ marginTop: "2.4rem" }}
+                          onClick={handleBtnClick1}
+                      >
+                          외식 메뉴 추천받기
+                      </Button>
+                      <Button
+                          style={{ marginTop: "0.8rem" }}
+                          onClick={handleBtnClick2}
+                      >
+                          건강한 탄수화물이란?
+                      </Button>
+                      <Button
+                          style={{ marginTop: "0.8rem", marginBottom: "2.4rem" }}
+                          onClick={handleBtnClick3}
+                      >
+                          과일도 탄수화물?
+                      </Button>
+                      이외에도 궁금한 질문사항을 자유롭게 질문해보세요!
+                  </Answer>
+                  <Time>{currentTime}</Time>
+              </MessageContainer>
+          </Wrapper>
+      </>
   );
 }
 

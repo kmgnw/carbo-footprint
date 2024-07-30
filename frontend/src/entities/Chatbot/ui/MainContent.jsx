@@ -39,6 +39,9 @@ export default function MainContent() {
 const Wrapper = styled.div`
   max-height: 100%;
   overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Welcome = styled.div`

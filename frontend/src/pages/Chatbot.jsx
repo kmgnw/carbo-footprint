@@ -7,15 +7,13 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { chatbotQuestionState } from "../shared/state/Chatbot";
 import { useEffect } from "react";
+import { sendQuestion } from "../entities/Chatbot/api/chatbotApi";
 
 export default function Chatbot() {
   const [sendIcon, setSendIcon] = useState(send);
   const [inputValue, setInputValue] = useState("");
   const [questions, setQuestions] = useRecoilState(chatbotQuestionState);
 
-  {
-    /*여기서 백엔드한테 전송*/
-  }
   useEffect(() => {
     console.log(questions);
   }, [questions]);
@@ -24,13 +22,24 @@ export default function Chatbot() {
     setInputValue(e.target.value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
+    setInputValue("");
+    setQuestions((prevQuestions) => [
+      ...prevQuestions,
+      { key: "0", question: inputValue },
+    ]);
     if (inputValue.trim() !== "") {
-      setQuestions((prevQuestions) => [
-        ...prevQuestions,
-        { key: "0", question: inputValue },
-      ]);
-      setInputValue("");
+      try {
+        const result = await sendQuestion("true", inputValue);
+        console.log("Question sent successfully:", result);
+
+        setQuestions((prevQuestions) => [
+          ...prevQuestions,
+          { key: "1", question: result.result.answer },
+        ]);
+      } catch (error) {
+        console.error("Error sending question:", error);
+      }
     }
   };
 
@@ -50,14 +59,15 @@ export default function Chatbot() {
           src={inputValue ? sendOrange : send}
           onClick={handleSend}
           onMouseEnter={() => inputValue && setSendIcon(sendOrange)}
-          onMouseLeave={() => inputValue && setSendIcon(sendOrange)}
+          onMouseLeave={() => inputValue && setSendIcon(send)}
           onMouseDown={() => inputValue && setSendIcon(sendOrange)}
-          onMouseUp={() => inputValue && setSendIcon(sendOrange)}
+          onMouseUp={() => inputValue && setSendIcon(send)}
         />
       </InputContainer>
     </Wrapper>
   );
 }
+
 
 const Wrapper = styled.div`
   display: flex;

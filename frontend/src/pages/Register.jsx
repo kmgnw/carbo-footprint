@@ -3,43 +3,62 @@ import logo from "../assets/loginLogo.svg";
 import StandardButton from "../shared/components/StandardButton/StandardButton";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { handleRegister } from "../entities/Register/api/Rejister";
 
-function Login() {
-    const [error, setError] = useState(false);
+function Register() {
+    const [loginId, setLoginId] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        const loginSuccess = false;
-        if (!loginSuccess) {
-            setError(true);
-        } else {
-            setError(false);
-        }
+    const onRegisterClick = async () => {
+        await handleRegister(loginId, password, setError, navigate);
     };
 
     return (
         <Wrapper>
             <Title>회원가입</Title>
             <Logo src={logo} />
-            <Container style={{height: "10rem"}} >
+            <Container style={{ height: "10rem" }}>
                 <div>아이디</div>
-                <Input placeholder="아이디를 입력해주세요" error={error} />
-                {error && <Warning>이미 존재하는 아이디입니다</Warning>}
+                <Input
+                    placeholder="아이디를 입력해주세요"
+                    error={!!error}
+                    value={loginId}
+                    onChange={(e) => setLoginId(e.target.value)}
+                />
+                {error && <Warning>{error}</Warning>}
             </Container>
-            <Container style={{ marginTop: "2.4rem", marginBottom:"4rem", height: "10rem" }}>
+            <Container style={{ marginTop: "2.4rem", marginBottom: "4rem", height: "10rem" }}>
                 <div>비밀번호</div>
-                <Input type="password" placeholder="비밀번호를 입력해주세요" />
+                <Input
+                    type="password"
+                    placeholder="비밀번호를 입력해주세요"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
             </Container>
-            <StandardButton title="회원가입" width="100%" height="4.8rem" onClick={handleLogin} />
-            <Register>
+            <StandardButton
+                title="회원가입"
+                width="100%"
+                height="4.8rem"
+                onClick={onRegisterClick} 
+            />
+            <RegisterContent>
                 이미 회원이신가요? &nbsp;&nbsp;
-                <Span style={{color:"#262829", fontWeight:"700"}} onClick={() => navigate('/login')}>로그인하기</Span>
-            </Register>
+                <Span
+                    style={{ color: "#262829", fontWeight: "700" }}
+                    onClick={() => navigate('/login')}
+                >
+                    로그인하기
+                </Span>
+            </RegisterContent>
         </Wrapper>
     );
 }
 
-export default Login;
+export default Register;
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -101,7 +120,7 @@ const Warning = styled.div`
     line-height: normal;
 `;
 
-const Register = styled.div`
+const RegisterContent = styled.div`
 color: var(--Gray5, #7D7F82);
 text-align: center;
 font-family: Pretendard;

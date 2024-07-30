@@ -1,10 +1,23 @@
 import styled from "styled-components";
 import logo from '../../../assets/main_logo.svg'
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Header(){
 
-    const navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem("token");
+        setIsLoggedIn(!!token);
+    }, []);
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        setIsLoggedIn(false);
+        navigate('/'); 
+    };
 
     return(
         <MainLayout>
@@ -15,10 +28,17 @@ function Header(){
 
             <StyledLogo src={logo}/>
 
-            <StyledLogin onClick={()=>navigate('/login')}>
-                로그인
-            </StyledLogin>
-
+            {isLoggedIn ? (
+                <>
+                    <StyledLogin onClick={handleLogout}>
+                        로그아웃
+                    </StyledLogin>
+                </>
+            ) : (
+                <StyledLogin onClick={() => navigate('/login')}>
+                    로그인
+                </StyledLogin>
+            )}
         </MainLayout>
     )
 }

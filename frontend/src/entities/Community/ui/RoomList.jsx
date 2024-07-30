@@ -5,7 +5,7 @@ import RoomCell from "./RoomCell";
 import Modal from './Modal';
 import { RoomState } from "../../../shared/state/Community";
 import { useRecoilState } from "recoil";
-import { baseUrl } from "../../../shared/config/baseurl";
+import { fetchRooms } from "../api/api";
 
 function RoomList() {
     const [rooms, setRooms] = useRecoilState(RoomState);
@@ -16,33 +16,7 @@ function RoomList() {
     };
 
     useEffect(() => {
-
-        const token = window.sessionStorage.getItem('token')
-
-        const fetchRooms = async () => {
-            try {
-                const response = await fetch(`${baseUrl}/api/chat/rooms`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-    
-                const data = await response.json();
-                console.log(data.result)
-                setRooms(data.result)
-                
-            } catch (error) {
-                console.error(error);
-            }
-        };
-    
-        fetchRooms();
+        fetchRooms(setRooms);
     }, []);
 
     return (

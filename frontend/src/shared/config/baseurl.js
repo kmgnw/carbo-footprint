@@ -1,1 +1,1 @@
-export const baseUrl = 'http://3.34.246.40:8080/api'
+export const baseUrl = 'https://api.carbofootprint.site'

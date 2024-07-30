@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import axios from 'axios';
 import StandardButton from "../../../shared/components/StandardButton/StandardButton";
 import RoomCell from "./RoomCell";
 import Modal from './Modal';
 import { RoomState } from "../../../shared/state/Community";
 import { useRecoilState } from "recoil";
+import { baseUrl } from "../../../shared/config/baseurl";
 
 function RoomList() {
     const [rooms, setRooms] = useRecoilState(RoomState);
@@ -16,20 +16,32 @@ function RoomList() {
     };
 
     useEffect(() => {
+
+        const token = window.sessionStorage.getItem('token')
+
         const fetchRooms = async () => {
             try {
-                const response = await fetch('http://3.34.246.40:8080/api/chat/rooms');
-
+                const response = await fetch(`${baseUrl}/api/chat/rooms`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+    
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
+    
                 const data = await response.json();
+                console.log(data.result)
+                setRooms(data.result)
+                
             } catch (error) {
                 console.error(error);
             }
         };
-
+    
         fetchRooms();
     }, []);
 
@@ -53,8 +65,9 @@ function RoomList() {
                     {rooms.map((e, i) => (
                         <RoomCell
                             key={i}
-                            title={e.title}
-                            count={e.count}
+                            title={e.room_name}
+                            count={e.room_current_capacity}
+                            maxCount={e.room_max_capacity}
                         />
                     ))}
                 </RoomWrap>

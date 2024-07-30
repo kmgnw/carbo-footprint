@@ -4,7 +4,7 @@ import pretzel from '../../../assets/pretzel_community.svg'
 import users from '../../../assets/Users_community.svg'
 import { useNavigate } from "react-router-dom"
 
-function RoomCell({title, count}){
+function RoomCell({title, count, maxCount}){
 
     const navigate = useNavigate()
 
@@ -32,7 +32,7 @@ function RoomCell({title, count}){
                         <img src={users} />
 
                         <CountText>
-                            {count}/10
+                            {count}/{maxCount}
                         </CountText>
                     </CountWrap>
                 </Trailing>

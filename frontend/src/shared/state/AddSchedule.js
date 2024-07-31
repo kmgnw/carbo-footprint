@@ -6,6 +6,6 @@ export const newScheduleState = atom({
         firstMeal: [],
         secondMeal: [],
         thirdMeal: [],
-        extraMeal: []
+        extraMeal: [],
     }
 })

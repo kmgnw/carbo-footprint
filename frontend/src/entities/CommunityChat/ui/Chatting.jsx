@@ -155,6 +155,7 @@ const Chatting = () => {
                         placeholder='챗봇'
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleSendButtonClick()}
                     />
                 </InputContainer>
 
@@ -225,4 +226,6 @@ const Input = styled.input`
     }
 `;
 
-const Img = styled.img``;
+const Img = styled.img`
+    cursor: pointer; /* Add cursor pointer to indicate clickability */
+`;

@@ -5,7 +5,7 @@ export async function sendClassification(file) {
         const formData = new FormData();
         formData.append('image', file);
 
-        const response = await fetch(`${baseUrl}/classification`, {
+        const response = await fetch(`${baseUrl}/api/classification`, {
             method: 'POST',
             body: formData
         });

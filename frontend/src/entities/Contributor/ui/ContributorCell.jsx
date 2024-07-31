@@ -1,12 +1,12 @@
 import styled from "styled-components"
 import logo from '../../../assets/logo_contributor.svg'
 
-function ContributorCell({name, roles, email}){
+function ContributorCell({img , name, roles, email}){
     return(
         <MainLayout>
 
             <LogoWrap>
-                <Img src={logo} />
+                <Img src={img} />
             </LogoWrap>
 
             <ContentWrap>
@@ -59,8 +59,8 @@ border-radius: 50%
 `
 
 const Img = styled.img`
-width: 4rem;
-height: 4rem;
+width: 8rem;
+height: 8rem;
 `
 
 const NameWrap = styled.div`

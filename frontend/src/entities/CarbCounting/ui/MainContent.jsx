@@ -9,7 +9,7 @@ function MainContent() {
       <TipContainer>
         <TipIcon>TIPS!</TipIcon>
         <TipContent>
-          웹 접속 시에는&nbsp;
+          모바일 접속 시에는&nbsp;
           <span style={{ color: "var(--Gray8, #262829)" }}>사진 등록하기</span>
           를 이용해보세요!
         </TipContent>

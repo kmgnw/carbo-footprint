@@ -92,6 +92,7 @@ font-size: 1.4rem;
 font-style: normal;
 font-weight: 500;
 line-height: 150%;
+
   @media (max-width: 390px) {
     font-size: 1.2rem; 
   }

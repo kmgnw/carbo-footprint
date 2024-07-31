@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import logo from "../../../assets/whiteLogo.svg";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Content>
         <span>멋쟁이 사자처럼 한성대학교</span>
-        <span style={{ color: "#7D7F82", fontWeight: "500" }}>
+        <span style={{ color: "#7D7F82", fontWeight: "500", cursor:"pointer" }} onClick={() => navigate('/contributor')}>
           문의처: Team. 탄탄멘
         </span>
         <span style={{ color: "#7D7F82", fontWeight: "500" }}>

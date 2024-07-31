@@ -1,33 +1,43 @@
 import styled from "styled-components"
 import ContributorCell from "./ContributorCell"
+import mj from "../../../assets/mj.svg";
+import se from "../../../assets/se.svg";
+import gn from "../../../assets/gn.svg";
+import jinh from "../../../assets/jinh.svg";
+import junh from "../../../assets/junh.svg";
 
 function ContributorSection() {
     
     const contributors = [
         {
+            img: mj,
             name: '장민정',
             roles: ['PM', 'DESIGN'],
             email: 'rose050800@gmail.com'
         },
         {
+            img: se,
             name: '이세은',
             roles: ['FRONT-END'],
-            email: 'rose050800@gmail.com'
+            email: 'lesley023@naver.com'
         },
         {
+            img: gn,
             name: '김건우',
             roles: ['FRONT-END'],
-            email: 'rose050800@gmail.com'
+            email: 'ge00nu@naver.com'
         },
         {
+            img: jinh,
             name: '김진하',
             roles: ['BACK-END'],
-            email: 'rose050800@gmail.com'
+            email: 'kjh03124@naver.com'
         },
         {
+            img: junh,
             name: '김준하',
             roles: ['BACK-END'],
-            email: 'rose050800@gmail.com'
+            email: 'wooha34567@naver.com'
         }
     ]
 
@@ -38,6 +48,7 @@ function ContributorSection() {
 
             {contributors.map((e)=>(
                 <ContributorCell 
+                img={e.img}
                 name={e.name}
                 roles={e.roles}
                 email={e.email}

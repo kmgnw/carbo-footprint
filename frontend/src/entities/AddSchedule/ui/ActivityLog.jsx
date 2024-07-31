@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import StandardInput from '../../../shared/components/StandardInput/StandardInput'
 import StandardButton from '../../../shared/components/StandardButton/StandardButton'
 import { newScheduleState } from '../../../shared/state/AddSchedule'
@@ -63,7 +64,14 @@ function ActivityLog() {
         
     }
 
-
+    useEffect(()=>{
+        setNewSchedule(crntSchedule ?? {
+            firstMeal: [],
+            secondMeal: [],
+            thirdMeal: [],
+            extraMeal: []
+        })
+    },[])
 
     return (
         <MainLayout>
@@ -91,8 +99,9 @@ function ActivityLog() {
                     <StandardInputWrap>
 
                         <StandardInput
-                        placeholder={!crntSchedule?.workoutTime || crntSchedule?.title === '' ?"운동 시간 입력" : crntSchedule?.workoutTime}
-                        onChange={(e) => handleWorkoutTimeChange(e)}
+                        value={newSchedule?.workoutTime ?? null}
+                        placeholder={!newSchedule?.workoutTime ? "섭취 칼로리 직접 입력" : newSchedule?.workoutTime}
+                        onChange={(e)=>handleWorkoutTimeChange(e)}
                         />
 
                         <InputTrailingText>분</InputTrailingText>
@@ -108,8 +117,9 @@ function ActivityLog() {
                     <StandardInputWrap>
                         
                         <StandardInput
-                        placeholder={!crntSchedule?.stepCount || crntSchedule?.stepCount === '' ? "걸음 수 입력" : crntSchedule?.stepCount}
-                        onChange={(e) => handleStepCountChange(e)}
+                        value={newSchedule?.stepCount ?? null}
+                        placeholder={!newSchedule?.stepCount ? "섭취 칼로리 직접 입력" : newSchedule?.stepCount}
+                        onChange={(e)=>handleStepCountChange(e)}
                         />
 
                         <InputTrailingText>걸음</InputTrailingText>

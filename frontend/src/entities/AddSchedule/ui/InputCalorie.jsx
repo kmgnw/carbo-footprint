@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { useEffect } from "react"
 import StandardInput from "../../../shared/components/StandardInput/StandardInput"
 import StandardButton from "../../../shared/components/StandardButton/StandardButton"
 
@@ -32,6 +33,15 @@ function InputCalorie(){
         navigate('/carb-counting')
     }
 
+    useEffect(()=>{
+        setNewSchedule(crntSchedule ?? {
+            firstMeal: [],
+            secondMeal: [],
+            thirdMeal: [],
+            extraMeal: []
+        })
+    },[])
+
     return(
         <MainLayout>
             <Title>총 섭취 칼로리</Title>
@@ -39,8 +49,8 @@ function InputCalorie(){
             <InputWrap>
 
                 <StandardInput
-                // value={crntSchedule?.calorie || ""}
-                placeholder={!crntSchedule?.calorie ? "섭취 칼로리 직접 입력" : crntSchedule?.calorie}
+                value={newSchedule?.calorie ?? null}
+                placeholder={!newSchedule?.calorie ? "섭취 칼로리 직접 입력" : newSchedule?.calorie}
                 onChange={(e)=>handleInputChange(e)}
                 padding="0"
                 />

@@ -5,3 +5,8 @@ export const RoomState = atom({
     default: [
     ]
 })
+
+export const crntClickedRoomIdState = atom({
+    key: 'crntClickedRoomIdState',
+    default: -1,
+})

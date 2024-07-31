@@ -1,10 +1,24 @@
 import styled from "styled-components"
 import backButton from '../../../assets/BackButton.svg'
+import exit from '../../../assets/Exit.svg'
 import { useNavigate } from "react-router-dom"
+import { RoomState, crntClickedRoomIdState } from "../../../shared/state/Community"
+import { useRecoilValue } from "recoil"
 
-function Header({ roomName }) {
+function Header() {
+    const rooms = useRecoilValue(RoomState)
+    const crntClickedRoomId = useRecoilValue(crntClickedRoomIdState)
 
     const navigate = useNavigate()
+
+    function handleExitClick(){
+        navigate('/community')
+    }
+
+    function findName(){
+        const room = rooms.find(room => room.room_id === crntClickedRoomId);
+        return room.room_name
+    }
 
     return (
         <MainLayout>
@@ -14,11 +28,11 @@ function Header({ roomName }) {
                 style={{cursor:"pointer"}}
             />
 
-            <Title>roomName</Title>
+            <Title>{findName()}</Title>
 
             <img
-                style={{ visibility: 'hidden' }}
-                src={backButton} />
+            onClick={handleExitClick}
+            src={exit} />
         </MainLayout>
     )
 }

@@ -3,22 +3,22 @@ import backButton from '../../../assets/BackButton.svg'
 import { useNavigate } from "react-router-dom"
 
 
-function Header(){
+function Header() {
 
     const navigate = useNavigate()
 
-    return(
+    return (
         <MainLayout>
             <img
-            onClick={()=>navigate(-1)}
-            src={backButton} 
-            style={{cursor:"pointer"}}/>
+                onClick={() => navigate(-1)}
+                src={backButton}
+                style={{ cursor: "pointer" }} />
 
             <Title>커뮤니티</Title>
 
             <img
-            style={{visibility: 'hidden'}}
-            src={backButton} />
+                style={{ visibility: 'hidden' }}
+                src={backButton} />
         </MainLayout>
     )
 }

@@ -6,12 +6,22 @@ import FootprintCounter from "../entities/Main/ui/FootprintCounter.jsx"
 import Header from "../entities/Main/ui/Header.jsx"
 import Chatbot_floating from '../assets/Chatbot_floating.svg'
 import { hoverGrow } from "../shared/animation/hoverGrow.jsx"
-import banner1 from '../assets/banner1.svg'
+import { crntClickedDayState, crntClickedIndexOfSchedulesState } from "../shared/state/calendar.js"
 import { useNavigate } from "react-router-dom"
+import { useRecoilState } from "recoil"
+import { useEffect } from "react"
 
 function Main() {
 
+    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const [crntClickedIndexOfSchedules, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
+
     const navigate = useNavigate()
+
+    useEffect(() => {
+        setCrntClickedDay(-1)
+        setCrntClickedIndexOfSchedules(-1)
+    }, [])
 
     return (
         <MainLayout>
@@ -23,15 +33,15 @@ function Main() {
             <GNB />
 
             <SubLayout>
-                
+
                 <FootprintCounter>탄수 발자국</FootprintCounter>
-            
+
                 <Calendar />
 
             </SubLayout>
 
             <FloatingChatbotWrap>
-                <Img src={Chatbot_floating} onClick={()=>navigate('/chatbot')}/>
+                <Img src={Chatbot_floating} onClick={() => navigate('/chatbot')} />
             </FloatingChatbotWrap>
 
         </MainLayout>

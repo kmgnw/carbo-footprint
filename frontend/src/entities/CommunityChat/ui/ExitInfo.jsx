@@ -34,6 +34,8 @@ padding: 0.4rem 2rem
 const Text = styled.div`
 border-radius: 2rem;
 background: #E3E5E7;
+position: relative;
+top: 1px
 `
 
 const EntryContainer = styled.div`

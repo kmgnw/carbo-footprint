@@ -10,7 +10,7 @@ import { fetchRooms } from "../api/api";
 function RoomList() {
     const [rooms, setRooms] = useRecoilState(RoomState);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    
+
     const handleModalClick = () => {
         setIsModalVisible(false);
     };
@@ -39,9 +39,11 @@ function RoomList() {
                     {rooms.map((e, i) => (
                         <RoomCell
                             key={i}
+                            index={i}
                             title={e.room_name}
                             count={e.room_current_capacity}
                             maxCount={e.room_max_capacity}
+                            roomId={e.room_id}
                         />
                     ))}
                 </RoomWrap>

@@ -8,13 +8,16 @@ import { useRecoilState } from "recoil";
 import StandardInput from "../../../shared/components/StandardInput/StandardInput";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { postData } from "../api/api";
+import { crntClickedRoomIdState } from "../../../shared/state/Community";
 
 function Modal({ setIsModalVisible }) {
     const navigate = useNavigate()
 
-    const [room, setRoom] = useRecoilState(RoomState);
+    const [_, setRooms] = useRecoilState(RoomState);
     const [roomName, setRoomName] = useState('');
     const [count, setCount] = useState('');
+    const [crntClickedId, setCrntClickedId] = useRecoilState(crntClickedRoomIdState)
 
     function handleCancelClick() {
         setIsModalVisible(false);
@@ -29,14 +32,13 @@ function Modal({ setIsModalVisible }) {
     }
 
     function handleButtonClick(){
-        setRoom((prev)=>[...prev, {
-            title: roomName,
-            count: count
-        }])
+
+        postData(roomName, count, setCrntClickedId, setRooms, crntClickedId)
+            .then(() => {
+                navigate('/community-chat');
+            });
 
         setIsModalVisible(false)
-
-        navigate('/community-chat')
     }
 
     const isActivate = (roomName !== '' && count !== '')

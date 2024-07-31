@@ -11,12 +11,15 @@ import DietLog from '../../../assets/DietLog.svg'
 import ActivityLog_clicked from '../../../assets/ActivityLog_clicked.svg'
 import DietLog_clicked from '../../../assets/DietLog_clicked.svg'
 import bread from '../../../assets/breadIcon.svg'
+import { crntClickedIndexOfSchedulesState } from "../../state/calendar";
 
 function Modal({ setIsModalVisible, index, day }) {
 
     const navigate = useNavigate()
 
     const [isReadOnly, setIsReadOnly] = useState(true)
+
+    const [crntClickedIndexOfSchedules, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
 
     const [schedule, setSchedule] = useRecoilState(augustState)
     const august = useRecoilValue(augustState)
@@ -62,6 +65,10 @@ function Modal({ setIsModalVisible, index, day }) {
         setSchedule(updatedSchedule);
     }
 
+    function handleCellClick(i){
+        setCrntClickedIndexOfSchedules(i)
+        navigate('/add-schedule')
+    }
     return (
         <StyledWrap>
             <StyledHeader>
@@ -100,7 +107,7 @@ function Modal({ setIsModalVisible, index, day }) {
                 ) : (
                     august[index].map((e, i) => (
                         <StyledScheduleWrap>
-                        <StyledScheduleContainer key={i}>
+                        <StyledScheduleContainer key={i} onClick={()=>handleCellClick(i)}>
                             <StyledInput
                                 value={e.title}
                                 placeholder={e.title}

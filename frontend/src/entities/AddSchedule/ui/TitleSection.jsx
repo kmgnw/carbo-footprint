@@ -3,21 +3,26 @@ import calendar from '../../../assets/Calendar.svg'
 import Unchecked from '../../../assets/Uncheck.svg'
 import Checked from '../../../assets/Check.svg'
 import { newScheduleState } from "../../../shared/state/AddSchedule";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useState } from "react";
 import StandardInput from "../../../shared/components/StandardInput/StandardInput";
+import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
+// import {  } from '../shared/state/calendar'
 
 function TitleSection(){
     const [isChecked, setIsChecked] = useState(false)
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
+    const [august, setAugust] = useRecoilState(augustState)
+    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
+
     function handleInputChange(e) {
         setNewSchedule((prev) => ({
             ...prev,
             title: e
         }));
-        console.log(newSchedule)
     }
 
     function handleCheckboxClick(){
@@ -36,6 +41,8 @@ function TitleSection(){
             }));
         }
     }
+
+    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
     
     return(
         <MainLayout>
@@ -45,7 +52,7 @@ function TitleSection(){
                 <Title>일정 제목</Title>
             </TitleWrap>
 
-            <StandardInput placeholder="일정 제목을 입력해주세요." onChange={(e)=>handleInputChange(e)} />
+            <StandardInput placeholder={!crntSchedule?.title ||crntSchedule?.title === '' ? "일정 제목을 입력해주세요." : crntSchedule?.title} onChange={(e)=>handleInputChange(e)} />
 
             <KakaoCheckboxWrap onClick={handleCheckboxClick}>
 

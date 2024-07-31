@@ -32,3 +32,8 @@ export const crntClickedDayState = atom({
     key: 'crntClickedDayState',
     default: -1
 })
+
+export const crntClickedIndexOfSchedulesState= atom({
+    key: 'crntClickedIndexOfSchedulesState',
+    default: -1
+})

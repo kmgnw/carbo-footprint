@@ -1,8 +1,29 @@
 import styled from "styled-components"
 import dietLog from '../../../assets/DietLog.svg'
 import Choices from '../../../shared/components/choices/Choices'
+import { useRecoilState, useRecoilValue } from "recoil";
+import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
+import { newScheduleState } from "../../../shared/state/AddSchedule";
+import { useEffect } from "react";
 
 function DietLog(){
+
+    const [august, setAugust] = useRecoilState(augustState)
+    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
+
+    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
+    const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
+
+    useEffect(() => {
+        setNewSchedule((prev) => ({
+            ...prev,
+            firstMeal: crntSchedule?.firstMeal ?? '',
+            secondMeal: crntSchedule?.secondMeal ?? '',
+            thirdMeal: crntSchedule?.thirdMeal ?? '',
+            extraMeal: crntSchedule?.extraMeal ?? '',
+        }));
+    }, []);
     return(
         <MainLayout>
             <TitleWrap>

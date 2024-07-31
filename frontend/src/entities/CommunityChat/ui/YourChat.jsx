@@ -15,7 +15,7 @@ function YourChat({ name, date, chat }) {
                 </ProfileWrap>
 
                 <Chat>
-                    {chat}
+                    <div>{chat}</div>
                 </Chat>
 
                 <Date>
@@ -38,6 +38,7 @@ justify-content: start;
 
 const ChatWrap = styled.div`
 display: flex;
+align-items: center;
 gap: 0.8rem;
 `
 
@@ -94,4 +95,9 @@ font-size: 1rem;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
+max-width: 5ch;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+
 `

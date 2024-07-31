@@ -2,16 +2,21 @@ import styled from "styled-components";
 import StandardInput from '../../../shared/components/StandardInput/StandardInput'
 import StandardButton from '../../../shared/components/StandardButton/StandardButton'
 import { newScheduleState } from '../../../shared/state/AddSchedule'
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import activityLog from '../../../assets/ActivityLog.svg'
-import { augustState, crntClickedDayState } from "../../../shared/state/calendar";
+import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
 import { useNavigate } from "react-router-dom";
 
 function ActivityLog() {
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
+
     const [august, setAugust] = useRecoilState(augustState)
-    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const crntClickedDay = useRecoilValue(crntClickedDayState)
+    const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
+
+    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
+
     const navigate = useNavigate()
 
     function handleWorkoutTimeChange(value) {
@@ -32,26 +37,30 @@ function ActivityLog() {
 
         if (newSchedule.title && newSchedule.title !== '') {
             setAugust((prev) => {
-                const list = [...prev];
-                if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
-                    list[crntClickedDay] = [newSchedule];
-                    return list
+                const list = JSON.parse(JSON.stringify(prev));
+                if (crntClickedIndexOfSchedules === -1) {
+                    if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
+                        list[crntClickedDay] = [newSchedule];
+                    } else {
+                        list[crntClickedDay] = [...list[crntClickedDay], newSchedule];
+                    }
                 } else {
-                    list[crntClickedDay] = [...list[crntClickedDay], newSchedule];
-                    return list;
+                    list[crntClickedDay][crntClickedIndexOfSchedules] = newSchedule;
                 }
+                return list;
             });
-
-            navigate('/')
+        
+            navigate('/');
             setNewSchedule({
                 firstMeal: [],
                 secondMeal: [],
                 thirdMeal: [],
                 extraMeal: []
-            })
+            });
         } else {
-            window.alert('제목')
+            window.alert('제목을 입력하세요.');
         }
+        
     }
 
 
@@ -81,7 +90,10 @@ function ActivityLog() {
 
                     <StandardInputWrap>
 
-                        <StandardInput placeholder='운동 시간 입력' onChange={(e) => handleWorkoutTimeChange(e)} />
+                        <StandardInput
+                        placeholder={!crntSchedule?.workoutTime || crntSchedule?.title === '' ?"운동 시간 입력" : crntSchedule?.workoutTime}
+                        onChange={(e) => handleWorkoutTimeChange(e)}
+                        />
 
                         <InputTrailingText>분</InputTrailingText>
 
@@ -94,8 +106,11 @@ function ActivityLog() {
                     <Text>걸음 수</Text>
 
                     <StandardInputWrap>
-
-                        <StandardInput placeholder='걸음수 입력' onChange={(e) => handleStepCountChange(e)} />
+                        
+                        <StandardInput
+                        placeholder={!crntSchedule?.stepCount || crntSchedule?.stepCount === '' ? "걸음 수 입력" : crntSchedule?.stepCount}
+                        onChange={(e) => handleStepCountChange(e)}
+                        />
 
                         <InputTrailingText>걸음</InputTrailingText>
 

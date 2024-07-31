@@ -3,16 +3,26 @@ import StandardButton from "../../../shared/components/StandardButton/StandardBu
 import pretzel from '../../../assets/pretzel_community.svg'
 import users from '../../../assets/Users_community.svg'
 import { useNavigate } from "react-router-dom"
+import { crntClickedRoomIdState } from "../../../shared/state/Community"
+import { useRecoilState } from "recoil"
 
-function RoomCell({title, count, maxCount}){
+function RoomCell({ title, count, maxCount, roomId }) {
 
     const navigate = useNavigate()
 
-    function handleButtonClick(){
-        navigate('/community-chat')
+    const [_, setCrntClickedIndex] = useRecoilState(crntClickedRoomIdState)
+
+    function handleButtonClick() {
+        if (count < maxCount) {
+            setCrntClickedIndex(roomId)
+            navigate('/community-chat')
+        } else {
+            alert('최대 정원 초과입니다.')
+        }
+
     }
 
-    return(
+    return (
         <MainLayout>
 
             <TitleWrap>
@@ -40,8 +50,10 @@ function RoomCell({title, count, maxCount}){
             </TitleWrap>
 
             <StandardButton
-            title='입장하기'
-            onClick={handleButtonClick}
+                backgroundColor={count >= maxCount ? '#E3E5E7' : 'black'}
+                color={count > maxCount ? '#BABEC0' : 'white'}
+                title='입장하기'
+                onClick={handleButtonClick}
             />
 
 
@@ -81,7 +93,7 @@ gap: 1.2rem;
 align-items: center;
 `
 
-const Trailing= styled.div`
+const Trailing = styled.div`
 display: flex;
 align-items: center;
 `

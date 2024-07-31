@@ -3,13 +3,21 @@ import StandardInput from "../../../shared/components/StandardInput/StandardInpu
 import StandardButton from "../../../shared/components/StandardButton/StandardButton"
 
 import { newScheduleState } from "../../../shared/state/AddSchedule"
-import { useRecoilState } from "recoil"
+import { useRecoilState, useRecoilValue } from "recoil"
 import { useNavigate } from "react-router-dom"
+
+import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
 
 function InputCalorie(){
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
     const navigate = useNavigate()
+
+    const [august, setAugust] = useRecoilState(augustState)
+    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
+
+    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
 
     function handleInputChange(value){
         
@@ -31,8 +39,9 @@ function InputCalorie(){
             <InputWrap>
 
                 <StandardInput
-                placeholder="섭취 칼로리 직접 입력"
-                onChange={handleInputChange}
+                // value={crntSchedule?.calorie || ""}
+                placeholder={!crntSchedule?.calorie ? "섭취 칼로리 직접 입력" : crntSchedule?.calorie}
+                onChange={(e)=>handleInputChange(e)}
                 padding="0"
                 />
 

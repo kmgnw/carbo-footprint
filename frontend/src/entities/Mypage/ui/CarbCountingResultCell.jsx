@@ -20,16 +20,14 @@ function CarbCountingResultCell() {
                     <img src={imageSection} />
 
                     <TextWrap>
-                        <Desc>총 00개의 음식</Desc>
-                        <Title>총 000Kcal</Title>
+                        <Title>달걀말이 000Kcal</Title>
+                        <Desc>탄수화물 000g</Desc>
+                        <Desc>단백질 000g</Desc>
+                        <Desc>지방 000g</Desc>
+                        <Desc>당류 000g</Desc>
                     </TextWrap>
 
                 </ContentContainer>
-
-                <StandardButton
-                    title='자세히보기'
-                    padding="1.2rem 2.1rem"
-                />
             </ContentWrap>
 
         </MainLayout>
@@ -41,7 +39,7 @@ export default CarbCountingResultCell
 const MainLayout = styled.div`
 display: flex;
 flex-direction: column;
-gap: 1.6rem;
+gap: 0.5rem;
 padding: 1.6rem;
 border-radius: 1.6rem;
 background: #F2F3F5;

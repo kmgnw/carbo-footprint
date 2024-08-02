@@ -2,7 +2,7 @@ import { baseUrl } from "../../../shared/config/baseurl";
 
 export const fetchMyCommunity = async (setMyCommunity, setRooms) => {
     const token = window.sessionStorage.getItem('token');
-    
+    setMyCommunity([])
     try {
         const response = await fetch(`${baseUrl}/api/my-page/chat`, {
             method: 'GET',

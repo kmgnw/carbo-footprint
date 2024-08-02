@@ -12,6 +12,7 @@ import { fetchPrevChattings } from '../api/api';
 import { useRecoilValue } from 'recoil';
 import { RoomState } from '../../../shared/state/Community';
 import { crntClickedRoomIdState } from '../../../shared/state/Community';
+import { useLocation } from 'react-router-dom';
 
 const Chatting = () => {
     const [input, setInput] = useState('');
@@ -22,6 +23,8 @@ const Chatting = () => {
     const rooms = useRecoilValue(RoomState);
     const [chatRoomId, setChatRoomId] = useState(-1);
     const messagesEndRef = useRef(null);
+    const location = useLocation();
+    const fromPage = location.state?.from || 'Unknown';
 
     let stompClient = useRef(null);
 
@@ -83,10 +86,30 @@ const Chatting = () => {
                     }
                 ]);
             });
-            sendEnterMessage();
+            
+            if(fromPage === 'community'){
+                sendEnterMessage()
+            }
+
         }, (error) => {
             console.error('Error: ' + error);
         });
+
+        socket.onclose = () => {
+            console.log('WebSocket connection closed');
+            // Optionally, try to reconnect after a certain timeout
+            setTimeout(() => {
+                connect();
+            }, 5000); // reconnect after 5 seconds
+        };
+    };
+
+    const disconnect = () => {
+        if (stompClient.current) {
+            stompClient.current.disconnect(() => {
+                console.log('Disconnected');
+            });
+        }
     };
 
     const disconnect = () => {

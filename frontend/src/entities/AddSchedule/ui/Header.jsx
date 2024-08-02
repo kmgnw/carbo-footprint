@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from './Modal'
 import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState, crntClickedMonthState } from '../../../shared/state/calendar'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import menu from '../../../assets/menu_addSchedule.svg'
+import trash from '../../../assets/trash.svg'
 import DeleteModal from "./DeleteModal"
 
 function Header() {
@@ -48,7 +48,7 @@ function Header() {
 
             
             <StyledBackButton
-                src={menu}
+                src={trash}
                 onClick={handleDeleteClick}
                 style={{visibility: !crntSchedule ? 'hidden' : 'visible'}}
             />

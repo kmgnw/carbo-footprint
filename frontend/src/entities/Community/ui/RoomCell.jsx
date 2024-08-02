@@ -15,7 +15,7 @@ function RoomCell({ title, count, maxCount, roomId }) {
     function handleButtonClick() {
         if (count < maxCount) {
             setCrntClickedIndex(roomId)
-            navigate('/community-chat')
+            navigate('/community-chat', { state: { from: 'community' } })
         } else {
             alert('최대 정원 초과입니다.')
         }

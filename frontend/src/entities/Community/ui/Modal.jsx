@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import StandardInput from "../../../shared/components/StandardInput/StandardInput";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postData } from "../api/api";
+import { makeRoom } from "../api/api";
 import { crntClickedRoomIdState } from "../../../shared/state/Community";
 
 function Modal({ setIsModalVisible }) {
@@ -33,7 +33,7 @@ function Modal({ setIsModalVisible }) {
 
     function handleButtonClick(){
 
-        postData(roomName, count, setCrntClickedId, setRooms, crntClickedId)
+        makeRoom(roomName, count, setCrntClickedId, setRooms, crntClickedId)
             .then(() => {
                 navigate('/community-chat');
             });

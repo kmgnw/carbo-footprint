@@ -13,7 +13,7 @@ function CommunityCell({room_name, room_current_capacity, room_max_capacity, unc
 
     function handleCellClick(){
         setCrntClickedId(room_id)
-        navigate('/community-chat')
+        navigate('/community-chat', { state: { from: 'mypage' } })
     }
 
     return(
@@ -114,14 +114,18 @@ margin: 0 0.8rem
 const CountWrap = styled.div`
 color: #FFF;
 font-family: "Noto Sans KR";
-font-size: 10px;
+font-size: 1rem;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-padding: 0.3rem 0.4rem;
-border-radius: 50%;
 background: #EF6038;
-margin-right: 3.4rem;
+// margin-right: 3.4rem;
+width: 2.2rem;
+height: 2.2rem;
+border-radius: 50%;
+display: flex;
+justify-content:center;
+align-items: center;
 `
 
 

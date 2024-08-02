@@ -25,7 +25,7 @@ export const fetchRooms = async (setRooms) => {
     }
 };
 
-export const postData = async (name, count, setCrntClickedId, setRooms, crntClickedRoomId) => {
+export const makeRoom = async (name, count, setCrntClickedId, setRooms, crntClickedRoomId) => {
     return fetch(`${baseUrl}/api/chat/room`, {
         method: "POST",
         headers: {

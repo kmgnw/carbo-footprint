@@ -37,3 +37,8 @@ export const resultDataState = atom({
     key: 'resultDataState',
     default: null
 })
+
+export const foodCodeState = atom({
+    key: 'foodCodeState',
+    default: null
+})

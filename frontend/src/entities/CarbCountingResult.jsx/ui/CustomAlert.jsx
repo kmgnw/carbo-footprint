@@ -6,6 +6,7 @@ const AlertWrapper = styled.div`
   height: 3.5rem;
   padding: 1rem;
   margin: 0 2rem;
+  margin-top: 2rem;
   border-radius: 8px;
   transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
   opacity: ${(props) => (props.visible ? 1 : 0)};

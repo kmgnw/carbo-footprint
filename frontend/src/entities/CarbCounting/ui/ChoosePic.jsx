@@ -95,8 +95,8 @@ function ChoosePic() {
       <div style={{ padding: "2.4rem 2rem 0 2rem" }}>
         <StandardButton title="탄수화물 함량 확인하기" onClick={handleResult} />
       </div>
-      <div style={{ padding: "4rem 2rem 0 2rem" }}>
-        <RuleContainer></RuleContainer>
+      <div style={{ padding: "4rem 2rem 0 2rem"}}>
+        <RuleContainer/>
       </div>
     </>
   );

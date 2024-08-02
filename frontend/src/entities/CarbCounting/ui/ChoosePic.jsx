@@ -13,6 +13,7 @@ import {
   galleryState,
   resultDataState,
   selectedImgState,
+  foodCodeState
 } from "../../../shared/state/Gallery";
 import bread from "../../../assets/breadIcon.svg";
 import { sendClassification } from "../api/api";
@@ -25,6 +26,7 @@ function ChoosePic() {
   const selectedImg = useRecoilValue(selectedImgState);
   const gallery = useRecoilValue(galleryState);
   const [data, setData] = useRecoilState(resultDataState);
+  const[foodCode, setFoodCode] = useRecoilState(foodCodeState);
 
   const handleTakePicture = () => {
     setIsCameraActive(true);
@@ -45,6 +47,7 @@ function ChoosePic() {
         try {
             const nuetritionList = await sendClassification(file[selectedImg]);
             setData(nuetritionList);
+            setFoodCode(nuetritionList.food_code);
             console.log("영양성분 목록:", nuetritionList);
             navigate("/carb-counting-result");
         } catch (error) {

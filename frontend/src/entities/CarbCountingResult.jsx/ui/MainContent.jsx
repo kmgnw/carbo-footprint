@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { selectedImgState, galleryState, resultDataState } from "../../../shared/state/Gallery";
+import { selectedImgState, galleryState, resultDataState, foodCodeState, fileState} from "../../../shared/state/Gallery";
 import test from "../../../assets/testImg.svg";
 import icon from "../../../assets/pretzelIcon.svg";
 import link from '../../../assets/Link.svg'
@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { hoverGrow } from "../../../shared/animation/hoverGrow";
 import MenuCarousel from "./MenuCarousel";
 import {useNavigate} from "react-router-dom";
+import { saveClassification } from "../api/api";
 
 function MainContent() {
   const selectedImg = useRecoilValue(selectedImgState);
@@ -20,6 +21,8 @@ function MainContent() {
   const kcal = useRecoilValue(resultDataState)
   const [alert, setAlert] = useState({ visible: false, message: '', success: true });
   const navigate = useNavigate();
+  const code = useRecoilValue(foodCodeState);
+  const file = useRecoilValue(fileState);
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -31,6 +34,24 @@ function MainContent() {
       console.error('Link copy failed', error);
     });
   };
+
+  const handleSave = async () => {
+    const token = sessionStorage.getItem('token');
+    
+    if (!token) {
+        console.log("로그인해");
+        navigate('/login');
+    } else {
+        console.log("여기");
+        try {
+            await saveClassification(file[selectedImg], code);
+            navigate('/');
+        } catch (error) {
+            console.error('저장 중 오류 발생:', error);
+            alert('저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
+        }
+    }
+};
 
   return (
     <Wrapper>
@@ -85,7 +106,7 @@ function MainContent() {
           width="18.7rem"
           height="4rem"
           backgroundColor="#EF6038"
-          
+          onClick={() => handleSave()}
         />
       </ButtonContainer>
     </Wrapper>

@@ -74,3 +74,29 @@ export const fetchClassification = async (setClassification) => {
         console.error(error);
     }
 };
+
+export const fetchAddictions = async (setClassification) => {
+    const token = window.sessionStorage.getItem('token');
+    
+    try {
+        const response = await fetch(`${baseUrl}/api/my-page/addiction-test`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data)
+        // setClassification(data.result)
+        
+        
+    } catch (error) {
+        console.error(error);
+    }
+};

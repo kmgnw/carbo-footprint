@@ -1,17 +1,29 @@
 import styled from "styled-components"
 import CarbTestResultCell from "./CarbTestResultCell"
 import NoData from './NoData'
+import { useEffect, useState } from "react"
+import { fetchAddictions } from "../api/api"
 
 function CarbTestResultTab() {
+
+    const [addictions, setAddictions] = useState([])
+
+    useEffect(()=>{
+        fetchAddictions(setAddictions)
+    }, [])
     return (
 
         <>
             {true ? (
                 <CellWrap>
-                    <CarbTestResultCell type='양호' />
-                    <CarbTestResultCell type='주의' />
-                    <CarbTestResultCell type='위험' />
-                    <CarbTestResultCell type='중독' />
+                    {addictions.map((e,i)=>(
+                        <CarbTestResultCell
+                        key={i}
+                        type='양호'
+                        date={e.date}
+                        check_count={e.check_count}
+                        />
+                    ))}
                 </CellWrap>
             ) : <NoData />}
         </>

@@ -4,7 +4,7 @@ import users from '../../../assets/Users_community.svg'
 import { crntClickedRoomIdState } from "../../../shared/state/Community"
 import { useNavigate } from "react-router-dom"
 import { useRecoilState } from "recoil"
-
+import { hoverGrow } from "../../../shared/animation/hoverGrow"
 
 function CommunityCell({room_name, room_current_capacity, room_max_capacity, unchecked_message_count, room_id}){
 
@@ -58,6 +58,8 @@ border-radius: 16px;
 background: #F2F3F5;
 box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.20);
 margin-bottom: 1.6rem;
+cursor:pointer;
+${hoverGrow}
 `
 
 const DateWrap = styled.div`

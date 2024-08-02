@@ -5,7 +5,7 @@ import 주의 from '../../../assets/lv2.svg'
 import 위험 from '../../../assets/lv3.svg'
 import 중독 from '../../../assets/lv4.svg'
 
-function CarbTestResultCell({type}){
+function CarbTestResultCell({type, date, check_count}){
 
     const [cellInfo, setCellInfo] = useState({})
 
@@ -13,25 +13,27 @@ function CarbTestResultCell({type}){
         switch (type) {
             case '양호':
                 setCellInfo({
+                    date: date,
                     img: 양호,
-                    result: '양호'
+                    result: '양호',
+                    checkCount: check_count
                 })
                 break;
 
             case '주의':
                 setCellInfo({
-                    date: '',
+                    date: date,
                     img: 주의, 
-                    checkCount: '00',
+                    checkCount: check_count,
                     result: '주의'
                 })
                 break;
 
             case '위험':
                 setCellInfo({
-                    date: '',
+                    date: date,
                     img: 위험,
-                    checkCount: '00',
+                    checkCount: check_count,
                     result: '위험'
                 })
                 break;
@@ -40,7 +42,7 @@ function CarbTestResultCell({type}){
                 setCellInfo({
                     date: '',
                     img: 중독,
-                    checkCount: '00',
+                    checkCount: check_count,
                     result: '중독'
                 })
                 break;
@@ -62,7 +64,7 @@ function CarbTestResultCell({type}){
                 <Img src={cellInfo.img} alt={cellInfo.result} />
             </ImgWrap>
 
-            <CheckCount>00개 체크</CheckCount>
+            <CheckCount>{cellInfo.checkCount}개 체크</CheckCount>
 
             <Result>{cellInfo.result}</Result>
         </MainLayout>

@@ -7,24 +7,24 @@ import { newScheduleState } from "../../../shared/state/AddSchedule"
 import { useRecoilState, useRecoilValue } from "recoil"
 import { useNavigate } from "react-router-dom"
 
-import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
+import { augustState, septemberState, crntClickedDayState, crntClickedMonthState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
 
 function InputCalorie(){
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
     const navigate = useNavigate()
 
-    const [august, setAugust] = useRecoilState(augustState)
-    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const august = useRecoilValue(augustState)
+    const september = useRecoilValue(septemberState)
+    const crntClickedDay = useRecoilValue(crntClickedDayState)
+    const crntClickedMonth = useRecoilValue(crntClickedMonthState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
-
-    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
 
     function handleInputChange(value){
         
             setNewSchedule((prev) => ({
                 ...prev,
-                calorie: value
+                calorie: Number(value)
             }));
 
     }
@@ -34,13 +34,15 @@ function InputCalorie(){
     }
 
     useEffect(()=>{
+        const crntSchedule = crntClickedMonth === 8 ? august[crntClickedDay][crntClickedIndexOfSchedules] : september[crntClickedDay][crntClickedIndexOfSchedules]
+
         setNewSchedule(crntSchedule ?? {
             firstMeal: [],
             secondMeal: [],
             thirdMeal: [],
             extraMeal: []
         })
-    },[])
+    },[crntClickedMonth, august, september, crntClickedDay, crntClickedIndexOfSchedules])
 
     return(
         <MainLayout>

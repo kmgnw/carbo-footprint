@@ -6,8 +6,7 @@ import { newScheduleState } from "../../../shared/state/AddSchedule";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
 import StandardInput from "../../../shared/components/StandardInput/StandardInput";
-import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
-// import {  } from '../shared/state/calendar'
+import { augustState, septemberState, crntClickedMonthState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
 
 function TitleSection(){
     const [isChecked, setIsChecked] = useState(false)
@@ -15,6 +14,8 @@ function TitleSection(){
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
     const [august, setAugust] = useRecoilState(augustState)
+    const [september, setSeptember] = useRecoilState(septemberState)
+    const crntClickedMonth = useRecoilState(crntClickedMonthState)
     const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
@@ -42,16 +43,18 @@ function TitleSection(){
         }
     }
 
-    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
-
     useEffect(()=>{
+        const crntSchedule = crntClickedMonth === 8 ? august[crntClickedDay][crntClickedIndexOfSchedules] : september[crntClickedDay][crntClickedIndexOfSchedules]
+
         setNewSchedule(crntSchedule ?? {
             firstMeal: [],
             secondMeal: [],
             thirdMeal: [],
             extraMeal: []
         })
-    },[])
+        console.log('crntSchedule is ')
+        console.log(crntSchedule)
+    },[august, september, crntClickedDay, crntClickedIndexOfSchedules])
     
     return(
         <MainLayout>

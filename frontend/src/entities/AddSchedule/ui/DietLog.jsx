@@ -2,20 +2,25 @@ import styled from "styled-components"
 import dietLog from '../../../assets/DietLog.svg'
 import Choices from '../../../shared/components/choices/Choices'
 import { useRecoilState, useRecoilValue } from "recoil";
-import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
+import { augustState, septemberState, crntClickedMonthState , crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
 import { newScheduleState } from "../../../shared/state/AddSchedule";
 import { useEffect } from "react";
 
 function DietLog(){
 
-    const [august, setAugust] = useRecoilState(augustState)
-    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const august = useRecoilValue(augustState)
+    const september = useRecoilValue(septemberState)
+    const crntClickedMonth = useRecoilValue(crntClickedMonthState) 
+    const crntClickedDay = useRecoilValue(crntClickedDayState) 
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
-    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
-    const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
+    const [_, setNewSchedule] = useRecoilState(newScheduleState)
 
     useEffect(() => {
+
+        const crntSchedule = crntClickedMonth === 8 ? august[crntClickedDay][crntClickedIndexOfSchedules] : september[crntClickedDay][crntClickedIndexOfSchedules]
+
+
         setNewSchedule((prev) => ({
             ...prev,
             firstMeal: crntSchedule?.firstMeal ?? '',
@@ -23,7 +28,7 @@ function DietLog(){
             thirdMeal: crntSchedule?.thirdMeal ?? '',
             extraMeal: crntSchedule?.extraMeal ?? '',
         }));
-    }, []);
+    }, [crntClickedMonth, august, september, crntClickedDay, crntClickedIndexOfSchedules]);
     return(
         <MainLayout>
             <TitleWrap>

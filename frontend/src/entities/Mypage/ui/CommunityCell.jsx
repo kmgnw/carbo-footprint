@@ -1,32 +1,46 @@
 import styled from "styled-components"
 import pretzel from '../../../assets/pretzel_red.svg'
 import users from '../../../assets/Users_community.svg'
+import { crntClickedRoomIdState } from "../../../shared/state/Community"
+import { useNavigate } from "react-router-dom"
+import { useRecoilState } from "recoil"
 
-function CommunityCell(){
+
+function CommunityCell({room_name, room_current_capacity, room_max_capacity, unchecked_message_count, room_id}){
+
+    const [_, setCrntClickedId] = useRecoilState(crntClickedRoomIdState)
+    const navigate = useNavigate()
+
+    function handleCellClick(){
+        setCrntClickedId(room_id)
+        navigate('/community-chat')
+    }
+
     return(
-        <MainLayout>
+        <MainLayout onClick={handleCellClick}>
             <DateWrap>00.00.0요일</DateWrap>
 
             <TitleWrap>
-
+                <HeadingWrap>
                 <LogoWrap>
                     <Img src={pretzel} />
                 </LogoWrap>
 
                 <Title>
-                    방제목은열글자까지만
+                    {room_name}
                 </Title>
 
                 <CountWrap>
-                    00
+                    {unchecked_message_count}
                 </CountWrap>
+                </HeadingWrap>
 
                 <Trailing>
                     <CountIconWrap>
                         <img src={users} />
 
                         <CountIconText>
-                            0/10
+                            {room_current_capacity}/{room_max_capacity}
                         </CountIconText>
                     </CountIconWrap>
                 </Trailing>
@@ -43,6 +57,7 @@ padding: 1.6rem;
 border-radius: 16px;
 background: #F2F3F5;
 box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.20);
+margin-bottom: 1.6rem;
 `
 
 const DateWrap = styled.div`
@@ -57,6 +72,11 @@ padding: 0.4rem 1.3rem;
 border-radius: 20px;
 background-color:#BABEC0;
 margin-bottom: 0.8rem
+`
+
+const HeadingWrap=styled.div`
+display: flex;
+align-items: center;
 `
 
 const LogoWrap = styled.div`
@@ -76,6 +96,7 @@ width: 3.2rem;
 const TitleWrap = styled.div`
 display: flex;
 align-items: center;
+justify-content: space-between;
 `
 
 const Title = styled.div`

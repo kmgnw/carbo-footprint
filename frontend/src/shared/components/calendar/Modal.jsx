@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { augustState } from '../../state/calendar';
+import { augustState, crntClickedMonthState, septemberState } from '../../state/calendar';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useState } from "react";
 import PlusCircle from '../../../assets/PlusCircle.svg'
@@ -19,10 +19,12 @@ function Modal({ setIsModalVisible, index, day }) {
 
     const [isReadOnly, setIsReadOnly] = useState(true)
 
+    const crntClickedMonth = useRecoilValue(crntClickedMonthState)
     const [crntClickedIndexOfSchedules, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
 
     const [schedule, setSchedule] = useRecoilState(augustState)
     const august = useRecoilValue(augustState)
+    const september = useRecoilValue(septemberState)
 
     function isDietLog(e) {
         if (e.firstMeal.length !== 0 ||
@@ -65,7 +67,7 @@ function Modal({ setIsModalVisible, index, day }) {
         setSchedule(updatedSchedule);
     }
 
-    function handleCellClick(i){
+    function handleCellClick(i) {
         setCrntClickedIndexOfSchedules(i)
         navigate('/add-schedule')
     }
@@ -75,10 +77,10 @@ function Modal({ setIsModalVisible, index, day }) {
                 {/* 레이아웃 용 빈 div */}
                 <div style={{ width: '24px' }} />
 
-                <StyledTitle>8월 {index + 1}일 {day}요일</StyledTitle>
+                <StyledTitle>{crntClickedMonth}월 {index + 1}일 {day}요일</StyledTitle>
 
                 <StyledButton onClick={handleBtnClick}>
-                    <img src={X} alt="Close" style={{cursor:'pointer'}}/>
+                    <img src={X} alt="Close" style={{ cursor: 'pointer' }} />
                 </StyledButton>
 
             </StyledHeader>
@@ -93,8 +95,8 @@ function Modal({ setIsModalVisible, index, day }) {
 
             </StyledFlexbox>
 
-            
-                {august[index].length === 1 && august[index][0].title === '' ? (
+            {crntClickedMonth === 8 && (
+                (august[index].length === 1 && august[index][0].title === '') ? (
                     <NoScheduleWrap>
                         <ImgWrap>
                             <Img src={bread} />
@@ -106,31 +108,70 @@ function Modal({ setIsModalVisible, index, day }) {
                     </NoScheduleWrap>
                 ) : (
                     august[index].map((e, i) => (
-                        <StyledScheduleWrap>
-                        <StyledScheduleContainer key={i} onClick={()=>handleCellClick(i)}>
-                            <StyledInput
-                                value={e.title}
-                                placeholder={e.title}
-                                readOnly={isReadOnly}
-                                onChange={(text) => handleScheduleChange(text, i)}
-                            />
-                            <StyledButtonWrap>
-                                <img
-                                    style={{ width: '24px' }}
-                                    src={isDietLog(e) ? DietLog_clicked : DietLog}
-                                    alt="Diet Log"
+                        <StyledScheduleWrap key={i}>
+                            <StyledScheduleContainer onClick={() => handleCellClick(i)}>
+                                <StyledInput
+                                    value={e.title}
+                                    placeholder={e.title}
+                                    readOnly={isReadOnly}
+                                    onChange={(text) => handleScheduleChange(text, i)}
                                 />
-                                <img
-                                    style={{ width: '24px' }}
-                                    src={isActivityLog(e) ? ActivityLog_clicked : ActivityLog}
-                                    alt="Activity Log"
-                                />
-                            </StyledButtonWrap>
-                        </StyledScheduleContainer>
+                                <StyledButtonWrap>
+                                    <img
+                                        style={{ width: '24px' }}
+                                        src={isDietLog(e) ? DietLog_clicked : DietLog}
+                                        alt="Diet Log"
+                                    />
+                                    <img
+                                        style={{ width: '24px' }}
+                                        src={isActivityLog(e) ? ActivityLog_clicked : ActivityLog}
+                                        alt="Activity Log"
+                                    />
+                                </StyledButtonWrap>
+                            </StyledScheduleContainer>
                         </StyledScheduleWrap>
                     ))
-                )}
-            
+                )
+            )}
+
+            {crntClickedMonth === 9 && (
+                (september[index].length === 1 && september[index][0].title === '') ? (
+                    <NoScheduleWrap>
+                        <ImgWrap>
+                            <Img src={bread} />
+                        </ImgWrap>
+                        <NoScheduleText>
+                            아직 기록이 없습니다.<br />
+                            오늘 당신의 탄수발자국을 남겨보세요!
+                        </NoScheduleText>
+                    </NoScheduleWrap>
+                ) : (
+                    september[index].map((e, i) => (
+                        <StyledScheduleWrap key={i}>
+                            <StyledScheduleContainer onClick={() => handleCellClick(i)}>
+                                <StyledInput
+                                    value={e.title}
+                                    placeholder={e.title}
+                                    readOnly={isReadOnly}
+                                    onChange={(text) => handleScheduleChange(text, i)}
+                                />
+                                <StyledButtonWrap>
+                                    <img
+                                        style={{ width: '24px' }}
+                                        src={isDietLog(e) ? DietLog_clicked : DietLog}
+                                        alt="Diet Log"
+                                    />
+                                    <img
+                                        style={{ width: '24px' }}
+                                        src={isActivityLog(e) ? ActivityLog_clicked : ActivityLog}
+                                        alt="Activity Log"
+                                    />
+                                </StyledButtonWrap>
+                            </StyledScheduleContainer>
+                        </StyledScheduleWrap>
+                    ))
+                )
+            )}
 
         </StyledWrap>
     )

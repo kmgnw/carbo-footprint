@@ -1,10 +1,13 @@
 import { baseUrl } from "../../../shared/config/baseurl";
 
 export function sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult) {
-    return fetch(`${baseUrl}/foods/recommend`, {
+    const token = window.sessionStorage.getItem('token')
+    console.log(newAllergyType, newEatingHabitType)
+    fetch(`${baseUrl}/api/foods/recommend`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
             "allergen_list": newAllergyType,

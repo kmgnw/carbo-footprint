@@ -1,17 +1,30 @@
 import styled from "styled-components"
 import CarbCountingResultCell from "./CarbCountingResultCell";
 import NoData from './NoData'
+import { useEffect, useState } from "react";
+import { fetchClassification } from "../api/api";
 
 function CarbCountingResultTab() {
+
+    const [classification, setClassification] = useState([])
+
+    useEffect(()=>{
+        fetchClassification(setClassification)
+    }, [])
+
     return (
         <CellWrap>
             
             {true ? (
-                <>
-                    <CarbCountingResultCell />
-                    <CarbCountingResultCell />
-                    <CarbCountingResultCell />
-                </>
+                classification.map((e,i)=>(
+                    <CarbCountingResultCell 
+                    key={i}
+                    date={e.date}
+                    calorie={e.calorie}
+                    image_url={e.image_url}
+                    />
+                ))
+                
             ) : <NoData />}
 
         </CellWrap>

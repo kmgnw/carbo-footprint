@@ -1,7 +1,16 @@
 import styled from "styled-components";
 import Logo_orange from '../../../assets/Logo_orange.svg'
+import { useEffect, useState } from "react";
+import { fetchAttendanceCount } from "../api/api";
 
 function FootprintCounter(){
+
+    const [count, setCount] = useState(0)
+
+    useEffect(()=>{
+        fetchAttendanceCount(setCount)
+    }, [])
+
     return(
         <MainLayout>
 
@@ -11,7 +20,7 @@ function FootprintCounter(){
 
 
             <div>
-            <Content>탄수 발자국 연속 <Count>24</Count>회째</Content>
+            <Content>탄수 발자국 연속 <Count>{count}</Count>회째</Content>
             </div>
 
         </MainLayout>

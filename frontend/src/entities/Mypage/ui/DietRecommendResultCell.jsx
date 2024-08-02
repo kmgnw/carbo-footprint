@@ -1,24 +1,41 @@
 import styled from "styled-components"
 import Choices_nonclickable from "../../../shared/components/choices_nonclickable/Choices_nonclickable";
 import StandardButton from "../../../shared/components/StandardButton/StandardButton";
+import { recommendedResultState } from "../../../shared/state/DietRecommendResult";
+import { newAllergyTypeState, newEatingHabitTypeState } from "../../../shared/state/DietRecommend";
+import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
-function DietRecommendResultCell(){
+function DietRecommendResultCell({date, allergen_list, preference_list, recommend_food_list, }){
+    
+    const [_, setRecommendedResult] = useRecoilState(recommendedResultState)
+    const [__, setNewAllergyType] = useRecoilState(newAllergyTypeState)
+    const [___, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState)
+    const navigate = useNavigate()
+
+    function handleButtonClick(){
+        setRecommendedResult(recommend_food_list)
+        setNewAllergyType(allergen_list)
+        setNewEatingHabitType(preference_list)
+        navigate('/diet-recommend-result')
+    }
+
     return(
         <MainLayout>
 
             <DateWrap>
                 <DateContainer>
-                00.00.0요일
+                {date}
                 </DateContainer>
                 
             </DateWrap>
 
             <Choices_nonclickable
-            allergies={['메밀', '땅콩']}
-            eatingHabits={['없음']}
+            allergies={allergen_list}
+            eatingHabits={preference_list}
             />
 
-            <StandardButton title='결과보기'/>
+            <StandardButton title='결과보기' onClick={handleButtonClick}/>
         </MainLayout>
     )
 }

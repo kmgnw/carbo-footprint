@@ -3,16 +3,18 @@ import CalendarCell from './CalendarCell';
 import { useEffect, useState, useRef } from 'react';
 
 import { augustState, septemberState } from '../../state/calendar';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { fetchSchedules } from '../../../entities/Main/api/api';
 
 function Calendar() {
+
     const gridRef = useRef(null);
 
     const july = [[27], [28], [29], [30]]
-    const august = useRecoilValue(augustState)
-    const september = useRecoilValue(septemberState)
+    const [august, setAugust] = useRecoilState(augustState)
+    const [september, setSeptember] = useRecoilState(septemberState)
 
-    const [monthText, setMonthText] = useState('8월');
+    const [month, setMonth] = useState(8);
     const [day, setDay] = useState(0);
 
     const days = ["월", "화", "수", "목", "금", "토", "일"]
@@ -43,6 +45,7 @@ function Calendar() {
     useEffect(() => {
         const today = new Date();
         setDay(today.getDate());
+        fetchSchedules(setAugust, setSeptember)
     }, []);
 
     useEffect(() => {
@@ -52,9 +55,9 @@ function Calendar() {
                 const maxScrollTop = gridRef.current.scrollHeight - gridRef.current.clientHeight;
 
                 if (scrollTop >= maxScrollTop / 2) {
-                    setMonthText('9월');
+                    setMonth(9);
                 } else {
-                    setMonthText('8월');
+                    setMonth(8);
                 }
             }
         };
@@ -74,7 +77,7 @@ function Calendar() {
     return (
         <MainLayout>
 
-            <Month>{monthText}</Month>
+            <Month>{month}월</Month>
 
             <StyledDays>
                 {days.map((e) => (
@@ -86,19 +89,19 @@ function Calendar() {
 
                 {july.map((e, index) => (
                     <SnappingEndPoint key={index}>
-                        <CalendarCell schedule={[]} index={e[0]} today={day} day={getDayofAugust(index+1)}/>
+                        <CalendarCell month={month} schedule={[]} index={e[0]} today={day} day={getDayofAugust(index+1)}/>
                     </SnappingEndPoint>
                 ))}
 
                 {august.map((e, index) => (
                     <SnappingEndPoint key={index} >
-                        <CalendarCell schedule={e} index={index} today={day-1} />
+                        <CalendarCell month={month} schedule={e} index={index} today={day-1} />
                     </SnappingEndPoint>
                 ))}
 
                 {september.map((e, index) => (
                     <SnappingStartPoint key={index} >
-                        <CalendarCell schedule={e} index={index} today={-1} />
+                        <CalendarCell month={month} schedule={e} index={index} today={-1} />
                     </SnappingStartPoint>
                 ))}
 

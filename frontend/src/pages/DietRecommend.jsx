@@ -31,12 +31,7 @@ function DietRecommend() {
     function handleButtonClick() {
         if (isActivate) {
             sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult)
-            .then(()=>{
-                navigate('/diet-recommend-result');
-            })
-            .catch(error => {
-                console.error('Error:', error.message);
-            });
+            navigate('/diet-recommend-result');
         }
     }
 
@@ -44,7 +39,7 @@ function DietRecommend() {
         if (
             newAllergyType.length !== 0 &&
             // newAllergyType[0] !== '가리는 것 없음' &&
-            newEatingHabitType.length !== 0 
+            newEatingHabitType.length !== 0
             // newEatingHabitType[0] !== '가리는 것 없음'
         ) {
             setIsActivate(true);

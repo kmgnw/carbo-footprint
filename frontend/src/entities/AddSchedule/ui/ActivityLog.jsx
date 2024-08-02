@@ -7,6 +7,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import activityLog from '../../../assets/ActivityLog.svg'
 import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
 import { useNavigate } from "react-router-dom";
+import { postSchedule } from "../api/api";
+import { deleteSchedule } from "../api/api";
+import { crntClickedMonthState } from "../../../shared/state/calendar";
 
 function ActivityLog() {
 
@@ -14,6 +17,7 @@ function ActivityLog() {
 
     const [august, setAugust] = useRecoilState(augustState)
     const crntClickedDay = useRecoilValue(crntClickedDayState)
+    const crntClickedMonth = useRecoilValue(crntClickedMonthState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
     const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
@@ -23,34 +27,31 @@ function ActivityLog() {
     function handleWorkoutTimeChange(value) {
         setNewSchedule((prev) => ({
             ...prev,
-            workoutTime: value
+            workoutTime: Number(value)
         }));
     }
 
     function handleStepCountChange(value) {
         setNewSchedule((prev) => ({
             ...prev,
-            stepCount: value
+            stepCount: Number(value)
         }));
     }
 
     function handleSaveButtonClick() {
-
         if (newSchedule.title && newSchedule.title !== '') {
-            setAugust((prev) => {
-                const list = JSON.parse(JSON.stringify(prev));
-                if (crntClickedIndexOfSchedules === -1) {
-                    if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
-                        list[crntClickedDay] = [newSchedule];
-                    } else {
-                        list[crntClickedDay] = [...list[crntClickedDay], newSchedule];
-                    }
-                } else {
-                    list[crntClickedDay][crntClickedIndexOfSchedules] = newSchedule;
+            setNewSchedule((prev) => {
+                const newState = {
+                    ...prev,
+                    day: crntClickedDay + 1,
+                    month: crntClickedMonth,
+                };
+                if(crntSchedule){
+                    deleteSchedule(crntSchedule.schedule_id)
                 }
-                return list;
+                postSchedule(newState)
             });
-        
+
             navigate('/');
             setNewSchedule({
                 firstMeal: [],
@@ -61,17 +62,17 @@ function ActivityLog() {
         } else {
             window.alert('제목을 입력하세요.');
         }
-        
+
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setNewSchedule(crntSchedule ?? {
             firstMeal: [],
             secondMeal: [],
             thirdMeal: [],
             extraMeal: []
         })
-    },[])
+    }, [])
 
     return (
         <MainLayout>
@@ -99,9 +100,9 @@ function ActivityLog() {
                     <StandardInputWrap>
 
                         <StandardInput
-                        value={newSchedule?.workoutTime ?? null}
-                        placeholder={!newSchedule?.workoutTime ? "섭취 칼로리 직접 입력" : newSchedule?.workoutTime}
-                        onChange={(e)=>handleWorkoutTimeChange(e)}
+                            value={newSchedule?.workoutTime ?? null}
+                            placeholder={!newSchedule?.workoutTime ? "섭취 칼로리 직접 입력" : newSchedule?.workoutTime}
+                            onChange={(e) => handleWorkoutTimeChange(e)}
                         />
 
                         <InputTrailingText>분</InputTrailingText>
@@ -115,11 +116,11 @@ function ActivityLog() {
                     <Text>걸음 수</Text>
 
                     <StandardInputWrap>
-                        
+
                         <StandardInput
-                        value={newSchedule?.stepCount ?? null}
-                        placeholder={!newSchedule?.stepCount ? "섭취 칼로리 직접 입력" : newSchedule?.stepCount}
-                        onChange={(e)=>handleStepCountChange(e)}
+                            value={newSchedule?.stepCount ?? null}
+                            placeholder={!newSchedule?.stepCount ? "섭취 칼로리 직접 입력" : newSchedule?.stepCount}
+                            onChange={(e) => handleStepCountChange(e)}
                         />
 
                         <InputTrailingText>걸음</InputTrailingText>

@@ -2,43 +2,55 @@ import styled from "styled-components";
 import BackButton from '../../../assets/BackButton.svg'
 import { useState } from "react";
 import Modal from './Modal'
-import { crntClickedDayState } from '../../../shared/state/calendar'
-import { useRecoilState } from 'recoil'
+import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState, crntClickedMonthState } from '../../../shared/state/calendar'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import menu from '../../../assets/menu_addSchedule.svg'
+import DeleteModal from "./DeleteModal"
 
-function Header (){
+function Header() {
 
-    const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const crntClickedMonth = useRecoilValue(crntClickedMonthState)
+    const crntClickedDay = useRecoilValue(crntClickedDayState)
 
     const [isModalVisible, setIsModalVisible] = useState(false)
+    const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false)
 
-    function handleBackButtonClick(){
+    const august = useRecoilValue(augustState)
+    const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
+    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
+
+    function handleBackButtonClick() {
         setIsModalVisible(true)
     }
 
-    function handleDeleteClick(){
-        setIsModalVisible(true)
+    function handleDeleteClick() {
+        setIsDeleteModalVisible(true)
     }
 
     const handleModalClick = () => {
         setIsModalVisible(false);
     };
 
-    return(
+    const handleDeleteModalClick = () => {
+        setIsDeleteModalVisible(false);
+    };
+
+    return (
         <MainLayout>
             <StyledBackButton
-            src={BackButton}
-            onClick={handleBackButtonClick}
+                src={BackButton}
+                onClick={handleBackButtonClick}
             />
 
             <Date>
-                8월 {crntClickedDay+1}일 요일
+                {crntClickedMonth}월 {crntClickedDay + 1}일 요일
             </Date>
 
             
             <StyledBackButton
-            src={menu}
-            onClick={handleDeleteClick}
+                src={menu}
+                onClick={handleDeleteClick}
+                style={{visibility: !crntSchedule ? 'hidden' : 'visible'}}
             />
 
 
@@ -46,8 +58,17 @@ function Header (){
             {isModalVisible && (
                 <StyledModalContainer onClick={handleModalClick}>
                     <StyledModal onClick={(e) => e.stopPropagation()}>
-                        <Modal setIsModalVisible={setIsModalVisible}/>
+                        <Modal setIsModalVisible={setIsModalVisible} />
                     </StyledModal>
+                </StyledModalContainer>
+            )}
+
+            {/* 삭제 모달 */}
+            {isDeleteModalVisible && (
+                <StyledModalContainer onClick={handleDeleteModalClick}>
+                    <StyledDeleteModal onClick={(e) => e.stopPropagation()}>
+                        <DeleteModal setIsDeleteModalVisible={setIsDeleteModalVisible} />
+                    </StyledDeleteModal>
                 </StyledModalContainer>
             )}
         </MainLayout>
@@ -99,6 +120,18 @@ const StyledModal = styled.div`
     height: 24.8rem;
     background-color: white;
     border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    @media(max-width: 428px) {
+        width:88%
+    }
+`;
+
+const StyledDeleteModal = styled.div`
+    width: 38rem;
+    // height: 24.8rem;
+    background-color: white;
+    border-radius: 16px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
     @media(max-width: 428px) {

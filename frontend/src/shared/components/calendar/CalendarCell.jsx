@@ -2,37 +2,42 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Modal from './Modal';
 import { hoverGrow } from '../../animation/hoverGrow';
-import { crntClickedDayState } from '../../state/calendar';
+import { crntClickedDayState, crntClickedMonthState } from '../../state/calendar';
 import { useRecoilState } from 'recoil';
 
-function CalendarCell({ schedule, index, day, today }) {
+function CalendarCell({ schedule, index, day, today, month }) {
 
     const [_, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    const [__, setCrntClickedMonth] = useRecoilState(crntClickedMonthState)
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleCellClick = () => {
         setIsModalVisible(true);
         setCrntClickedDay(index)
+        setCrntClickedMonth(month)
     };
 
     const handleModalClick = () => {
         setIsModalVisible(false);
     };
 
-    const isEmpty = (schedule.length === 1 && schedule[0].title==='')
+    const isEmpty = (schedule.length === 1 && schedule[0].title === '')
 
     return (
         <>
             <StyledContainer onClick={handleCellClick}>
+                <FlexBox isToday={today === index}>
+                <StyledDate isToday={today === index}>
+                    {index + 1}
+                </StyledDate>
+                </FlexBox>
+            
+                {!isEmpty && schedule.map((e, i) => (
+                    <StyledScheduleContainer>
+                        {e.title}
+                    </StyledScheduleContainer>
+                ))}
 
-                <StyledDate isToday={today === index}>{index+1}</StyledDate>
-                
-                    {!isEmpty && schedule.map((e,i)=>(
-                        <StyledScheduleContainer>
-                            {e.title}
-                        </StyledScheduleContainer>
-                    ))}
-                
             </StyledContainer>
 
             {/* 모달 */}
@@ -40,9 +45,9 @@ function CalendarCell({ schedule, index, day, today }) {
                 <StyledModalContainer onClick={handleModalClick}>
                     <StyledModal onClick={(e) => e.stopPropagation()}>
                         <Modal
-                        setIsModalVisible={setIsModalVisible}
-                        index={index}
-                        day={day}/>
+                            setIsModalVisible={setIsModalVisible}
+                            index={index}
+                            day={day} />
                     </StyledModal>
                 </StyledModalContainer>
             )}
@@ -63,6 +68,8 @@ const StyledContainer = styled.div`
     cursor: pointer;
     padding-top:0.6rem;
     transition: background-color 0.3s ease;
+    overflow: hidden;
+    overflow-y: auto; 
     &:hover {
         background: white;
     }
@@ -72,10 +79,19 @@ const StyledContainer = styled.div`
     }
 `;
 
-const StyledDate = styled.div`
-    background-color:${props => props.isToday ? '#FF6464' : 'transparent'};
+const FlexBox = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+background-color:${props => props.isToday ? '#FF6464' : 'transparent'};
     border-radius: 50%;
-    padding: 2px;
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-bottom: 1rem;
+`
+
+const StyledDate = styled.div`
+    
     color:${props => props.isToday ? 'white' : 'black'};
     text-align: center;
     font-family: "Pretendard Variable";
@@ -83,7 +99,7 @@ const StyledDate = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
 `
 
 const StyledScheduleContainer = styled.div`

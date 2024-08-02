@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import step1 from "../../../assets/step1Icon.svg";
 import step2 from "../../../assets/step2Icon.svg";
 import step3 from "../../../assets/step3Icon.svg";
 import step4 from "../../../assets/step4Icon.svg";
-import { useRecoilValue } from "recoil";
-import { selectedCheckCountState } from "../../../shared/state/TestResult";
 
 export default function TestResultMain() {
   const [index, setIndex] = useState(0);
-  const selectedCount = useRecoilValue(selectedCheckCountState);
+  const { step } = useParams();
+
   const result = [
     {
       color: "#D0E870",
@@ -38,18 +38,23 @@ export default function TestResultMain() {
   ];
 
   useEffect(() => {
-    console.log(selectedCount);
-
-    if (selectedCount === 0) {
-      setIndex(0);
-    } else if (selectedCount >= 1 && selectedCount <= 3) {
-      setIndex(1);
-    } else if (selectedCount >= 4 && selectedCount <= 6) {
-      setIndex(2);
-    } else if (selectedCount >= 7 && selectedCount <= 10) {
-      setIndex(3);
+    switch(step) {
+      case 'step1':
+        setIndex(0);
+        break;
+      case 'step2':
+        setIndex(1);
+        break;
+      case 'step3':
+        setIndex(2);
+        break;
+      case 'step4':
+        setIndex(3);
+        break;
+      default:
+        setIndex(0); 
     }
-  }, []);
+  }, [step]);
 
   return (
     <Wrapper>

@@ -26,7 +26,9 @@ function App() {
       <Route path="diet-recommend-result" element={<DietRecommendResult/>} />
       <Route path="mypage" element={<Mypage/>} />
       <Route path="carb-test" element={<CarbTest/>}/>
-      <Route path="carb-test-result" element={<CarbTestResult/>}/>
+      <Route path="carb-test-result">
+        <Route path=":step" element={<CarbTestResult />} />
+      </Route>
       <Route path="chatbot" element={<Chatbot/>}/>
       <Route path="community" element={<Community/>}/>
       <Route path="community-chat" element={<CommunityChat/>}/>

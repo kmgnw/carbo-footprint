@@ -2,7 +2,6 @@ import styled from "styled-components"
 import link from '../../../assets/Link.svg'
 import kakao from '../../../assets/Kakao.svg'
 import { hoverGrow } from "../../../shared/animation/hoverGrow"
-import { hover } from "@testing-library/user-event/dist/hover"
 import { shareKakao } from "../../../util/kakaoLink"
 import CustomAlert from "../../CarbCountingResult.jsx/ui/CustomAlert"
 import { useState } from "react"
@@ -12,15 +11,15 @@ function ShareResult() {
     const [alert, setAlert] = useState({ visible: false, message: '', success: true });
 
     const copyLink = () => {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-          setAlert({ visible: true, message: '링크를 복사했어요!', success: true });
-          setTimeout(() => setAlert({ ...alert, visible: false }), 1000); 
-        }).catch((error) => {
-          setAlert({ visible: true, message: '링크 복사에 실패했습니다.', success: false });
-          setTimeout(() => setAlert({ ...alert, visible: false }), 1000);
-          console.error('Link copy failed', error);
-        });
-      };
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        setAlert({ visible: true, message: '링크를 복사했어요!', success: true });
+        setTimeout(() => setAlert({ ...alert, visible: false }), 1000); 
+      }).catch((error) => {
+        setAlert({ visible: true, message: '링크 복사에 실패했습니다.', success: false });
+        setTimeout(() => setAlert({ ...alert, visible: false }), 1000);
+        console.error('Link copy failed', error);
+      });
+    };
 
     return (
         <>

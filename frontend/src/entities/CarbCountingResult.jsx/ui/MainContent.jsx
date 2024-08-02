@@ -37,6 +37,7 @@ function MainContent() {
 
   const handleSave = async () => {
     const token = sessionStorage.getItem('token');
+    
     if (!token) {
         navigate('/login');
     } else {

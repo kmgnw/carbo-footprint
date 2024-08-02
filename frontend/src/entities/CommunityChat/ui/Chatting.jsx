@@ -34,6 +34,10 @@ const Chatting = () => {
 
         fetchPrevChattings(setChattings, chatRoomId);
         connect();
+
+        return () => {
+            disconnect();
+        };
     }, [chatRoomId]);
 
     useEffect(() => {
@@ -84,6 +88,15 @@ const Chatting = () => {
             console.error('Error: ' + error);
         });
     };
+
+    const disconnect = () => {
+        if (stompClient.current) {
+            stompClient.current.disconnect(() => {
+                console.log('Disconnected');
+            });
+        }
+    };
+
 
     const sendMessage = () => {
         const chatMessage = {

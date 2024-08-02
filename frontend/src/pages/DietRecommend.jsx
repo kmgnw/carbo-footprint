@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { recommendedResultState } from "../shared/state/DietRecommendResult";
 import { sendPreferences } from "../entities/DietRecommend/api/api";
+import { isLogin } from "../shared/function/isLogin";
 
 function DietRecommend() {
     const btnRef = useRef();
@@ -19,6 +20,12 @@ function DietRecommend() {
     const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState);
     const [_, setRecommendedResult] = useRecoilState(recommendedResultState)
     const [isActivate, setIsActivate] = useState(false);
+
+    useEffect(() => {
+        if (!isLogin()) {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     function renderContent() {
         if (tab === 0) {

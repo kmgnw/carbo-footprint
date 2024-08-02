@@ -21,7 +21,7 @@ function RuleContainer(){
             </Content>
             <Content>
                 <Checkbox src={checkbox}/>
-                <RuleContent>하나의 음식만 인식될 수 있도록<br/>화면을 정리해주세요</RuleContent>
+                <RuleContent><span style={{color: "#EF6038"}}>하나의 음식만</span> 인식될 수 있도록<br/>화면을 정리해주세요</RuleContent>
                 <Img src={rule3}/>
             </Content>
             

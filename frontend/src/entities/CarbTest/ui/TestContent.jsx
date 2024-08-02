@@ -8,6 +8,8 @@ import StandardButton from '../../../shared/components/StandardButton/StandardBu
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { selectedCheckCountState } from '../../../shared/state/TestResult';
+import { isLogin } from "../../../shared/function/isLogin";
+import { saveTest } from '../api/api';
 
 export default function TestContent() {
     const [icons, setIcons] = useState(Array(10).fill(grayIcon));
@@ -49,6 +51,9 @@ export default function TestContent() {
         const count = icons.filter(icon => icon === orangeIcon).length;
         setSelectedCount(count);
         Navigate('/carb-test-result');
+        if(isLogin()){
+            saveTest(count);
+        }
         console.log(`선택된 체크박스 개수: ${count}`);
     };
 

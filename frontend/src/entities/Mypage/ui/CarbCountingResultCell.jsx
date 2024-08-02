@@ -2,7 +2,9 @@ import styled from "styled-components"
 import Choices_nonclickable from "../../../shared/components/choices_nonclickable/Choices_nonclickable";
 import StandardButton from "../../../shared/components/StandardButton/StandardButton";
 
-function CarbCountingResultCell({date, amount, calorie, carb, image_url }) {
+
+function CarbCountingResultCell({date, name, amount, calorie, carb, prot, fat, sugar, image_url }) {
+
     return (
         <MainLayout>
 
@@ -20,12 +22,20 @@ function CarbCountingResultCell({date, amount, calorie, carb, image_url }) {
 
                     <TextWrap>
 
-                        <Desc>총 {amount}개의 음식</Desc>
-                        <Title>총 {calorie}Kcal</Title>
-
+                        <Title> {name} {calorie}Kcal</Title>
+                        <Desc>탄수화물{carb}g</Desc>
+                        <Desc>단백질{prot}g</Desc>
+                        <Desc>지방{fat}g</Desc>
+                        <Desc>당류{sugar}g</Desc>
                     </TextWrap>
 
                 </ContentContainer>
+
+                {/* <StandardButton
+                    title='자세히보기'
+                    padding="1.2rem 2.1rem"
+                /> */}
+
             </ContentWrap>
 
         </MainLayout>

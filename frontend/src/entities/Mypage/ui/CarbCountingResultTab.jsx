@@ -20,7 +20,11 @@ function CarbCountingResultTab() {
                     <CarbCountingResultCell 
                     key={i}
                     date={e.date}
+                    name={e.name}
                     calorie={e.calorie}
+                    prot={e.prot}
+                    fat={e.fat}
+                    sugar={e.sugar}
                     image_url={e.image_url}
                     />
                 ))

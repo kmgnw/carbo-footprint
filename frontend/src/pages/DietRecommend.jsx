@@ -21,12 +21,6 @@ function DietRecommend() {
     const [_, setRecommendedResult] = useRecoilState(recommendedResultState)
     const [isActivate, setIsActivate] = useState(false);
 
-    useEffect(() => {
-        if (!isLogin()) {
-            navigate('/login');
-        }
-    }, [navigate]);
-
     function renderContent() {
         if (tab === 0) {
             return <Allergy />;

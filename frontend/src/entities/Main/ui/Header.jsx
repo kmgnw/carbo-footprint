@@ -2,11 +2,16 @@ import styled from "styled-components";
 import logo from '../../../assets/main_logo.svg'
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { augustState, septemberState } from "../../../shared/state/calendar";
+import { useRecoilState } from "recoil";
+
 
 function Header(){
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
+    const [_, setAugust] = useRecoilState(augustState)
+    const [__, setSeptember] = useRecoilState(septemberState)
 
     useEffect(() => {
         const token = sessionStorage.getItem("token");
@@ -15,6 +20,29 @@ function Header(){
 
     const handleLogout = () => {
         sessionStorage.clear();
+        setAugust(new Array(31).fill(null).map(() => ([
+            {
+                title: '',
+                firstMeal: [],
+                secondMeal: [],
+                thirdMeal: [],
+                extraMeal: [],
+                workoutTime: '',
+                stepCount: ''
+            }
+        ])))
+        setSeptember(new Array(31).fill(null).map(() => ([
+            {
+                title: '',
+                firstMeal: [],
+                secondMeal: [],
+                thirdMeal: [],
+                extraMeal: [],
+                workoutTime: '',
+                stepCount: ''
+            }
+        ])))
+
         setIsLoggedIn(false);
         navigate('/'); 
     };

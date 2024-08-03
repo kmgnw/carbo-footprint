@@ -57,7 +57,7 @@ function CarbTestResultCell({type, date, check_count}){
         <MainLayout>
 
             <DateWrap>
-                cellInfo.date
+                {cellInfo.date}
             </DateWrap>
 
             <ImgWrap>

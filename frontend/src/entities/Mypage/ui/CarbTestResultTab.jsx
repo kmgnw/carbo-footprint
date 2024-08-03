@@ -11,6 +11,19 @@ function CarbTestResultTab() {
     useEffect(()=>{
         fetchAddictions(setAddictions)
     }, [])
+
+    function typeValidator(checkCount){
+        if(checkCount === 0){
+            return '양호'
+        }else if (0<checkCount && checkCount<4){
+            return '주의'
+        }else if (3<checkCount && checkCount<7){
+            return '위험'
+        }else if (6<checkCount && checkCount<11){
+            return '중독'
+        }
+    }
+  
     return (
 
         <>
@@ -19,7 +32,7 @@ function CarbTestResultTab() {
                     {addictions.map((e,i)=>(
                         <CarbTestResultCell
                         key={i}
-                        type='양호'
+                        type= {typeValidator(e.check_count)}
                         date={e.date}
                         check_count={e.check_count}
                         />

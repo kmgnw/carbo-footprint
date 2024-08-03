@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom"
 import { RoomState, crntClickedRoomIdState } from "../../../shared/state/Community"
 import { useRecoilValue } from "recoil"
 
-function Header() {
+function Header({exitRoom}) {
     const rooms = useRecoilValue(RoomState)
     const crntClickedRoomId = useRecoilValue(crntClickedRoomIdState)
 
     const navigate = useNavigate()
 
     function handleExitClick(){
-        navigate('/community')
+        exitRoom()
+        navigate('/mypage')
     }
 
     function findName(){

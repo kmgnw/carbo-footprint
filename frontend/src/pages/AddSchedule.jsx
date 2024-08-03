@@ -9,15 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
 
 function AddSchedule(){
-
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!isLogin()) {
-            navigate('/login');
-        }
-    }, [navigate]); 
-
     return(
     <>
     <Header />

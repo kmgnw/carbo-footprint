@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 function Choices({ title, choices, type }) {
     const [newAllergyType, setNewAllergyType] = useRecoilState(newAllergyTypeState);
     const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState);
-    
+
     const [crntType, setCrntType] = useState([]);
 
     useEffect(() => {
@@ -23,17 +23,15 @@ function Choices({ title, choices, type }) {
     }, [type, newAllergyType, newEatingHabitType]);
 
     function choiceClickedHandler(choice) {
+
+
         setCrntType((prev) => {
             let updatedType;
-            if (choice === '가리는 것 없음') {
-                updatedType = [choice];
+            if (prev.includes(choice)) {
+                updatedType = prev.filter((e) => e !== choice);
             } else {
-                if (prev.includes(choice)) {
-                    updatedType = prev.filter((e) => e !== choice);
-                } else {
-                    updatedType = prev.filter((e) => e !== '가리는 것 없음');
-                    updatedType = [...updatedType, choice];
-                }
+                updatedType = prev.filter((e) => e !== '가리는 것 없음');
+                updatedType = [...updatedType, choice];
             }
 
             if (type === 'allergy') {
@@ -44,6 +42,18 @@ function Choices({ title, choices, type }) {
 
             return updatedType;
         });
+        console.log('crntType is ')
+        console.log(crntType)
+    }
+
+    function renderChoiceTitle(choice) {
+        if (choice === '난류') {
+            return '난류(가공류에 한함)'
+        } else if (choice === '날것') {
+            return '날 것'
+        }else {
+            return choice
+        }
     }
 
     return (
@@ -65,7 +75,7 @@ function Choices({ title, choices, type }) {
                             onMouseDown={() => choiceClickedHandler(choice)}
                         >
                             <ChoiceTitleComponent>
-                                {choice}
+                                {renderChoiceTitle(choice)}
                             </ChoiceTitleComponent>
                         </ChoiceComponent>
                     );

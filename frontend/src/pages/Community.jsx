@@ -6,14 +6,6 @@ import { useEffect } from "react";
 
 function Community(){
 
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!isLogin()) {
-            navigate('/login');
-        }
-    }, [navigate]);
-
     return(
         <>
         <Header />

@@ -12,7 +12,9 @@ import { fetchPrevChattings } from '../api/api';
 import { useRecoilValue } from 'recoil';
 import { RoomState } from '../../../shared/state/Community';
 import { crntClickedRoomIdState } from '../../../shared/state/Community';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { isLogin } from '../../../shared/function/isLogin';
+import Header from './Header';
 
 const Chatting = () => {
     const [input, setInput] = useState('');
@@ -25,8 +27,21 @@ const Chatting = () => {
     const messagesEndRef = useRef(null);
     const location = useLocation();
     const fromPage = location.state?.from || 'Unknown';
-
     let stompClient = useRef(null);
+    const navigate = useNavigate();
+    const messageEndRef = useRef(null);
+
+    useEffect(() => {
+        if (!isLogin()) {
+            navigate('/login');
+        }
+    }, [navigate]);
+
+    useEffect(() => {
+        if (messageEndRef.current) {
+            messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [chattings]);
 
     useEffect(() => {
         setChatRoomId(Number(crntClickedId));
@@ -53,13 +68,13 @@ const Chatting = () => {
                 if (msg.sender_username === window.sessionStorage.getItem('userId')) {
                     return 'me';
                 } else {
-                    return 'you'
+                    return 'you';
                 }
             case 'me':
                 if (msg.sender_username !== window.sessionStorage.getItem('userId')) {
                     return 'you';
                 } else {
-                    return 'me'
+                    return 'me';
                 }
             default:
                 return msg.type;
@@ -87,8 +102,8 @@ const Chatting = () => {
                 ]);
             });
 
-            if(fromPage === 'community'){
-                sendEnterMessage()
+            if (fromPage === 'community') {
+                sendEnterMessage();
             }
 
         }, (error) => {
@@ -97,10 +112,9 @@ const Chatting = () => {
 
         socket.onclose = () => {
             console.log('WebSocket connection closed');
-            // Optionally, try to reconnect after a certain timeout
-            setTimeout(() => {
-                connect();
-            }, 5000); // reconnect after 5 seconds
+            // setTimeout(() => {
+            //     connect();
+            // }, 5000); // reconnect after 5 seconds
         };
     };
 
@@ -113,6 +127,7 @@ const Chatting = () => {
     };
 
     const sendMessage = () => {
+        if (input.trim() === '') return;
         const chatMessage = {
             content: input,
             chat_room_id: chatRoomId
@@ -128,14 +143,22 @@ const Chatting = () => {
         stompClient.current.send("/app/chat.enterRoom", {}, JSON.stringify(chatMessage));
     };
 
-    const showMessage = (message) => {
-        console.log('showing' + message);
-        setChattings(prevChattings => [...prevChattings, JSON.parse(message)]);
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const exitRoom = () => {
+        const chatMessage = {
+            chat_room_id: chatRoomId
+        };
+        stompClient.current.send("/app/chat.exitRoom", {}, JSON.stringify(chatMessage));
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
     };
 
     return (
         <>
+            <Header exitRoom={exitRoom}/>
             <MainLayout>
                 {chattings.map((e, index) => {
                     if (e.type === 'me') {
@@ -173,7 +196,7 @@ const Chatting = () => {
                         return null;
                     }
                 })}
-                <div ref={messagesEndRef} />
+                <div ref={messageEndRef} />
             </MainLayout>
 
             <InputWrap>
@@ -182,6 +205,7 @@ const Chatting = () => {
                         placeholder='텍스트를 입력해주세요.'
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown} // Add this line to handle Enter key press
                     />
                 </InputContainer>
 
@@ -253,5 +277,5 @@ const Input = styled.input`
 `;
 
 const Img = styled.img`
-    cursor: pointer; /* Add cursor pointer to indicate clickability */
+    cursor: pointer;
 `;

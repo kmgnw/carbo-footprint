@@ -2,12 +2,8 @@ import styled from "styled-components";
 import Like from '../../../assets/Like.svg'
 import Choices from "./Choices";
 import NotPickyButton from "./NotPickyButton";
-import { newEatingHabitTypeState } from "../../../shared/state/DietRecommend";
-import { useRecoilState } from "recoil";
 
 function EatingHabit() {
-
-    const [_, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState)
 
     return (
         <MainLayout>
@@ -24,7 +20,7 @@ function EatingHabit() {
 
             <Choices
                 title='title'
-                choices={['아재입맛', '다이어트', '초딩입맛', '향신료', '비건', '날 것', '육류', '채소류', '과일류', '슴슴한', '자극적인', '달달한']}
+                choices={['아재입맛', '다이어트', '초딩입맛', '향신료', '비건', '날것', '육류', '채소류', '과일류', '슴슴한', '자극적인', '달달한']}
                 type='eating-habit'
             />
 

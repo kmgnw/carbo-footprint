@@ -67,6 +67,8 @@ export const fetchClassification = async (setClassification) => {
         }
 
         const data = await response.json();
+        console.log('classi')
+        console.log(data.result)
         setClassification(data.result)
         
         
@@ -75,7 +77,7 @@ export const fetchClassification = async (setClassification) => {
     }
 };
 
-export const fetchAddictions = async (setClassification) => {
+export const fetchAddictions = async (setAddiction) => {
     const token = window.sessionStorage.getItem('token');
     
     try {
@@ -92,8 +94,7 @@ export const fetchAddictions = async (setClassification) => {
         }
 
         const data = await response.json();
-        console.log(data)
-        // setClassification(data.result)
+        setAddiction(data.result)
         
         
     } catch (error) {

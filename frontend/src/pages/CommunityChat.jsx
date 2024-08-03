@@ -5,7 +5,7 @@ import Chatting from "../entities/CommunityChat/ui/Chatting"
 function CommunityChat() {
     return (
         <MainLayout>
-            <Header />
+            {/* <Header /> */}
             <Chatting />
         </MainLayout>
     )

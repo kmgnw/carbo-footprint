@@ -13,7 +13,7 @@ function DeleteModal({setIsDeleteModalVisible}){
 
     const navigate = useNavigate()
 
-    const august = useRecoilValue(augustState)
+    const [august,setAugust] = useRecoilState(augustState)
     const crntClickedDay = useRecoilValue(crntClickedDayState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
@@ -25,7 +25,7 @@ function DeleteModal({setIsDeleteModalVisible}){
 
     function handleExitClick(){
         
-        deleteSchedule(crntSchedule.schedule_id)
+        deleteSchedule(crntSchedule.schedule_id, setAugust, crntClickedDay, crntClickedIndexOfSchedules)
         
 
         navigate(-1)

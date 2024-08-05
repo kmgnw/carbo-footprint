@@ -1,29 +1,27 @@
 import styled from "styled-components"
 import pretzel from '../../../assets/Pretzel.svg'
 import MenuCell from "./MenuCell"
-import { recommendedResultState } from "../../../shared/state/DietRecommendResult";
+import { shareRecommendedResultState } from "../../../shared/state/DietRecommendResult";
 import { useRecoilValue } from "recoil";
 import { newAllergyTypeState, newEatingHabitTypeState } from "../../../shared/state/DietRecommend";
 
 function ResultMenu(){
 
-    const recommendedResult = useRecoilValue(recommendedResultState)
-    const newAllergyType = useRecoilValue(newAllergyTypeState)
-    const newEatingHabitType = useRecoilValue(newEatingHabitTypeState)
-
+    const recommendedResult = useRecoilValue(shareRecommendedResultState)
+    
     return(
         <MainLayout>
 
             <TitleWrap>
-                <Logo src={pretzel} alt="pretzel" fetchPriority="high"/>
+                <Logo src={pretzel}/>
                 <Title>이런 메뉴는 어떤가요?</Title>
             </TitleWrap>
             
-            {recommendedResult.map((e)=>(
+            {recommendedResult.food_list?.map((e)=>(
                 <MenuCell
                 title={e.name}
+                categories={['카테고리', '카테고리', '카테고리']}
                 img={e.image_url}
-                categories={[newAllergyType, newEatingHabitType]}
                 calories={e.calorie}
                 carb={e.carbohydrate}
                 sugar={e.saccharide}

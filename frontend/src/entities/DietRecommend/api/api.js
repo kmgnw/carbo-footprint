@@ -1,7 +1,7 @@
 import { baseUrl } from "../../../shared/config/baseurl";
 import { isLogin } from "../../../shared/function/isLogin";
 
-export function sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult) {
+export function sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult, setDietId) {
 
     let headers = {
         'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export function sendPreferences(newAllergyType, newEatingHabitType, setRecommend
             return res.json();
         })
         .then(data => {
-            console.log(data.result.food_list)
             setRecommendedResult(data.result.food_list)
+            setDietId(data.result.member_recommend_id)
         })
 }

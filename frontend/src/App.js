@@ -14,6 +14,7 @@ import CommunityChat from "./pages/CommunityChat";
 import Contributor from './pages/Contributor'
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ShareDietRecommendResult from "./pages/ShareDietRecommendResult";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="carb-counting-result" element={<CarbCountingResult/>}/>
       <Route path="diet-recommend" element={<DietRecommend/>} />
       <Route path="diet-recommend-result" element={<DietRecommendResult/>} />
+      <Route path="diet-recommend-result-share" element={<ShareDietRecommendResult/>} />
       <Route path="mypage" element={<Mypage/>} />
       <Route path="carb-test" element={<CarbTest/>}/>
       <Route path="carb-test-result">

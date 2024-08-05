@@ -8,7 +8,7 @@ import StandardButton from "../shared/components/StandardButton/StandardButton";
 import { newAllergyTypeState, newEatingHabitTypeState } from "../shared/state/DietRecommend";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import { recommendedResultState } from "../shared/state/DietRecommendResult";
+import { dietIdState, recommendedResultState } from "../shared/state/DietRecommendResult";
 import { sendPreferences } from "../entities/DietRecommend/api/api";
 
 function DietRecommend() {
@@ -18,6 +18,7 @@ function DietRecommend() {
     const [newAllergyType, setNewAllergyType] = useRecoilState(newAllergyTypeState);
     const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState);
     const [_, setRecommendedResult] = useRecoilState(recommendedResultState)
+    const [__, setDietId] = useRecoilState(dietIdState)
     const [isActivate, setIsActivate] = useState(false);
 
     function renderContent() {
@@ -30,7 +31,7 @@ function DietRecommend() {
 
     function handleButtonClick() {
         if (isActivate) {
-            sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult)
+            sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult, setDietId)
             navigate('/diet-recommend-result');
         }
     }
@@ -38,9 +39,7 @@ function DietRecommend() {
     useEffect(() => {
         if (
             newAllergyType.length !== 0 &&
-            // newAllergyType[0] !== '가리는 것 없음' &&
             newEatingHabitType.length !== 0
-            // newEatingHabitType[0] !== '가리는 것 없음'
         ) {
             setIsActivate(true);
         } else {

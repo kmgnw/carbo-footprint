@@ -2,17 +2,21 @@ import styled from "styled-components"
 import link from '../../../assets/Link.svg'
 import kakao from '../../../assets/Kakao.svg'
 import { hoverGrow } from "../../../shared/animation/hoverGrow"
-import { hover } from "@testing-library/user-event/dist/hover"
+import { useRecoilValue } from "recoil"
 import { shareKakao } from "../../../util/kakaoLink"
 import CustomAlert from "../../CarbCountingResult.jsx/ui/CustomAlert"
+import { dietIdState } from "../../../shared/state/DietRecommendResult"
 import { useState } from "react"
 
 function ShareResult() {
 
     const [alert, setAlert] = useState({ visible: false, message: '', success: true });
 
+    const dietId = useRecoilValue(dietIdState)
+
     const copyLink = () => {
-        navigator.clipboard.writeText(window.location.href).then(() => {
+      const link = `${window.location.href}-share/?member_recommend_id=${dietId}`
+        navigator.clipboard.writeText(link).then(() => {
           setAlert({ visible: true, message: '링크를 복사했어요!', success: true });
           setTimeout(() => setAlert({ ...alert, visible: false }), 1000); 
         }).catch((error) => {

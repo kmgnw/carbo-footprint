@@ -13,8 +13,9 @@ import { useEffect } from "react"
 
 function Main() {
     
+    // eslint-disable-next-line
     const [_, setCrntClickedDay] = useRecoilState(crntClickedDayState)
-    
+    // eslint-disable-next-line
     const [__, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
 
     const navigate = useNavigate()
@@ -22,6 +23,7 @@ function Main() {
     useEffect(() => {
         setCrntClickedDay(-1)
         setCrntClickedIndexOfSchedules(-1)
+        // eslint-disable-next-line
     }, [])
 
     return (

@@ -54,10 +54,10 @@ export default function TestContent() {
             Navigate('/carb-test-result/step1');
         }else if(count>=1 && count<=3){
         Navigate('/carb-test-result/step2');}
-        else if(count>=4 && count<=7){
+        else if(count>=4 && count<=6){
             Navigate('/carb-test-result/step3');
         }
-        else if(count>=8 && count<=10){
+        else if(count>=7 && count<=10){
             Navigate('/carb-test-result/step4')
         }
         

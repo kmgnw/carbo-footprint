@@ -10,10 +10,10 @@ import { useEffect } from "react";
 import { sendQuestion } from "../entities/Chatbot/api/chatbotApi";
 
 export default function Chatbot() {
+  // eslint-disable-next-line no-unused-vars
   const [sendIcon, setSendIcon] = useState(send);
   const [inputValue, setInputValue] = useState("");
   const [questions, setQuestions] = useRecoilState(chatbotQuestionState);
-
   useEffect(() => {
     console.log(questions);
   }, [questions]);

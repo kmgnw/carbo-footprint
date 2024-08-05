@@ -1,7 +1,5 @@
 import styled from "styled-components"
 import { useEffect } from "react"
-import StandardInput from "../../../shared/components/StandardInput/StandardInput"
-import StandardButton from "../../../shared/components/StandardButton/StandardButton"
 
 import { newScheduleState } from "../../../shared/state/AddSchedule"
 import { useRecoilState, useRecoilValue } from "recoil"
@@ -43,6 +41,7 @@ function InputCalorie() {
             thirdMeal: [],
             extraMeal: []
         })
+        // eslint-disable-next-line
     }, [crntClickedMonth, august, september, crntClickedDay, crntClickedIndexOfSchedules])
 
     return (
@@ -88,10 +87,6 @@ margin-bottom: 0.8rem
 const InputWrap = styled.div`
 display: flex;
 gap: 0.8rem;
-`
-
-const StandardCustomInputWrap = styled.div`
-
 `
 
 const StandardCustomInput = styled.input`

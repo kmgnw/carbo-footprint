@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedImgState, galleryState, resultDataState, foodCodeState, fileState} from "../../../shared/state/Gallery";
-import test from "../../../assets/testImg.svg";
 import icon from "../../../assets/pretzelIcon.svg";
 import link from '../../../assets/Link.svg'
 import kakao from '../../../assets/Kakao.svg'
@@ -9,7 +8,7 @@ import StandardButton from "../../../shared/components/StandardButton/StandardBu
 import Carousel from "./Carousel";
 import CustomAlert from "./CustomAlert";
 import { shareKakao } from "../../../util/kakaoLink";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { hoverGrow } from "../../../shared/animation/hoverGrow";
 import MenuCarousel from "./MenuCarousel";
 import {useNavigate} from "react-router-dom";

@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import Header from "../entities/CommunityChat/ui/Header"
 import Chatting from "../entities/CommunityChat/ui/Chatting"
 
 function CommunityChat() {

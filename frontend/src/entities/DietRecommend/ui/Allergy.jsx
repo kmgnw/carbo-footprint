@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 
 function Allergy() {
 
+    // eslint-disable-next-line
     const [_, setNewAllergyType] = useRecoilState(newAllergyTypeState)
 
     return (

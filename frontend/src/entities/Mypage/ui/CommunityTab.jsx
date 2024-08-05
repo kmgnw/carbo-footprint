@@ -9,10 +9,12 @@ import { useRecoilState } from "recoil"
 function CommunityTab() {
 
     const [myCommunity, setMyCommunity] = useState([])
+    // eslint-disable-next-line
     const [_, setRooms] = useRecoilState(RoomState)
 
     useEffect(() => {
         fetchMyCommunity(setMyCommunity, setRooms)
+        // eslint-disable-next-line
     }, [])
 
     return (

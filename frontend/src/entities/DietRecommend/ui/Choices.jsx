@@ -58,11 +58,6 @@ function Choices({ title, choices, type }) {
 
     return (
         <Container>
-            {/* <TitleWrap>
-                <ChoicesTitle>
-                    {title}
-                </ChoicesTitle>
-            </TitleWrap> */}
             <ChoicesWrap>
                 {choices.map((choice, index) => {
                     const isSelected = crntType.includes(choice);
@@ -96,20 +91,6 @@ const hoverGrow = css`
 `;
 
 const Container = styled.div``;
-
-const TitleWrap = styled.div`
-    display: flex;
-    margin-top: 1.6rem;
-`;
-
-const ChoicesTitle = styled.div`
-    color: #262829;
-    font-family: "Noto Sans KR";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-`;
 
 const ChoicesWrap = styled.div`
     display: grid;

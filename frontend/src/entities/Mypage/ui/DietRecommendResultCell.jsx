@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Choices_nonclickable from "../../../shared/components/choices_nonclickable/Choices_nonclickable";
+import ChoicesNonclickable from "../../../shared/components/choices_nonclickable/ChoicesNonclickable";
 import StandardButton from "../../../shared/components/StandardButton/StandardButton";
 import { recommendedResultState } from "../../../shared/state/DietRecommendResult";
 import { newAllergyTypeState, newEatingHabitTypeState } from "../../../shared/state/DietRecommend";
@@ -7,9 +7,11 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 
 function DietRecommendResultCell({date, allergen_list, preference_list, recommend_food_list, }){
-    
+    // eslint-disable-next-line
     const [_, setRecommendedResult] = useRecoilState(recommendedResultState)
+    // eslint-disable-next-line
     const [__, setNewAllergyType] = useRecoilState(newAllergyTypeState)
+    // eslint-disable-next-line
     const [___, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState)
     const navigate = useNavigate()
 
@@ -30,7 +32,7 @@ function DietRecommendResultCell({date, allergen_list, preference_list, recommen
                 
             </DateWrap>
 
-            <Choices_nonclickable
+            <ChoicesNonclickable
             allergies={allergen_list}
             eatingHabits={preference_list}
             />

@@ -14,6 +14,7 @@ import { crntClickedRoomIdState } from "../../../shared/state/Community";
 function Modal({ setIsModalVisible }) {
     const navigate = useNavigate()
 
+    // eslint-disable-next-line
     const [_, setRooms] = useRecoilState(RoomState);
     const [roomName, setRoomName] = useState('');
     const [count, setCount] = useState('');

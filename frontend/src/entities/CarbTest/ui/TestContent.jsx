@@ -14,6 +14,7 @@ import { saveTest } from '../api/api';
 export default function TestContent() {
     const [icons, setIcons] = useState(Array(10).fill(grayIcon));
     const [isReset, setIsReset] = useState(false);
+    // eslint-disable-next-line
     const [selectedCount, setSelectedCount] = useRecoilState(selectedCheckCountState);
     const Navigate = useNavigate();
 
@@ -50,6 +51,7 @@ export default function TestContent() {
     const handleResult = () => {
         const count = icons.filter(icon => icon === orangeIcon).length;
         setSelectedCount(count);
+        // eslint-disable-next-line
         if(count == 0){
             Navigate('/carb-test-result/step1');
         }else if(count>=1 && count<=3){

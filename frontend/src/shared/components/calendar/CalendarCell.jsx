@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Modal from './Modal';
 import { hoverGrow } from '../../animation/hoverGrow';
 import { crntClickedDayState, crntClickedMonthState } from '../../state/calendar';
@@ -7,7 +7,9 @@ import { useRecoilState } from 'recoil';
 
 function CalendarCell({ schedule, index, day, today, month }) {
 
+    // eslint-disable-next-line
     const [_, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    // eslint-disable-next-line
     const [__, setCrntClickedMonth] = useRecoilState(crntClickedMonthState)
     const [isModalVisible, setIsModalVisible] = useState(false);
 

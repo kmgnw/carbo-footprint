@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Header from "../entities/CarbCounting/ui/Header";
 import Banner from "../entities/CarbCounting/ui/Banner";
 import MainContent from "../entities/CarbCountingResult.jsx/ui/MainContent";

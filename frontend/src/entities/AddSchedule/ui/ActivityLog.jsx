@@ -13,6 +13,7 @@ import { isLogin } from "../../../shared/function/isLogin";
 
 function ActivityLog() {
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState);
+    // eslint-disable-next-line
     const [august, setAugust] = useRecoilState(augustState);
     const crntClickedDay = useRecoilValue(crntClickedDayState);
     const crntClickedMonth = useRecoilValue(crntClickedMonthState);

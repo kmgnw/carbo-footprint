@@ -3,7 +3,7 @@ import CalendarCell from './CalendarCell';
 import { useEffect, useState, useRef } from 'react';
 
 import { augustState, septemberState } from '../../state/calendar';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { fetchSchedules } from '../../../entities/Main/api/api';
 
 function Calendar() {
@@ -21,6 +21,7 @@ function Calendar() {
     
     function getDayofAugust(n){
         let remainder = n%7
+        // eslint-disable-next-line
         switch (remainder) {
             case 0:
                 return days[3]
@@ -46,6 +47,7 @@ function Calendar() {
         const today = new Date();
         setDay(today.getDate());
         fetchSchedules(setAugust, setSeptember)
+        // eslint-disable-next-line
     }, []);
 
     useEffect(() => {

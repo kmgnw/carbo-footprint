@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import test from "../../../assets/testImg.svg";
 import icon from "../../../assets/countingIcon.svg";
 function Banner() {
   return (

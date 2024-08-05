@@ -3,7 +3,6 @@ import pretzel from '../../../assets/Pretzel.svg'
 import MenuCell from "./MenuCell"
 import { shareRecommendedResultState } from "../../../shared/state/DietRecommendResult";
 import { useRecoilValue } from "recoil";
-import { newAllergyTypeState, newEatingHabitTypeState } from "../../../shared/state/DietRecommend";
 
 function ResultMenu(){
 

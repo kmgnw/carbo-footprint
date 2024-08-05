@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { galleryState, selectedImgState } from '../../../shared/state/Gallery';

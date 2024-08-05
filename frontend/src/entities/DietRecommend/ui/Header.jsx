@@ -6,7 +6,9 @@ import { useRecoilState } from "recoil";
 
 function Header(){
 
+    // eslint-disable-next-line
     const [newAllergyType, setNewAllergyType] = useRecoilState(newAllergyTypeState)
+    // eslint-disable-next-line
     const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState)
     const navigate = useNavigate()
 

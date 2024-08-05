@@ -15,9 +15,13 @@ function DietRecommend() {
     const btnRef = useRef();
     const navigate = useNavigate();
     const [tab, setTab] = useState(0);
+    // eslint-disable-next-line no-unused-vars
     const [newAllergyType, setNewAllergyType] = useRecoilState(newAllergyTypeState);
+    // eslint-disable-next-line no-unused-vars
     const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState);
+    // eslint-disable-next-line no-unused-vars
     const [_, setRecommendedResult] = useRecoilState(recommendedResultState)
+    // eslint-disable-next-line no-unused-vars
     const [__, setDietId] = useRecoilState(dietIdState)
     const [isActivate, setIsActivate] = useState(false);
 

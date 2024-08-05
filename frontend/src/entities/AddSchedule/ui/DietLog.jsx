@@ -14,6 +14,7 @@ function DietLog(){
     const crntClickedDay = useRecoilValue(crntClickedDayState) 
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
+    // eslint-disable-next-line
     const [_, setNewSchedule] = useRecoilState(newScheduleState)
 
     useEffect(() => {
@@ -28,6 +29,7 @@ function DietLog(){
             thirdMeal: crntSchedule?.thirdMeal ?? '',
             extraMeal: crntSchedule?.extraMeal ?? '',
         }));
+        // eslint-disable-next-line
     }, [crntClickedMonth, august, september, crntClickedDay, crntClickedIndexOfSchedules]);
     return(
         <MainLayout>

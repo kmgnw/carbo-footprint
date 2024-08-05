@@ -10,7 +10,7 @@ function Header(){
     <Wrapper>
         <Back
         src={back}
-        onClick={()=>navigate(-1)}
+        onClick={()=>navigate('/')}
         />
         <Title>식단 추천</Title>
         <Back

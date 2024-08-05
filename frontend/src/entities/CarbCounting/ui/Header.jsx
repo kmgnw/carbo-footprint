@@ -8,7 +8,7 @@ function Header(){
 
     return(
     <Wrapper>
-        <Back src={back} onClick={()=>navigate(-1)}/>
+        <Back src={back} onClick={()=>navigate('/')}/>
         <Title>탄수화물 함량 카운팅</Title>
     </Wrapper>
     )

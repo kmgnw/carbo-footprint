@@ -15,8 +15,17 @@ function ResultMenu(){
                 <Logo src={pretzel}/>
                 <Title>이런 메뉴는 어떤가요?</Title>
             </TitleWrap>
+
+            <MenuCell
+                // title={e.name}
+                // img={e.image_url}
+                // categories={['카테고리','카테고리']}
+                // calories={e.calorie}
+                // carb={e.carbohydrate}
+                // sugar={e.saccharide}
+                />
             
-            {recommendedResult.map((e)=>(
+            {/* {recommendedResult.map((e)=>(
                 <MenuCell
                 title={e.name}
                 img={e.image_url}
@@ -25,7 +34,7 @@ function ResultMenu(){
                 carb={e.carbohydrate}
                 sugar={e.saccharide}
                 />
-            ))}
+            ))} */}
 
             
         </MainLayout>

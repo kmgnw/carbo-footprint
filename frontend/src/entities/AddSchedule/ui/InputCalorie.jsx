@@ -8,8 +8,9 @@ import { useRecoilState, useRecoilValue } from "recoil"
 import { useNavigate } from "react-router-dom"
 
 import { augustState, septemberState, crntClickedDayState, crntClickedMonthState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
+import { hoverGrow } from "../../../shared/animation/hoverGrow"
 
-function InputCalorie(){
+function InputCalorie() {
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
     const navigate = useNavigate()
@@ -20,20 +21,20 @@ function InputCalorie(){
     const crntClickedMonth = useRecoilValue(crntClickedMonthState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
-    function handleInputChange(value){
-        
-            setNewSchedule((prev) => ({
-                ...prev,
-                calorie: Number(value)
-            }));
+    function handleInputChange(value) {
+
+        setNewSchedule((prev) => ({
+            ...prev,
+            calorie: value.target.value
+        }));
 
     }
 
-    function handleBtnClick(){
+    function handleBtnClick() {
         navigate('/carb-counting')
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const crntSchedule = crntClickedMonth === 8 ? august[crntClickedDay][crntClickedIndexOfSchedules] : september[crntClickedDay][crntClickedIndexOfSchedules]
 
         setNewSchedule(crntSchedule ?? {
@@ -42,26 +43,25 @@ function InputCalorie(){
             thirdMeal: [],
             extraMeal: []
         })
-    },[crntClickedMonth, august, september, crntClickedDay, crntClickedIndexOfSchedules])
+    }, [crntClickedMonth, august, september, crntClickedDay, crntClickedIndexOfSchedules])
 
-    return(
+    return (
         <MainLayout>
             <Title>총 섭취 칼로리</Title>
 
             <InputWrap>
+                
+                    <StandardCustomInput
+                        value={newSchedule?.calorie ?? null}
+                        placeholder={!newSchedule?.calorie ? "섭취 칼로리 직접 입력" : newSchedule?.calorie}
+                        onChange={(e) => handleInputChange(e)}
+                        padding="0"
+                    />
 
-                <StandardInput
-                value={newSchedule?.calorie ?? null}
-                placeholder={!newSchedule?.calorie ? "섭취 칼로리 직접 입력" : newSchedule?.calorie}
-                onChange={(e)=>handleInputChange(e)}
-                padding="0"
-                />
-
-                <StandardButton
-                title="식단 사진으로 계산하기"
-                onClick={handleBtnClick}
-                padding= "1.2rem 1.8rem"
-                />
+                <StandardCustomButton
+                    onClick={handleBtnClick}
+                >식단 사진으로 계산하기
+                </StandardCustomButton>
 
             </InputWrap>
 
@@ -88,4 +88,41 @@ margin-bottom: 0.8rem
 const InputWrap = styled.div`
 display: flex;
 gap: 0.8rem;
+`
+
+const StandardCustomInputWrap = styled.div`
+
+`
+
+const StandardCustomInput = styled.input`
+border-radius: 8px;
+border: 1px solid var(--Gray2, #E3E5E7);
+background: var(--White, #FFF);
+padding: 1.4rem 1.8rem;
+&::placeholder{
+color: var(--Gray2, #E3E5E7);
+font-family: "Noto Sans KR";
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+`
+
+const StandardCustomButton = styled.div`
+width: 100%;
+padding: 1.2rem 1.8rem;
+background-color: black;
+border-radius:0.8rem;
+color: white;
+text-align: center;
+font-family: "Noto Sans KR";
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: 150%;
+cursor: pointer;
+@media (hover: hover) {
+	${hoverGrow}
+    }
 `

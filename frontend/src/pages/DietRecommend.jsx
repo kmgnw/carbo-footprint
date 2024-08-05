@@ -10,7 +10,6 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { recommendedResultState } from "../shared/state/DietRecommendResult";
 import { sendPreferences } from "../entities/DietRecommend/api/api";
-import { isLogin } from "../shared/function/isLogin";
 
 function DietRecommend() {
     const btnRef = useRef();

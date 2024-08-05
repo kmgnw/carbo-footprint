@@ -10,7 +10,7 @@ function MenuCell({ title, img, categories, calories, carb, sugar }) {
 
                 <StyledCategoryWrap>
 
-                    {categories.map((e) => (
+                    {categories.slice(0,3).map((e) => (
                         <StyledCategoryContainer>
                             <StyledCategory>
                                 {e}

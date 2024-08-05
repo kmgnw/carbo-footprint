@@ -82,8 +82,8 @@ function Calendar() {
             <Month>{month}월</Month>
 
             <StyledDays>
-                {days.map((e) => (
-                    <DayWrap>{e}</DayWrap>
+                {days.map((e, i) => (
+                    <DayWrap key={i}>{e}</DayWrap>
                 ))}
             </StyledDays>
 

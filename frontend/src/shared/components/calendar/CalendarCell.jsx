@@ -28,8 +28,8 @@ function CalendarCell({ schedule, index, day, today, month }) {
     return (
         <>
             <StyledContainer onClick={handleCellClick}>
-                <FlexBox isToday={today === index}>
-                <StyledDate isToday={today === index}>
+                <FlexBox istoday={today === index}>
+                <StyledDate istoday={today === index}>
                     {index + 1}
                 </StyledDate>
                 </FlexBox>
@@ -85,7 +85,7 @@ const FlexBox = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-background-color:${props => props.isToday ? '#FF6464' : 'transparent'};
+background-color:${props => props.istoday ? '#FF6464' : 'transparent'};
     border-radius: 50%;
     width: 1.7rem;
     height: 1.7rem;
@@ -94,7 +94,7 @@ background-color:${props => props.isToday ? '#FF6464' : 'transparent'};
 
 const StyledDate = styled.div`
     
-    color:${props => props.isToday ? 'white' : 'black'};
+    color:${props => props.istoday ? 'white' : 'black'};
     text-align: center;
     font-family: "Pretendard Variable";
     font-size: 10px;

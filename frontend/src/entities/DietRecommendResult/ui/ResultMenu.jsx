@@ -23,7 +23,7 @@ function ResultMenu(){
                 <MenuCell
                 title={e.name}
                 img={e.image_url}
-                categories={[newAllergyType, newEatingHabitType]}
+                categories={[newEatingHabitType, newAllergyType]}
                 calories={e.calorie}
                 carb={e.carbohydrate}
                 sugar={e.saccharide}

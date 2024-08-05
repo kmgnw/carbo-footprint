@@ -27,6 +27,7 @@ export function sendPreferences(newAllergyType, newEatingHabitType, setRecommend
             return res.json();
         })
         .then(data => {
+            console.log(data)
             setRecommendedResult(data.result.food_list)
             setDietId(data.result.member_recommend_id)
         })

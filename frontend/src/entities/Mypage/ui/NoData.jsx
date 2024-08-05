@@ -4,7 +4,7 @@ import bread from '../../../assets/bread_mypage.svg'
 function NoData(){
     return(
         <MainLayout>
-            <Img src={bread} />
+            <Img src={bread} fetchPriority="high" alt="bread"/>
             <Title>아직 기록이 없습니다.</Title>
         </MainLayout>
     )

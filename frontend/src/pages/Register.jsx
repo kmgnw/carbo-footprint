@@ -18,7 +18,7 @@ function Register() {
     return (
         <Wrapper>
             <Title>회원가입</Title>
-            <Logo src={logo} />
+            <Logo src={logo} fetchPriority="high" alt="logo"/>
             <Container style={{ height: "10rem" }}>
                 <div>아이디</div>
                 <Input

@@ -8,7 +8,7 @@ function YourChat({ name, date, chat }) {
 
                 <ProfileWrap>
                     <ProfilePicWrap>
-                        <Img src={logo} />
+                        <Img src={logo} alt="logo" fetchPriority="high"/>
                     </ProfilePicWrap>
 
                     <Name>{name}</Name>

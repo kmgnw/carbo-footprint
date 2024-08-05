@@ -8,7 +8,7 @@ export default function TestMain(){
     <Wrapper>
 
         <TitleContainer>
-            <Icon src={icon}/>
+            <Icon src={icon} alt="icon" fetchPriority="high"/>
             <Div>자신에게 해당하는 질문에 체크하세요.</Div>
         </TitleContainer>
 

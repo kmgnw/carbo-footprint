@@ -34,6 +34,8 @@ function DietLog(){
             <TitleWrap>
 
                 <img src={dietLog}
+                fetchPriority="high"
+                alt="dietLog"
                 style={{
                     width:'3.2rem'
                 }} 

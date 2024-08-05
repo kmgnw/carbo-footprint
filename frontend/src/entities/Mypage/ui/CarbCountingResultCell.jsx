@@ -18,7 +18,7 @@ function CarbCountingResultCell({date, name, amount, calorie, carb, prot, fat, s
 
                 <ContentContainer>
 
-                    <Img src={image_url} />
+                    <Img src={image_url} fetchPriority="high" alt="img"/>
 
                     <TextWrap>
 

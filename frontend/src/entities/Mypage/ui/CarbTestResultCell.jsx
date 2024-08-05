@@ -61,7 +61,7 @@ function CarbTestResultCell({type, date, check_count}){
             </DateWrap>
 
             <ImgWrap>
-                <Img src={cellInfo.img} alt={cellInfo.result} />
+                <Img src={cellInfo.img} alt={cellInfo.result} fetchPriority="high"/>
             </ImgWrap>
 
             <CheckCount>{cellInfo.checkCount}개 체크</CheckCount>

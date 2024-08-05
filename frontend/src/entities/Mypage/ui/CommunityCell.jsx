@@ -23,7 +23,7 @@ function CommunityCell({room_name, room_current_capacity, room_max_capacity, unc
             <TitleWrap>
                 <HeadingWrap>
                 <LogoWrap>
-                    <Img src={pretzel} />
+                    <Img src={pretzel} alt="pretzel" fetchPriority="high"/>
                 </LogoWrap>
 
                 <Title>
@@ -37,7 +37,7 @@ function CommunityCell({room_name, room_current_capacity, room_max_capacity, unc
 
                 <Trailing>
                     <CountIconWrap>
-                        <img src={users} />
+                        <img src={users} alt="users" fetchPriority="high"/>
 
                         <CountIconText>
                             {room_current_capacity}/{room_max_capacity}

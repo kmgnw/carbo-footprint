@@ -5,7 +5,7 @@ function HeadingTitle(){
     return(
     <MainLayout>
         
-        <img style={{width: '40px'}} src={Logo_orange} />
+        <img style={{width: '40px'}} src={Logo_orange} alt="logo" fetchPriority="high"/>
 
         <Title>오늘의 탄수 발자국을 기록해보세요.</Title>
     </MainLayout>

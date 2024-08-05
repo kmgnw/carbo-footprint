@@ -19,7 +19,7 @@ function Footer() {
         <span>이용약관</span>
         <span>개인정보처리방침</span>
       </Content>
-      <Logo src={logo} />
+      <Logo src={logo} alt="logo" fetchPriority="high"/>
     </Wrapper>
   );
 }

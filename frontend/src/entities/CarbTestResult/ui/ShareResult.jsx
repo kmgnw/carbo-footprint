@@ -32,9 +32,9 @@ function ShareResult() {
             <Title>테스트 결과를 공유하세요!</Title>
             <ButtonWrap>
                 <CopyLinkWrap>
-                    <Img src={link} onClick={copyLink}/>
+                    <Img src={link} onClick={copyLink} alt="link" fetchPriority="high"/>
                 </CopyLinkWrap>
-                <Img src={kakao} onClick={shareKakao}/>
+                <Img src={kakao} onClick={shareKakao} alt="kakao" fetchPriority="high"/>
             </ButtonWrap>
         </MainLayout>
         </>

@@ -17,7 +17,7 @@ function FootprintCounterArea (){
             <GoToCalendarWrap>
                 <GoToCalendarContainer>
 
-                    <img src={gotocalendar} />
+                    <img src={gotocalendar} alt="calendar" fetchPriority="high"/>
 
                     <GotoCalendarTitle onClick={handleGoToCalendarCLick}>
                         달력으로 이동

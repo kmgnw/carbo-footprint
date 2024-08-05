@@ -60,7 +60,7 @@ function TitleSection(){
         <MainLayout>
 
             <TitleWrap>
-                <img style={{width: '32px'}}src={calendar} />
+                <img style={{width: '32px'}}src={calendar} alt="calendar" fetchPriority="high"/>
                 <Title>일정 제목</Title>
             </TitleWrap>
 

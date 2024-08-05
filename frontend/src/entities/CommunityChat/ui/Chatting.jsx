@@ -213,6 +213,8 @@ const Chatting = () => {
                     src={isActive ? send_active : send}
                     style={{ cursor: 'pointer' }}
                     onClick={sendMessage}
+                    alt='send'
+                    fetchPriority='high'
                 />
             </InputWrap>
         </>

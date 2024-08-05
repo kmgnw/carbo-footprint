@@ -74,7 +74,7 @@ export default function TestContent() {
                     <CheckBoxWrapper key={index}
                     onClick={() => handleIconClick(index)} 
                     >
-                        <CheckBox src={icon} />
+                        <CheckBox src={icon} fetchPriority='high' alt='icon'/>
                         <TestItem>{testItems[index]}</TestItem>
                     </CheckBoxWrapper>
                 ))}
@@ -90,7 +90,7 @@ export default function TestContent() {
                 <Reset style={{ color: isReset ? "#FFF" : "#262829" }}>
                     아무 것도 해당하지 않는다.
                 </Reset>
-                <Icon src={isReset ? whiteCheck : grayCheck} />
+                <Icon src={isReset ? whiteCheck : grayCheck} alt='reset' fetchPriority='high'/>
             </ResetButton>
             <StandardButton title="결과 확인하기" onClick={handleResult}/>
         </>

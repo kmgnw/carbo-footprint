@@ -14,7 +14,7 @@ function RoutingComponent(){
     return(
     <Wrapper>
         <TitleContinaer>
-            <TitleIcon src={icon} />
+            <TitleIcon src={icon} fetchPriority="high" alt="icon"/>
             <ResultTitle>식단 분석 결과</ResultTitle>
         </TitleContinaer>
 
@@ -25,7 +25,7 @@ function RoutingComponent(){
                 <BannerTitle>탄수화물에 대해 더 알고싶다면?</BannerTitle>
                 <BannerComment>탄수 발자국<br/><span style={{color: "#EF6038"}}>챗봇에게</span> 물어보기</BannerComment>
                 </div>
-                <div style={{display: "flex", alignItems:"center"}}><Icon src={chatbot}/></div>
+                <div style={{display: "flex", alignItems:"center"}}><Icon src={chatbot} alt="chatbot" fetchPriority="high"/></div>
             </Banner>
 
             <Banner onClick={()=>navigate('/carb-counting')}>
@@ -33,7 +33,7 @@ function RoutingComponent(){
                 <BannerTitle>식단 속 탄수화물 함량이 궁금하다면?</BannerTitle>
                 <BannerComment><span style={{color: "#EF6038"}}>탄수화물 함량</span><br/>카운팅하기</BannerComment>
                 </div>
-                <div style={{display: "flex", alignItems:"center"}}><Icon src={scale}/></div>
+                <div style={{display: "flex", alignItems:"center"}}><Icon src={scale} alt="scale" fetchPriority="high"/></div>
             </Banner>
 
             <Banner onClick={()=>navigate('/diet-recommend')}>
@@ -41,7 +41,7 @@ function RoutingComponent(){
                 <BannerTitle>내 취향에 맞는 건강식단이 궁금하다면?</BannerTitle>
                 <BannerComment>나에게 <span style={{color: "#EF6038"}}>딱 맞는 식단</span><br/>추천받기</BannerComment>
                 </div>
-                <div style={{display: "flex", alignItems:"center"}}><Icon src={bowl}/></div>
+                <div style={{display: "flex", alignItems:"center"}}><Icon src={bowl} alt="bowl" fetchPriority="high"/></div>
             </Banner>
 
         </BannerContainer>

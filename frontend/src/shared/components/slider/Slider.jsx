@@ -67,6 +67,7 @@ function Slider() {
                         src={image.src}
                         alt={`Banner ${index + 1}`}
                         onClick={image.onClick}
+                        fetchpriority="high"
                     />
                 ))}
             </ContentWrap>
@@ -95,6 +96,7 @@ const ContentWrap = styled.div`
         flex: 0 0 100%;
         width: 100%;
         cursor: pointer;  /* Add cursor pointer to indicate clickability */
+        fetchpriority: high;
     }
 `;
 

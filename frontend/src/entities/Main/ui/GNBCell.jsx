@@ -4,7 +4,7 @@ import { hoverGrow } from '../../../shared/animation/hoverGrow';
 function GNBCell({ title, img, onClick }){
     return(
         <MainLayout onClick={onClick}>
-            <StyledIcon src={img} />
+            <StyledIcon src={img} alt='img' fetchPriority='high'/>
             <StyledTitle>{title}</StyledTitle>
         </MainLayout>
     )

@@ -41,7 +41,7 @@ function DeleteModal({setIsDeleteModalVisible}){
         <MainLayout>
 
             <Header>
-                <img src={X} onClick={handleCancelClick} style={{cursor:"pointer"}}/>
+                <img src={X} onClick={handleCancelClick} style={{cursor:"pointer"}} fetchPriority="high" alt="x"/>
             </Header>
 
             <TextWrap>

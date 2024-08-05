@@ -117,6 +117,8 @@ const Title = styled.div`
   font-family: "Noto Sans KR";
   font-size: 16px;
   font-weight: 700;
+  margin-bottom: 0.8rem;
+  margin-top: 2.4rem;
   margin: 2.4rem 0 0.8rem 2rem;
 `;
 

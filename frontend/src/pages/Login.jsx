@@ -4,6 +4,7 @@ import StandardButton from "../shared/components/StandardButton/StandardButton";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleLogin } from "../entities/Login/api/login";
+import backButton from '../assets/BackButton.svg'
 
 
 function Login() {
@@ -17,9 +18,30 @@ function Login() {
     };
 
     return (
-        <Wrapper>
-            <Title>로그인</Title>
-            <Logo src={logo} fetchPriority="high" alt="logo"/>
+        <>
+
+            <Header>
+                <img
+                    onClick={() => navigate(-1)}
+                    src={backButton}
+                    style={{ cursor: "pointer" }}
+                    fetchPriority="high"
+                    alt="back" />
+
+                <Title>로그인</Title>
+
+                <img
+                    style={{ visibility: 'hidden' }}
+                    src={backButton}
+                    alt="back"
+                    fetchPriority="high" />
+            </Header>
+
+            <Wrapper>
+
+            
+
+            <Logo src={logo} fetchPriority="high" alt="logo" />
             <Container>
                 <div>아이디</div>
                 <Input
@@ -56,6 +78,7 @@ function Login() {
                 </Span>
             </Register>
         </Wrapper>
+        </>
     );
 }
 
@@ -68,6 +91,14 @@ const Wrapper = styled.div`
     padding: 0 2rem;
 `;
 
+const Header = styled.div`
+width: 100%;
+padding: 1rem 2rem;
+display: flex;
+justify-content: space-between;;
+align-items: center;
+`
+
 const Title = styled.div`
     color: var(--Gray8, #262829);
     text-align: center;
@@ -75,7 +106,6 @@ const Title = styled.div`
     font-size: 1.6rem;
     font-weight: 700;
     line-height: normal;
-    margin-top: 2.1rem;
 `;
 
 const Logo = styled.img`
@@ -133,6 +163,6 @@ margin-top: 1.6rem;
 margin-bottom: 27rem;
 `
 
-const Span=styled.span`
+const Span = styled.span`
 cursor: pointer;
 `

@@ -22,7 +22,7 @@ function Login() {
 
             <Header>
                 <img
-                    onClick={() => navigate(-1)}
+                    onClick={() => navigate('/')}
                     src={backButton}
                     style={{ cursor: "pointer" }}
                     fetchPriority="high"

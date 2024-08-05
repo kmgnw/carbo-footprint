@@ -15,13 +15,17 @@ function Header() {
 
             <img
                 onClick={handleBackButtonClick}
-                src={backButton} />
+                src={backButton} 
+                alt="back"
+                fetchPriority="high"/>
 
             <Title>마이페이지</Title>
 
             <img
                 style={{ visibility: 'hidden' }}
-                src={backButton} />
+                src={backButton} 
+                alt="back"
+                fetchPriority="high"/>
 
         </MainLayout>
     )

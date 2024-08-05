@@ -140,6 +140,8 @@ function ActivityLog() {
                     style={{
                         width: '3.2rem'
                     }}
+                    fetchPriority="high"
+                    alt="activityLog"
                 />
                 <Title>
                     활동량 기록

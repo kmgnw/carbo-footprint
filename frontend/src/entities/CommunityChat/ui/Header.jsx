@@ -27,13 +27,17 @@ function Header({exitRoom}) {
                 src={backButton}
                 onClick={() => navigate(-1)}
                 style={{cursor:"pointer"}}
+                alt="back"
+                fetchPriority="high"
             />
 
             <Title>{findName()}</Title>
 
             <img
             onClick={handleExitClick}
-            src={exit} />
+            src={exit} 
+            alt="exit"
+            fetchPriority="high"/>
         </MainLayout>
     )
 }

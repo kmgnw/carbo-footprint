@@ -75,7 +75,7 @@ function NotPickyButton({ title, type }) {
                 {title}
             </NotPickyButtonText>
 
-            <NotPickyButtonIcon src={isHovered || isClicked ? check : uncheck} />
+            <NotPickyButtonIcon src={isHovered || isClicked ? check : uncheck} fetchPriority='high' alt='check'/>
         </NotPickyButtonWrap>
     );
 }

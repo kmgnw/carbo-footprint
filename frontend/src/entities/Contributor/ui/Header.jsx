@@ -12,13 +12,17 @@ function Header(){
             <img
             onClick={()=>navigate(-1)}
             src={backButton} 
-            style={{cursor: "pointer"}}/>
+            style={{cursor: "pointer"}}
+            fetchPriority="high"
+            alt="back"/>
 
             <Title>제작자</Title>
 
             <img
             style={{visibility: 'hidden'}}
-            src={backButton} />
+            src={backButton}
+            alt="back"
+            fetchPriority="high" />
         </MainLayout>
     )
 }

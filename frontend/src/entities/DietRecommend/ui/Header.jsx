@@ -18,11 +18,11 @@ function Header(){
 
     return(
         <MainLayout>
-            <img src={BackButton} onClick={handleBackButtonClick} style={{cursor: "pointer"}}/>
+            <img src={BackButton} onClick={handleBackButtonClick} style={{cursor: "pointer"}} alt="back" fetchPriority="high"/>
             <Title>식단 추천</Title>
             <img
             style={{visibility: 'hidden'}}
-            src={BackButton} />
+            src={BackButton} alt="back" fetchPriority="high"/>
         </MainLayout>
     )
 }

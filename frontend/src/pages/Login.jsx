@@ -19,7 +19,7 @@ function Login() {
     return (
         <Wrapper>
             <Title>로그인</Title>
-            <Logo src={logo} />
+            <Logo src={logo} fetchPriority="high" alt="logo"/>
             <Container>
                 <div>아이디</div>
                 <Input

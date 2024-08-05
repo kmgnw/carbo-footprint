@@ -51,14 +51,15 @@ function Modal({ setIsModalVisible }) {
                     src={X}
                     onClick={handleCancelClick}
                     alt="Close"
+                    fetchPriority="high"
                 />
                 방만들기
-                <img src={X} onClick={handleCancelClick} alt="Close" style={{cursor:"pointer"}}/>
+                <img src={X} onClick={handleCancelClick} alt="Close" style={{cursor:"pointer"}} fetchPriority="high"/>
             </Header>
 
             <InputSection>
                 <TitleWrap>
-                    <img src={door} alt="Door" />
+                    <img src={door} alt="Door" fetchPriority="high"/>
                     <Title>방 이름</Title>
                 </TitleWrap>
 
@@ -71,7 +72,7 @@ function Modal({ setIsModalVisible }) {
                 <Height4rem />
 
                 <TitleWrap>
-                    <img src={users} alt="Users" />
+                    <img src={users} alt="Users" fetchPriority="high"/>
                     <Title>인원 수</Title>
                 </TitleWrap>
 

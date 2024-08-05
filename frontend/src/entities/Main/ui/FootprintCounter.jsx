@@ -15,7 +15,7 @@ function FootprintCounter(){
         <MainLayout>
 
             <LogoWrap>
-                <img src={Logo_orange} />
+                <img src={Logo_orange} fetchPriority="high" alt="logo"/>
             </LogoWrap>
 
 

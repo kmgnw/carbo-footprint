@@ -11,11 +11,15 @@ function Header(){
         <Back
         src={back}
         onClick={()=>navigate('/')}
+        alt="back"
+        fetchPriority="high"
         />
         <Title>식단 추천</Title>
         <Back
         src={back}
         style={{visibility:'hidden'}}
+        alt="back"
+        fetchPriority="high"
         />
     </Wrapper>
     )

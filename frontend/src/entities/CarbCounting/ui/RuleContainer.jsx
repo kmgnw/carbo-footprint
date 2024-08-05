@@ -10,19 +10,19 @@ function RuleContainer(){
             <TipIcon>TIPS!</TipIcon>
             <Title>이렇게 사진을 찍어주세요!</Title>
             <Content>
-                <Checkbox src={checkbox}/>
+                <Checkbox src={checkbox} fetchPriority="high" alt="checkbox"/>
                 <RuleContent>음식을 <span style={{color: "#EF6038"}}>한 화면 안</span>에<br/>위치해주세요</RuleContent>
-                <Img src={rule1}/>
+                <Img src={rule1} fetchPriority="high" alt="rule1"/>
             </Content>
             <Content>
-                <Checkbox src={checkbox}/>
+                <Checkbox src={checkbox} fetchPriority="high" alt="checkbox"/>
                 <RuleContent>음식이 <span style={{color: "#EF6038"}}>정중앙</span>에<br/>위치하도록 해주세요</RuleContent>
-                <Img src={rule2}/>
+                <Img src={rule2} fetchPriority="high" alt="rule2"/>
             </Content>
             <Content>
-                <Checkbox src={checkbox}/>
+                <Checkbox src={checkbox} fetchPriority="high" alt="checkbox"/>
                 <RuleContent><span style={{color: "#EF6038"}}>하나의 음식만</span> 인식될 수 있도록<br/>화면을 정리해주세요</RuleContent>
-                <Img src={rule3}/>
+                <Img src={rule3} fetchPriority="high" alt="rule3"/>
             </Content>
             
         </Wrapper>

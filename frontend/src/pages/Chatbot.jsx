@@ -62,6 +62,8 @@ export default function Chatbot() {
           onMouseLeave={() => inputValue && setSendIcon(send)}
           onMouseDown={() => inputValue && setSendIcon(sendOrange)}
           onMouseUp={() => inputValue && setSendIcon(send)}
+          fetchPriority="high"
+          alt="input"
         />
       </InputContainer>
     </Wrapper>

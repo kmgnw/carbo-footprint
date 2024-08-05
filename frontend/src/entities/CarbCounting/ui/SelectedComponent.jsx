@@ -8,7 +8,7 @@ function SelectedComponent() {
   const gallery = useRecoilValue(galleryState);
 
 
-  return (<Img src={gallery[selectedImg]} />);
+  return (<Img src={gallery[selectedImg]} alt='gallery' fetchPriority='high'/>);
 }
 
 export default SelectedComponent;

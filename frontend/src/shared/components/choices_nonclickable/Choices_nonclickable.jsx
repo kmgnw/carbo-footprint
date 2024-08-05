@@ -12,7 +12,7 @@ function Choices_nonclickable({
             {allergies.includes('없음') ? (
                 <NotPickyContainer>
                     <NotPickyTitle>가리는 것 없음</NotPickyTitle>
-                    <img src={check} alt="check" />
+                    <img src={check} alt="check" fetchpriority="high"/>
                 </NotPickyContainer>
             ) : (
                 <AllergyWrap>
@@ -29,7 +29,7 @@ function Choices_nonclickable({
             {eatingHabits.includes('없음') ? (
                 <NotPickyContainer>
                     <NotPickyTitle>가리는 것 없음</NotPickyTitle>
-                    <img src={check} alt="check" />
+                    <img src={check} alt="check" fetchpriority="high"/>
                 </NotPickyContainer>
             ) : (
                 <AllergyWrap>

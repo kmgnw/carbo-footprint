@@ -82,7 +82,7 @@ function ChoosePic() {
             <SelectedComponent />
           ) : (
             <DefaultComponent>
-              <DefaultIcon src={bread} />
+              <DefaultIcon src={bread} alt="bread" fetchPriority="high"/>
               <DefaultAleart>아직 업로드한 사진이 없어요.</DefaultAleart>
             </DefaultComponent>
           ))}

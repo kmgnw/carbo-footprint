@@ -45,7 +45,7 @@ function Modal({ isOpen, onClose }) {
           <div style={{ width: '24px' }} />
           <StyledTitle>사진 등록</StyledTitle>
           <StyledButton onClick={onClose}>
-            <img src={X} alt="close" />
+            <img src={X} alt="close" fetchPriority='high'/>
           </StyledButton>
         </StyledHeader>
 
@@ -58,6 +58,7 @@ function Modal({ isOpen, onClose }) {
               alt={'내 이미지'}
               onClick={() => handleImageClick(index)}
               selected={index === selectedImg}
+              fetchPriority='high'
             />
           ))}
         </GalleryContainer>

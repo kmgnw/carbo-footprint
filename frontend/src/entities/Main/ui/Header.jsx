@@ -54,7 +54,7 @@ function Header(){
                 visibility: 'hidden'
             }}>로그인</StyledLogin>
 
-            <StyledLogo src={logo}/>
+            <StyledLogo src={logo} alt="logo" fetchPriority="high"/>
 
             {isLoggedIn ? (
                 <>

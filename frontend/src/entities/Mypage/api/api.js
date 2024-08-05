@@ -43,7 +43,6 @@ export const fetchDietRecommends = async (setDiets) => {
         }
 
         const data = await response.json();
-        console.log(data.result)
         setDiets(data.result)
         
     } catch (error) {

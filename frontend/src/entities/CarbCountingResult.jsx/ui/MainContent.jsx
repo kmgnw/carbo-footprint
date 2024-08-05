@@ -43,7 +43,7 @@ function MainContent() {
     } else {
         try {
             await saveClassification(file[selectedImg], code);
-            navigate('/');
+            navigate('/add-schedule');
         } catch (error) {
             console.error('저장 중 오류 발생:', error);
             alert('저장 중 오류가 발생했습니다. 다시 시도해 주세요.');

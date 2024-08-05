@@ -30,7 +30,7 @@ function Modal({setIsModalVisible}){
         <MainLayout>
 
             <Header>
-                <img src={X} onClick={handleCancelClick} style={{cursor:"pointer"}} alt="x" fetchPriority="high"/>
+                <img src={X} onClick={handleCancelClick} style={{cursor:"pointer"}} alt="x" fetchpriority="high"/>
             </Header>
 
             <TextWrap>

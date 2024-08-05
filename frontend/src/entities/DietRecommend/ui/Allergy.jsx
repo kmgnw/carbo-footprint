@@ -12,7 +12,7 @@ function Allergy() {
 
     return (
         <MainLayout>
-            <img src={Dislike} fetchPriority="high" alt="dislike"/>
+            <img src={Dislike} fetchpriority="high" alt="dislike"/>
 
             <Title>
                 알레르기가 있거나<br />

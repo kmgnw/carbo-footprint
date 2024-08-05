@@ -41,7 +41,7 @@ function Header() {
                 src={BackButton}
                 onClick={handleBackButtonClick}
                 alt="back"
-                fetchPriority="high"
+                fetchpriority="high"
             />
 
             <Date>
@@ -54,7 +54,7 @@ function Header() {
                 onClick={handleDeleteClick}
                 style={{visibility: !crntSchedule ? 'hidden' : 'visible'}}
                 alt="trash"
-                fetchPriority="high"
+                fetchpriority="high"
             />
 
 

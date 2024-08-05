@@ -25,7 +25,7 @@ function Login() {
                     onClick={() => navigate('/')}
                     src={backButton}
                     style={{ cursor: "pointer" }}
-                    $fetchPriority="high"
+                    fetchpriority="high"
                     alt="back" />
 
                 <Title>로그인</Title>
@@ -34,14 +34,14 @@ function Login() {
                     style={{ visibility: 'hidden' }}
                     src={backButton}
                     alt="back"
-                    $fetchPriority="high" />
+                    fetchpriority="high" />
             </Header>
 
             <Wrapper>
 
             
 
-            <Logo src={logo} fetchPriority="high" alt="logo" />
+            <Logo src={logo} fetchpriority="high" alt="logo" />
             <Container>
                 <div>아이디</div>
                 <Input

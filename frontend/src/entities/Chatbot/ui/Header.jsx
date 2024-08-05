@@ -8,7 +8,7 @@ function Header(){
 
     return(
     <Wrapper>
-        <Back src={back} onClick={()=>navigate(-1)} alt="back" fetchPriority="high"/>
+        <Back src={back} onClick={()=>navigate(-1)} alt="back" fetchpriority="high"/>
         <Title>탄수발자국 챗봇</Title>
     </Wrapper>
     )

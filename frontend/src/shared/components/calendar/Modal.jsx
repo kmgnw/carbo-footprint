@@ -137,7 +137,7 @@ function Modal({ setIsModalVisible, index, day }) {
                 (september[index].length === 1 && september[index][0].title === '') ? (
                     <NoScheduleWrap>
                         <ImgWrap>
-                            <Img src={bread} fetchPriority="high"/>
+                            <Img src={bread} fetchpriority="high"/>
                         </ImgWrap>
                         <NoScheduleText>
                             아직 기록이 없습니다.<br />
@@ -159,13 +159,13 @@ function Modal({ setIsModalVisible, index, day }) {
                                         style={{ width: '24px' }}
                                         src={isDietLog(e) ? DietLog_clicked : DietLog}
                                         alt="Diet Log"
-                                        fetchPriority="hight"
+                                        fetchpriority="hight"
                                     />
                                     <img
                                         style={{ width: '24px' }}
                                         src={isActivityLog(e) ? ActivityLog_clicked : ActivityLog}
                                         alt="Activity Log"
-                                        fetchPriority="high"
+                                        fetchpriority="high"
                                     />
                                 </StyledButtonWrap>
                             </StyledScheduleContainer>

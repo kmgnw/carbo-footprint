@@ -17,7 +17,7 @@ export default function AiChat({ index }) {
 
   return (
     <Wrapper>
-      <Profile src={profile} alt="profile" fetchPriority="high"/>
+      <Profile src={profile} alt="profile" fetchpriority="high"/>
       <MessageContainer>
         <Answer>{answer[index].question}</Answer>
         <Time>{currentTime}</Time>

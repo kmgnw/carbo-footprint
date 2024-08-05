@@ -62,7 +62,7 @@ export default function TestResultMain() {
         <Result>{result[index].ment}</Result>
       </Step>
       <Explain>{result[index].explain}</Explain>
-      <img src={result[index].src} alt="result" fetchPriority="high"/>
+      <img src={result[index].src} alt="result" fetchpriority="high"/>
     </Wrapper>
   );
 }

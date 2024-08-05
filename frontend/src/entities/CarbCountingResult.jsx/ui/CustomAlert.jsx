@@ -38,7 +38,7 @@ const Message = styled.div`
 const CustomAlert = ({ message, visible, success }) => {
   return (
     <AlertWrapper visible={visible} success={success}>
-      <Img src={icon} alt="icon" fetchPriority='high'/>
+      <Img src={icon} alt="icon" fetchpriority='high'/>
       <Message>{message}</Message>
     </AlertWrapper>
   );

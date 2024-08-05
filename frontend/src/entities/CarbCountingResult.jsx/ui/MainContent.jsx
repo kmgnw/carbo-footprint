@@ -54,11 +54,11 @@ function MainContent() {
     <Wrapper>
       <Title>업로드한 사진</Title>
       <PicContainer>
-        <Img src={gallery[selectedImg]} alt="gallery" fetchPriority="high"/>
+        <Img src={gallery[selectedImg]} alt="gallery" fetchpriority="high"/>
       </PicContainer>
 
       <ResultContainer>
-        <TitleIcon src={icon} alt="icon" fetchPriority="high"/>
+        <TitleIcon src={icon} alt="icon" fetchpriority="high"/>
         <ResultTitle>식단 분석 결과</ResultTitle>
       </ResultContainer>
 
@@ -89,9 +89,9 @@ function MainContent() {
         <IconContainer>
         <ButtonWrap>
                 <CopyLinkWrap>
-                    <IconImg src={link} onClick={copyLink} alt="link" fetchPriority="high"/>
+                    <IconImg src={link} onClick={copyLink} alt="link" fetchpriority="high"/>
                 </CopyLinkWrap>
-                <IconImg src={kakao} onClick={shareKakao} alt="kakao" fetchPriority="high"/>
+                <IconImg src={kakao} onClick={shareKakao} alt="kakao" fetchpriority="high"/>
             </ButtonWrap>
         </IconContainer>
       </ShareContainer>

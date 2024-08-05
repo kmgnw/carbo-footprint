@@ -9,7 +9,7 @@ function Banner() {
         얼마나 포함되어 있을까요?
         <br />
       </Content>
-      <Img src={icon} alt="icon" fetchPriority="high"/>
+      <Img src={icon} alt="icon" fetchpriority="high"/>
     </Wrapper>
   );
 }

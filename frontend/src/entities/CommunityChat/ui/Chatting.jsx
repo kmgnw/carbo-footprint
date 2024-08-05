@@ -215,7 +215,7 @@ const Chatting = () => {
                     style={{ cursor: 'pointer' }}
                     onClick={sendMessage}
                     alt='send'
-                    fetchPriority='high'
+                    fetchpriority='high'
                 />
             </InputWrap>
         </>

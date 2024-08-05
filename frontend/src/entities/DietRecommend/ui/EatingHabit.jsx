@@ -7,7 +7,7 @@ function EatingHabit() {
 
     return (
         <MainLayout>
-            <img src={Like} alt="like" fetchPriority="high"/>
+            <img src={Like} alt="like" fetchpriority="high"/>
 
             <Title>
                 좋아하는 키워드를<br />

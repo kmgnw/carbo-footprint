@@ -13,7 +13,7 @@ function Header() {
                 onClick={() => navigate(-1)}
                 src={backButton}
                 style={{ cursor: "pointer" }} 
-                fetchPriority="high"
+                fetchpriority="high"
                 alt="back"/>
 
             <Title>커뮤니티</Title>
@@ -22,7 +22,7 @@ function Header() {
                 style={{ visibility: 'hidden' }}
                 src={backButton} 
                 alt="back"
-                fetchPriority="high"/>
+                fetchpriority="high"/>
         </MainLayout>
     )
 }

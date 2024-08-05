@@ -4,7 +4,7 @@ function MenuCell({ title, img, categories, calories, carb, sugar }) {
     return (
         <MainLayout>
 
-            <ImgWrap src={img} fetchPriority="high" alt="img"/>
+            <ImgWrap src={img} fetchpriority="high" alt="img"/>
 
             <TextWrap>
 

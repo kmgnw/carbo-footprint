@@ -9,10 +9,10 @@ function TitleSection() {
             <LogoWrap>
 
                 <LogoContainer>
-                    <Img src={logo} alt="logo" fetchPriority="high"/>
+                    <Img src={logo} alt="logo" fetchpriority="high"/>
                 </LogoContainer>
 
-                <img src={logotext} alt="logotext" fetchPriority="high"/>
+                <img src={logotext} alt="logotext" fetchpriority="high"/>
             </LogoWrap>
 
             <SubTitle>

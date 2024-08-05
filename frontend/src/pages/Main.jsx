@@ -44,7 +44,7 @@ function Main() {
             </SubLayout>
 
             <FloatingChatbotWrap>
-                <Img src={Chatbot_floating} onClick={() => navigate('/chatbot')} fetchPriority="high"/>
+                <Img src={Chatbot_floating} onClick={() => navigate('/chatbot')} fetchpriority="high"/>
             </FloatingChatbotWrap>
 
         </MainLayout>

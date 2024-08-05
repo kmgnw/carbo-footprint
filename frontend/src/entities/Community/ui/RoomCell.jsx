@@ -30,7 +30,7 @@ function RoomCell({ title, count, maxCount, roomId }) {
 
                 <Heading>
                     <LogoWrap>
-                        <img src={pretzel} alt="pretzel" fetchPriority="high"/>
+                        <img src={pretzel} alt="pretzel" fetchpriority="high"/>
                     </LogoWrap>
 
                     <Title>
@@ -40,7 +40,7 @@ function RoomCell({ title, count, maxCount, roomId }) {
 
                 <Trailing>
                     <CountWrap>
-                        <img src={users} alt="users" fetchPriority="high"/>
+                        <img src={users} alt="users" fetchpriority="high"/>
 
                         <CountText>
                             {count}/{maxCount}

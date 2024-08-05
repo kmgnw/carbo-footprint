@@ -141,7 +141,7 @@ function ActivityLog() {
                     style={{
                         width: '3.2rem'
                     }}
-                    fetchPriority="high"
+                    fetchpriority="high"
                     alt="activityLog"
                 />
                 <Title>

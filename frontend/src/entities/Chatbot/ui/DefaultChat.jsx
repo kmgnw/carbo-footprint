@@ -51,14 +51,14 @@ export default function AiChat() {
   return (
       <>
           <Wrapper>
-              <Profile src={profile} alt="profile" fetchPriority="high"/>
+              <Profile src={profile} alt="profile" fetchpriority="high"/>
               <MessageContainer>
                   <Answer>어떤 궁금증이 있으신가요?</Answer>
                   <Time>{currentTime}</Time>
               </MessageContainer>
           </Wrapper>
           <Wrapper>
-              <Profile src={profile} style={{ visibility: "hidden" }} fetchPriority="high" alt="profile"/>
+              <Profile src={profile} style={{ visibility: "hidden" }} fetchpriority="high" alt="profile"/>
               <MessageContainer>
                   <Answer style={{ display: "flex", flexDirection: "column" }}>
                       <div

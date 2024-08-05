@@ -5,7 +5,7 @@ function ContributorCell({img , name, roles, email}){
         <MainLayout>
 
             <LogoWrap>
-                <Img src={img} alt="img" fetchPriority="high"/>
+                <Img src={img} alt="img" fetchpriority="high"/>
             </LogoWrap>
 
             <ContentWrap>

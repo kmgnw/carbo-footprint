@@ -28,7 +28,7 @@ function Header({exitRoom}) {
                 onClick={() => navigate(-1)}
                 style={{cursor:"pointer"}}
                 alt="back"
-                fetchPriority="high"
+                fetchpriority="high"
             />
 
             <Title>{findName()}</Title>
@@ -37,7 +37,7 @@ function Header({exitRoom}) {
             onClick={handleExitClick}
             src={exit} 
             alt="exit"
-            fetchPriority="high"/>
+            fetchpriority="high"/>
         </MainLayout>
     )
 }

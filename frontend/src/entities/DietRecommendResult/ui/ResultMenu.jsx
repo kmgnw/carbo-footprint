@@ -15,7 +15,7 @@ function ResultMenu(){
         <MainLayout>
 
             <TitleWrap>
-                <Logo src={pretzel} alt="pretzel" fetchPriority="high"/>
+                <Logo src={pretzel} alt="pretzel" fetchpriority="high"/>
                 <Title>이런 메뉴는 어떤가요?</Title>
             </TitleWrap>
             

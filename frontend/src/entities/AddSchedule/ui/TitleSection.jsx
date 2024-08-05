@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import calendar from '../../../assets/Calendar.svg'
-import Unchecked from '../../../assets/Uncheck.svg'
-import Checked from '../../../assets/Check.svg'
 import { newScheduleState } from "../../../shared/state/AddSchedule";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
@@ -13,9 +11,12 @@ function TitleSection(){
 
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
+    // eslint-disable-next-line
     const [august, setAugust] = useRecoilState(augustState)
+    // eslint-disable-next-line
     const [september, setSeptember] = useRecoilState(septemberState)
     const crntClickedMonth = useRecoilState(crntClickedMonthState)
+    // eslint-disable-next-line
     const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
@@ -54,6 +55,7 @@ function TitleSection(){
         })
         console.log('crntSchedule is ')
         console.log(crntSchedule)
+        // eslint-disable-next-line
     },[august, september, crntClickedDay, crntClickedIndexOfSchedules])
     
     return(
@@ -67,14 +69,6 @@ function TitleSection(){
             <StandardInput value={newSchedule?.title ?? null} placeholder={!newSchedule?.title ||newSchedule?.title === '' ? "일정 제목을 입력해주세요." : newSchedule?.title} onChange={(e)=>handleInputChange(e)} />
 
             <KakaoCheckboxWrap onClick={handleCheckboxClick}>
-
-                {/* <StyledCheckbox isChecked={isChecked}>
-                    <img src={isChecked ? Checked: Unchecked} />
-                </StyledCheckbox>
-
-                <CheckboxTitle>
-                    카톡으로 식단 추천 받기
-                </CheckboxTitle> */}
 
             </KakaoCheckboxWrap>
 
@@ -112,21 +106,4 @@ display: flex;
 align-items: center;
 gap: 0.8rem;
 margin-top: 1.6rem
-`
-
-const StyledCheckbox = styled.div`
-width: 2.4rem;
-height: 2.4rem;
-padding: 0.4rem;
-border-radius: 4px;
-background-color: ${({ isChecked }) => isChecked ? '#EF6038' : '#E3E5E7'};
-`
-
-const CheckboxTitle = styled.div`
-color: #000;
-font-family: "Noto Sans KR";
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
 `

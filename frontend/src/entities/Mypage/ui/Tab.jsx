@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
 
 function Tab({title, index, tab, setTab}){
 

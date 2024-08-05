@@ -50,6 +50,7 @@ function CarbTestResultCell({type, date, check_count}){
             default:
                 break;
         }
+        // eslint-disable-next-line
     }, [type])
 
 

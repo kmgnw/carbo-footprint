@@ -10,6 +10,7 @@ function RoomCell({ title, count, maxCount, roomId }) {
 
     const navigate = useNavigate()
 
+    // eslint-disable-next-line
     const [_, setCrntClickedIndex] = useRecoilState(crntClickedRoomIdState)
 
     function handleButtonClick() {

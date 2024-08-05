@@ -17,6 +17,7 @@ function RoomList() {
 
     useEffect(() => {
         fetchRooms(setRooms);
+        // eslint-disable-next-line
     }, []);
 
     return (

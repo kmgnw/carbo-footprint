@@ -1,6 +1,4 @@
 import styled from "styled-components"
-import Choices_nonclickable from "../../../shared/components/choices_nonclickable/Choices_nonclickable";
-import StandardButton from "../../../shared/components/StandardButton/StandardButton";
 
 
 function CarbCountingResultCell({date, name, amount, calorie, carb, prot, fat, sugar, image_url }) {
@@ -30,11 +28,6 @@ function CarbCountingResultCell({date, name, amount, calorie, carb, prot, fat, s
                     </TextWrap>
 
                 </ContentContainer>
-
-                {/* <StandardButton
-                    title='자세히보기'
-                    padding="1.2rem 2.1rem"
-                /> */}
 
             </ContentWrap>
 

@@ -4,7 +4,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useState } from "react";
 import PlusCircle from '../../../assets/PlusCircle.svg'
 import X from '../../../assets/X.svg'
-import randomImage from '../../../assets/randomImage.png'
 import { useNavigate } from "react-router-dom";
 import ActivityLog from '../../../assets/ActivityLog.svg'
 import DietLog from '../../../assets/DietLog.svg'
@@ -17,9 +16,11 @@ function Modal({ setIsModalVisible, index, day }) {
 
     const navigate = useNavigate()
 
+    // eslint-disable-next-line
     const [isReadOnly, setIsReadOnly] = useState(true)
 
     const crntClickedMonth = useRecoilValue(crntClickedMonthState)
+    // eslint-disable-next-line
     const [crntClickedIndexOfSchedules, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
 
     const [schedule, setSchedule] = useRecoilState(augustState)
@@ -35,11 +36,9 @@ function Modal({ setIsModalVisible, index, day }) {
         else { return false }
     }
 
-
     function isActivityLog(e) {
-        if (e.workoutTime && e.workoutTime !== '' ||
-            e.stepCount && e.stepCount !== ''
-        ) { return true }
+        // eslint-disable-next-line
+        if (e.workoutTime && e.workoutTime !== '' || e.stepCount && e.stepCount !== '') { return true }
         else { return false }
     }
 

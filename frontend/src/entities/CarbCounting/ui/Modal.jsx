@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
-import close from '../../../assets/X.svg';
 import X from '../../../assets/X.svg';
 import { useRecoilState } from 'recoil';
 import { fileState, galleryState,selectedImgState } from '../../../shared/state/Gallery';
@@ -10,6 +8,7 @@ import { hoverGrow } from '../../../shared/animation/hoverGrow';
 function Modal({ isOpen, onClose }) {
   const [images, setImages] = useRecoilState(galleryState);
   const [selectedImg, setSelectedImage] = useRecoilState(selectedImgState);
+  // eslint-disable-next-line
   const [file, setFiles] = useRecoilState(fileState);
   
 
@@ -64,7 +63,7 @@ function Modal({ isOpen, onClose }) {
         </GalleryContainer>
 
         <ButtonContainer>
-          <CustomButton disabled={selectedImg.length == 0} onClick={handlePutImg}>선택한 사진 등록하기</CustomButton>
+          <CustomButton disabled={selectedImg.length === 0} onClick={handlePutImg}>선택한 사진 등록하기</CustomButton>
           <CustomButton onClick={handleButtonClick}>사진 불러오기</CustomButton>
           <input
             type="file"

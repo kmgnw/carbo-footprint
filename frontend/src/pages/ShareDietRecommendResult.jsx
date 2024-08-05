@@ -17,10 +17,12 @@ function ShareDietRecommendResult(){
     const query = useQuery();
     const dietId = query.get("member_recommend_id");
 
+    // eslint-disable-next-line
     const [_, setShareRecommendedResult] = useRecoilState(shareRecommendedResultState)
 
     useEffect(()=>{
         fetchDiet(dietId, setShareRecommendedResult)
+        // eslint-disable-next-line
     }, [])
 
     return(

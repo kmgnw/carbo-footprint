@@ -8,6 +8,7 @@ import { hoverGrow } from "../../../shared/animation/hoverGrow"
 
 function CommunityCell({room_name, room_current_capacity, room_max_capacity, unchecked_message_count, room_id}){
 
+    // eslint-disable-next-line
     const [_, setCrntClickedId] = useRecoilState(crntClickedRoomIdState)
     const navigate = useNavigate()
 

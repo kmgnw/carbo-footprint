@@ -1,3 +1,4 @@
+/* eslint-disabled */
 import styled from "styled-components"
 import Calendar from "../shared/components/calendar/Calendar.jsx"
 import GNB from "../entities/Main/ui/GNB.jsx"
@@ -12,15 +13,17 @@ import { useRecoilState } from "recoil"
 import { useEffect } from "react"
 
 function Main() {
-
+    // eslint-disable-next-line no-unused-vars
     const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
+    // eslint-disable-next-line no-unused-vars
     const [crntClickedIndexOfSchedules, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
 
     const navigate = useNavigate()
-
+    
     useEffect(() => {
         setCrntClickedDay(-1)
         setCrntClickedIndexOfSchedules(-1)
+        // eslint-disable-next-line
     }, [])
 
     return (

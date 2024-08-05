@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 import Tab from "./Tab"
-import { useState } from "react";
 
 function Tabbar({ tab, setTab }){
     

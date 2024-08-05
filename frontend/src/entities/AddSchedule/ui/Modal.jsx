@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil"
 
 function Modal({setIsModalVisible}){
 
+    // eslint-disable-next-line
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
     const navigate = useNavigate()

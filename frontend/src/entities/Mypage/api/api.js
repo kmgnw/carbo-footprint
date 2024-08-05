@@ -1,5 +1,4 @@
 import { baseUrl } from "../../../shared/config/baseurl";
-import bannerImg from '../../../assets/banner1.svg'
 
 export const fetchMyCommunity = async (setMyCommunity, setRooms) => {
     const token = window.sessionStorage.getItem('token');

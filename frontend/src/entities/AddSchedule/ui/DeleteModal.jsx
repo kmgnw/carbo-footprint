@@ -9,6 +9,7 @@ import { deleteSchedule } from "../api/api"
 
 function DeleteModal({setIsDeleteModalVisible}){
 
+    // eslint-disable-next-line
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
     const navigate = useNavigate()

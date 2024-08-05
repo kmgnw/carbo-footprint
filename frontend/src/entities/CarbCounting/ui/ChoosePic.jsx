@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import StandardButton from "../../../shared/components/StandardButton/StandardButton";
 import CameraComponent from "./CameraComponent";
-import test from "../../../assets/testImg.svg";
 import Modal from "./Modal";
 import RuleContainer from "./RuleContainer";
 import SelectedComponent from "./SelectedComponent";
@@ -24,8 +23,11 @@ function ChoosePic() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const file = useRecoilValue(fileState);
   const selectedImg = useRecoilValue(selectedImgState);
+  // eslint-disable-next-line
   const gallery = useRecoilValue(galleryState);
+  // eslint-disable-next-line
   const [data, setData] = useRecoilState(resultDataState);
+  // eslint-disable-next-line
   const[foodCode, setFoodCode] = useRecoilState(foodCodeState);
 
   const handleTakePicture = () => {

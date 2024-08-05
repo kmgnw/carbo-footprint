@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Header from "../entities/DietRecommendResult/ui/Header";
 import ResultMenu from "../entities/DietRecommendResult/ui/ResultMenu";
 import SelectedKeyword from "../entities/DietRecommendResult/ui/SelectedKeyword";

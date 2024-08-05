@@ -14,12 +14,14 @@ function NotPickyButton({ title, type }) {
     const [newEatingHabitType, setNewEatingHabitType] = useRecoilState(newEatingHabitTypeState)
 
     useEffect(()=>{
+        // eslint-disable-next-line
         if(type == 'allergy'){
             if(newAllergyType.length === 1 && newAllergyType.includes('없음')){
                 setIsClicked(true)
             }else {
                 setIsClicked(false)
             }
+            // eslint-disable-next-line
         }else if(type == 'eating-habit'){
             if(newEatingHabitType.length === 1 &&newEatingHabitType.includes('없음')){
                 setIsClicked(true)
@@ -29,15 +31,18 @@ function NotPickyButton({ title, type }) {
         }
 
         console.log(newAllergyType, newEatingHabitType)
+        // eslint-disable-next-line
     }, [newAllergyType, newEatingHabitType])
 
     useEffect(()=>{
+        // eslint-disable-next-line
         if(type=='allergy'){
             if(!isClicked){
                 setNewAllergyType((prev) => {
                     return prev.filter((e) => e !== '없음');
                 });
             }
+            // eslint-disable-next-line
         } else if (type=='eating-habit'){
             if(!isClicked){
                 setNewEatingHabitType((prev) => {
@@ -45,7 +50,7 @@ function NotPickyButton({ title, type }) {
                 });
             }
         }
-        
+        // eslint-disable-next-line
     }, [isClicked])
 
     return (

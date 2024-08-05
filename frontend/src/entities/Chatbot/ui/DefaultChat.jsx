@@ -7,6 +7,7 @@ import { hoverGrow } from "../../../shared/animation/hoverGrow";
 import { sendQuestion } from "../api/chatbotApi";
 
 export default function AiChat() {
+    // eslint-disable-next-line
   const [questions, setQuestions] = useRecoilState(chatbotQuestionState);
   const [currentTime, setCurrentTime] = useState("");
 

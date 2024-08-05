@@ -61,6 +61,7 @@ function Mypage (){
 
     useEffect(()=>{
         setSection(renderSectionContentArg())
+        // eslint-disable-next-line
     }, [tab])
 
     return(

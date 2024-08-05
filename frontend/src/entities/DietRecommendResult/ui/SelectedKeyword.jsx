@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Choices_nonclickable from "../../../shared/components/choices_nonclickable/Choices_nonclickable"
+import ChoicesNonclickable from "../../../shared/components/choices_nonclickable/ChoicesNonclickable"
 import { useRecoilValue } from "recoil"
 import { newAllergyTypeState, newEatingHabitTypeState } from "../../../shared/state/DietRecommend"
 
@@ -14,7 +14,7 @@ function SelectedKeyword(){
         <MainLayout>
             <Title>선택한 키워드</Title>
             
-                <Choices_nonclickable
+                <ChoicesNonclickable
                 allergies={newAllergyType}
                 eatingHabits={newEatingHabitType}
                 />

@@ -36,17 +36,5 @@ font-size: 1.6rem;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-`
 
-const ButtonWrap = styled.div`
-padding: 1.2rem 3rem;
-background-color: black;
-color: #FFF;
-border-radius: 0.8rem;
-text-align: center;
-font-family: "Noto Sans KR";
-font-size: 1.6rem;
-font-style: normal;
-font-weight: 700;
-line-height: 150%; /* 24px */
 `

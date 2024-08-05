@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import check from '../../../assets/NotPickCheck_grey.svg';
 
-function Choices_nonclickable({
+function ChoicesNonclickable({
     allergies,
     eatingHabits,
 }) {
@@ -44,7 +44,7 @@ function Choices_nonclickable({
     );
 }
 
-export default Choices_nonclickable;
+export default ChoicesNonclickable;
 
 const MainLayout = styled.div`
     width: 100%;

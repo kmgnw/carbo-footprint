@@ -3,7 +3,7 @@ import BackButton from '../../../assets/BackButton.svg'
 import { useState } from "react";
 import Modal from './Modal'
 import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState, crntClickedMonthState } from '../../../shared/state/calendar'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import trash from '../../../assets/trash.svg'
 import DeleteModal from "./DeleteModal"
 

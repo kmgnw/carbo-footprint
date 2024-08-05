@@ -2,7 +2,6 @@
 export const shareKakao = () => { 
 
     const realUrl = "https://carbo-footprint.vercel.app"
-    const resultUrl = window.location.href;
 
     if (window.Kakao) {
       const kakao = window.Kakao;

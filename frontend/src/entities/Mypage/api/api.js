@@ -1,4 +1,5 @@
 import { baseUrl } from "../../../shared/config/baseurl";
+import bannerImg from '../../../assets/banner1.svg'
 
 export const fetchMyCommunity = async (setMyCommunity, setRooms) => {
     const token = window.sessionStorage.getItem('token');
@@ -67,9 +68,32 @@ export const fetchClassification = async (setClassification) => {
         }
 
         const data = await response.json();
-        console.log('classi')
-        console.log(data.result)
-        setClassification(data.result)
+        // setClassification(data.result)
+        setClassification([
+            {
+                "date": "08.21.수요일",
+                "image_url": bannerImg,
+                "name": "잡채",
+                "amount": 150,
+                "calorie": 198.82,
+                "carb": 37.47,
+                "prot": 2.59,
+                "fat": 4.7,
+                "sugar": 2.99
+              },
+              {
+                "date": "08.21.수요일",
+                "image_url": bannerImg,
+                "food_code": "11015001",
+                "name": "잡채",
+                "amount": 150,
+                "calorie": 198.82,
+                "carb": 37.47,
+                "prot": 2.59,
+                "fat": 4.7,
+                "sugar": 2.99
+              }
+        ])
         
         
     } catch (error) {

@@ -18,7 +18,7 @@ function CarbCountingResultCell({date, name, amount, calorie, carb, prot, fat, s
 
                 <ContentContainer>
 
-                    <img src={image_url} />
+                    <Img src={image_url} />
 
                     <TextWrap>
 
@@ -103,4 +103,11 @@ font-size: 1.4rem;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+`
+
+const Img = styled.img`
+width: 12.9rem;
+height: 12.9rem;
+object-fit: contain;
+border-radius: 0.8rem;
 `

@@ -17,28 +17,42 @@ function ActivityLog() {
     const crntClickedDay = useRecoilValue(crntClickedDayState);
     const crntClickedMonth = useRecoilValue(crntClickedMonthState);
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState);
-    const setNewScheduleState = useSetRecoilState(newScheduleState); // New setter for newSchedule
-    const setAugustState = useSetRecoilState(augustState); // New setter for august
+    const setNewScheduleState = useSetRecoilState(newScheduleState);
+    const setAugustState = useSetRecoilState(augustState);
 
-    const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules];
+    const crntSchedule = august[crntClickedDay]?.[crntClickedIndexOfSchedules] ?? null;
 
     const navigate = useNavigate();
 
-    function handleWorkoutTimeChange(value) {
+    function handleWorkoutTimeChange(event) {
+        
         setNewSchedule((prev) => ({
             ...prev,
-            workoutTime: Number(value)
+            workoutTime: event
         }));
     }
 
-    function handleStepCountChange(value) {
+    function handleStepCountChange(event) {
+        
         setNewSchedule((prev) => ({
             ...prev,
-            stepCount: Number(value)
+            stepCount: event
         }));
+    }
+
+    function isValidNumber(value) {
+        return !isNaN(value) && !isNaN(parseFloat(value));
     }
 
     function handleSaveButtonClick() {
+        if(!isValidNumber(newSchedule.inputCalorie) &&
+        !isValidNumber(newSchedule.activityLog)&&
+        !isValidNumber(newSchedule.stepCount)
+    ){
+        alert('숫자를 입력해주세요.')
+            return;
+        }
+
         if (newSchedule.title && newSchedule.title !== '') {
             const newState = {
                 ...newSchedule,
@@ -83,7 +97,6 @@ function ActivityLog() {
                     });
                 }
             } else {
-                console.log(newState);
                 setAugustState((prev) => {
                     const list = JSON.parse(JSON.stringify(prev));
                     if (crntClickedIndexOfSchedules === -1) {
@@ -138,8 +151,8 @@ function ActivityLog() {
                     <StandardInputWrap>
                         <StandardInput
                             value={newSchedule?.workoutTime ?? ''}
-                            placeholder="섭취 칼로리 직접 입력"
-                            onChange={(e) => handleWorkoutTimeChange(e.target.value)}
+                            placeholder="운동 시간을 입력하세요"
+                            onChange={(e)=>handleWorkoutTimeChange(e)}
                         />
                         <InputTrailingText>분</InputTrailingText>
                     </StandardInputWrap>
@@ -149,8 +162,8 @@ function ActivityLog() {
                     <StandardInputWrap>
                         <StandardInput
                             value={newSchedule?.stepCount ?? ''}
-                            placeholder="섭취 칼로리 직접 입력"
-                            onChange={(e) => handleStepCountChange(e.target.value)}
+                            placeholder="걸음 수를 입력하세요"
+                            onChange={(e)=>handleStepCountChange(e)}
                         />
                         <InputTrailingText>걸음</InputTrailingText>
                     </StandardInputWrap>

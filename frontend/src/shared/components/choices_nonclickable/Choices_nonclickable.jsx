@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import check from '../../../assets/NotPickCheck_grey.svg'
+import styled from "styled-components";
+import check from '../../../assets/NotPickCheck_grey.svg';
 
 function Choices_nonclickable({
     allergies,
@@ -8,15 +8,15 @@ function Choices_nonclickable({
     return (
         <MainLayout>
             <AllergyHeading>알레르기</AllergyHeading>
-            
-            {allergies.includes('없음') ? (
+
+            {allergies?.includes('없음') ? (
                 <NotPickyContainer>
                     <NotPickyTitle>가리는 것 없음</NotPickyTitle>
-                    <img src={check} alt="check" fetchpriority="high"/>
+                    <img src={check} alt="check" fetchpriority="high" />
                 </NotPickyContainer>
             ) : (
                 <AllergyWrap>
-                    {allergies.length !== 0 && allergies[0] !== '없음' && allergies.map((e, index) => (
+                    {allergies?.length > 0 && allergies[0] !== '없음' && allergies.map((e, index) => (
                         <AllergyContainer key={index}>
                             <AllergyTitle>{e}</AllergyTitle>
                         </AllergyContainer>
@@ -26,14 +26,14 @@ function Choices_nonclickable({
             <Height16px />
             <AllergyHeading>식습관</AllergyHeading>
 
-            {eatingHabits.includes('없음') ? (
+            {eatingHabits?.includes('없음') ? (
                 <NotPickyContainer>
                     <NotPickyTitle>가리는 것 없음</NotPickyTitle>
-                    <img src={check} alt="check" fetchpriority="high"/>
+                    <img src={check} alt="check" fetchpriority="high" />
                 </NotPickyContainer>
             ) : (
                 <AllergyWrap>
-                    {eatingHabits.length !== 0 && eatingHabits[0] !== '없음' && eatingHabits.map((e, index) => (
+                    {eatingHabits?.length > 0 && eatingHabits[0] !== '없음' && eatingHabits.map((e, index) => (
                         <AllergyContainer key={index}>
                             <AllergyTitle>{e}</AllergyTitle>
                         </AllergyContainer>
@@ -41,14 +41,14 @@ function Choices_nonclickable({
                 </AllergyWrap>
             )}
         </MainLayout>
-    )
+    );
 }
 
-export default Choices_nonclickable
+export default Choices_nonclickable;
 
 const MainLayout = styled.div`
     width: 100%;
-`
+`;
 
 const AllergyHeading = styled.div`
     color: #262829;
@@ -58,7 +58,7 @@ const AllergyHeading = styled.div`
     font-weight: 700;
     line-height: normal;
     margin-bottom: 0.8rem;
-`
+`;
 
 const AllergyWrap = styled.div`
     display: grid;
@@ -77,7 +77,7 @@ const AllergyWrap = styled.div`
     @media (max-width: 228px) {
         grid-template-columns: 1fr;
     }
-`
+`;
 
 const AllergyContainer = styled.div`
     width: 100%;
@@ -87,7 +87,7 @@ const AllergyContainer = styled.div`
     align-items: center;
     border-radius: 50px;
     background: #E3E5E7;
-`
+`;
 
 const AllergyTitle = styled.div`
     color: #7D7F82;
@@ -97,7 +97,7 @@ const AllergyTitle = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: 150%; /* 18px */
-`
+`;
 
 const NotPickyContainer = styled.div`
     width: 100%;
@@ -107,7 +107,7 @@ const NotPickyContainer = styled.div`
     align-items: center;
     border-radius: 16px;
     background: var(--Gray2, #E3E5E7);
-`
+`;
 
 const NotPickyTitle = styled.div`
     color: #7D7F82;
@@ -116,8 +116,8 @@ const NotPickyTitle = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: 150%; /* 18px */
-`
+`;
 
 const Height16px = styled.div`
-height: 1.6rem;
-`
+    height: 1.6rem;
+`;

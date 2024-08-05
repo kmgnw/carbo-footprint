@@ -20,7 +20,7 @@ function ResultMenu(){
             {recommendedResult.food_list?.map((e)=>(
                 <MenuCell
                 title={e.name}
-                categories={['카테고리', '카테고리', '카테고리']}
+                categories={[...recommendedResult.preference_list, ...recommendedResult.allergen_list]}
                 img={e.image_url}
                 calories={e.calorie}
                 carb={e.carbohydrate}

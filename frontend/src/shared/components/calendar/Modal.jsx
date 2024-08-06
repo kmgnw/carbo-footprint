@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { augustState, crntClickedMonthState, septemberState } from '../../state/calendar';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PlusCircle from '../../../assets/PlusCircle.svg'
 import X from '../../../assets/X.svg'
 import { useNavigate } from "react-router-dom";
@@ -12,20 +12,14 @@ import DietLog_clicked from '../../../assets/DietLog_clicked.svg'
 import bread from '../../../assets/breadIcon.svg'
 import { crntClickedIndexOfSchedulesState } from "../../state/calendar";
 
-function Modal({ setIsModalVisible, index, day }) {
-
+function Modal({ setIsModalVisible, index }) {
     const navigate = useNavigate()
-
-    // eslint-disable-next-line
-    const [isReadOnly, setIsReadOnly] = useState(true)
-
     const crntClickedMonth = useRecoilValue(crntClickedMonthState)
-    // eslint-disable-next-line
-    const [crntClickedIndexOfSchedules, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
-
+    const [_, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
     const [schedule, setSchedule] = useRecoilState(augustState)
     const august = useRecoilValue(augustState)
     const september = useRecoilValue(septemberState)
+    const [day, setDay] =  useState('월')
 
     function isDietLog(e) {
         if (e.firstMeal.length !== 0 ||
@@ -37,7 +31,6 @@ function Modal({ setIsModalVisible, index, day }) {
     }
 
     function isActivityLog(e) {
-        // eslint-disable-next-line
         if (e.workoutTime && e.workoutTime !== '' || e.stepCount && e.stepCount !== '') { return true }
         else { return false }
     }
@@ -48,7 +41,7 @@ function Modal({ setIsModalVisible, index, day }) {
     }
 
     function handleAddScheduleClick() {
-        navigate('/add-schedule')
+        navigate('/add-schedule', { state: { day: day } });
     }
 
     function handleScheduleChange(e, i) {
@@ -68,8 +61,46 @@ function Modal({ setIsModalVisible, index, day }) {
 
     function handleCellClick(i) {
         setCrntClickedIndexOfSchedules(i)
-        navigate('/add-schedule')
+        navigate('/add-schedule', { state: { day: day } });
     }
+
+    useEffect(() => {
+        const dayRestIndex = index % 7
+
+        switch (dayRestIndex) {
+            case 0:
+                setDay('금')
+                break;
+
+            case 1:
+                setDay('토')
+                break;
+
+            case 2:
+                setDay('일')
+                break;
+
+            case 3:
+                setDay('월')
+                break;
+
+            case 4:
+                setDay('화')
+                break;
+
+            case 5:
+                setDay('수')
+                break;
+
+            case 6:
+                setDay('목')
+                break;
+
+            default:
+                break;
+        }
+
+    }, [])
     return (
         <StyledWrap>
             <StyledHeader>
@@ -112,7 +143,6 @@ function Modal({ setIsModalVisible, index, day }) {
                                 <StyledInput
                                     value={e.title}
                                     placeholder={e.title}
-                                    readOnly={isReadOnly}
                                     onChange={(text) => handleScheduleChange(text, i)}
                                 />
                                 <StyledButtonWrap>
@@ -137,7 +167,7 @@ function Modal({ setIsModalVisible, index, day }) {
                 (september[index].length === 1 && september[index][0].title === '') ? (
                     <NoScheduleWrap>
                         <ImgWrap>
-                            <Img src={bread} fetchpriority="high"/>
+                            <Img src={bread} fetchpriority="high" />
                         </ImgWrap>
                         <NoScheduleText>
                             아직 기록이 없습니다.<br />
@@ -151,7 +181,6 @@ function Modal({ setIsModalVisible, index, day }) {
                                 <StyledInput
                                     value={e.title}
                                     placeholder={e.title}
-                                    readOnly={isReadOnly}
                                     onChange={(text) => handleScheduleChange(text, i)}
                                 />
                                 <StyledButtonWrap>

@@ -19,30 +19,6 @@ function Calendar() {
 
     const days = ["월", "화", "수", "목", "금", "토", "일"]
     
-    function getDayofAugust(n){
-        let remainder = n%7
-        // eslint-disable-next-line
-        switch (remainder) {
-            case 0:
-                return days[3]
-
-            case 1:
-                return days[4]
-                
-            case 2:
-                return days[5]
-                
-            case 3:
-                return days[6]
-                
-            case 4:
-                return days[0]
-
-            case 5:
-                return days[1]
-        }
-    }
-
     useEffect(() => {
         const today = new Date();
         setDay(today.getDate());
@@ -50,31 +26,31 @@ function Calendar() {
         // eslint-disable-next-line
     }, []);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (gridRef.current) {
-                const scrollTop = gridRef.current.scrollTop;
-                const maxScrollTop = gridRef.current.scrollHeight - gridRef.current.clientHeight;
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         if (gridRef.current) {
+    //             const scrollTop = gridRef.current.scrollTop;
+    //             const maxScrollTop = gridRef.current.scrollHeight - gridRef.current.clientHeight;
 
-                if (scrollTop >= maxScrollTop / 2) {
-                    setMonth(9);
-                } else {
-                    setMonth(8);
-                }
-            }
-        };
+    //             if (scrollTop >= maxScrollTop / 2) {
+    //                 setMonth(9);
+    //             } else {
+    //                 setMonth(8);
+    //             }
+    //         }
+    //     };
 
-        const gridLayout = gridRef.current;
-        if (gridLayout) {
-            gridLayout.addEventListener('scroll', handleScroll);
-        }
+    //     const gridLayout = gridRef.current;
+    //     if (gridLayout) {
+    //         gridLayout.addEventListener('scroll', handleScroll);
+    //     }
 
-        return () => {
-            if (gridLayout) {
-                gridLayout.removeEventListener('scroll', handleScroll);
-            }
-        };
-    }, []);
+    //     return () => {
+    //         if (gridLayout) {
+    //             gridLayout.removeEventListener('scroll', handleScroll);
+    //         }
+    //     };
+    // }, []);
 
     return (
         <MainLayout>
@@ -91,7 +67,7 @@ function Calendar() {
 
                 {july.map((e, index) => (
                     <SnappingEndPoint key={index}>
-                        <CalendarCell month={month} schedule={[]} index={e[0]} today={day} day={getDayofAugust(index+1)}/>
+                        <CalendarCell month={month} schedule={[]} index={e[0]} today={day} />
                     </SnappingEndPoint>
                 ))}
 
@@ -101,11 +77,11 @@ function Calendar() {
                     </SnappingEndPoint>
                 ))}
 
-                {september.map((e, index) => (
+                {/* {september.map((e, index) => (
                     <SnappingStartPoint key={index} >
                         <CalendarCell month={month} schedule={e} index={index} today={-1} />
                     </SnappingStartPoint>
-                ))}
+                ))} */}
 
             </StyledGrid>
 

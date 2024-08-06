@@ -5,7 +5,7 @@ import { hoverGrow } from '../../animation/hoverGrow';
 import { crntClickedDayState, crntClickedMonthState } from '../../state/calendar';
 import { useRecoilState } from 'recoil';
 
-function CalendarCell({ schedule, index, day, today, month }) {
+function CalendarCell({ schedule, index, today, month }) {
 
     // eslint-disable-next-line
     const [_, setCrntClickedDay] = useRecoilState(crntClickedDayState)
@@ -48,8 +48,7 @@ function CalendarCell({ schedule, index, day, today, month }) {
                     <StyledModal onClick={(e) => e.stopPropagation()}>
                         <Modal
                             setIsModalVisible={setIsModalVisible}
-                            index={index}
-                            day={day} />
+                            index={index} />
                     </StyledModal>
                 </StyledModalContainer>
             )}

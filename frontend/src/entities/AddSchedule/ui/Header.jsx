@@ -6,6 +6,7 @@ import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState, crn
 import { useRecoilValue } from 'recoil'
 import trash from '../../../assets/trash.svg'
 import DeleteModal from "./DeleteModal"
+import { useLocation } from "react-router-dom";
 
 function Header() {
 
@@ -18,6 +19,8 @@ function Header() {
     const august = useRecoilValue(augustState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
     const crntSchedule = august[crntClickedDay][crntClickedIndexOfSchedules]
+
+    const location = useLocation()
 
     function handleBackButtonClick() {
         setIsModalVisible(true)
@@ -45,7 +48,7 @@ function Header() {
             />
 
             <Date>
-                {crntClickedMonth}월 {crntClickedDay + 1}일 요일
+                {crntClickedMonth}월 {crntClickedDay + 1}일 {location.state.day}요일
             </Date>
 
             

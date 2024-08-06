@@ -65,7 +65,7 @@ margin-bottom: 0.8rem
 `
 
 const ImgWrap = styled.img`
-min-width: 12.9rem;
+max-width: 12.9rem;
 height: 12.9rem;
 background-color: lightgrey;
 border-radius: 0.8rem

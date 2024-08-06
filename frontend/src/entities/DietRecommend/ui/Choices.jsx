@@ -49,7 +49,7 @@ function Choices({ title, choices, type }) {
     function renderChoiceTitle(choice) {
         if (choice === '난류') {
             return '난류(가공류에 한함)'
-        } else if (choice === '날것') {
+        } else if (choice === '날_것') {
             return '날 것'
         }else {
             return choice

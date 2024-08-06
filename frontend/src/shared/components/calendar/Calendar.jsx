@@ -12,7 +12,7 @@ function Calendar() {
 
     const july = [[27], [28], [29], [30]]
     const [august, setAugust] = useRecoilState(augustState)
-    const [september, setSeptember] = useRecoilState(septemberState)
+    const [_, setSeptember] = useRecoilState(septemberState)
 
     const [month, setMonth] = useState(8);
     const [day, setDay] = useState(0);

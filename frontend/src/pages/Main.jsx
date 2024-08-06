@@ -10,20 +10,20 @@ import { crntClickedDayState, crntClickedIndexOfSchedulesState } from "../shared
 import { useNavigate } from "react-router-dom"
 import { useRecoilState } from "recoil"
 import { useEffect } from "react"
+import { resultDataState } from "../shared/state/Gallery.js"
 
 function Main() {
     
-    // eslint-disable-next-line
     const [_, setCrntClickedDay] = useRecoilState(crntClickedDayState)
-    // eslint-disable-next-line
     const [__, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
+    const [___,setData] = useRecoilState(resultDataState)
 
     const navigate = useNavigate()
     
     useEffect(() => {
         setCrntClickedDay(-1)
         setCrntClickedIndexOfSchedules(-1)
-        // eslint-disable-next-line
+        setData(null)
     }, [])
 
     return (

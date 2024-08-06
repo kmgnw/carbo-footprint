@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { selectedImgState, galleryState, resultDataState, foodCodeState, fileState} from "../../../shared/state/Gallery";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { selectedImgState, galleryState, resultDataState, foodCodeState, fileState } from "../../../shared/state/Gallery";
 import icon from "../../../assets/pretzelIcon.svg";
 import link from '../../../assets/Link.svg'
 import kakao from '../../../assets/Kakao.svg'
@@ -11,8 +11,9 @@ import { shareKakao } from "../../../util/kakaoLink";
 import { useState } from "react";
 import { hoverGrow } from "../../../shared/animation/hoverGrow";
 import MenuCarousel from "./MenuCarousel";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { saveClassification } from "../api/api";
+import { newScheduleState } from "../../../shared/state/AddSchedule";
 
 function MainContent() {
   const selectedImg = useRecoilValue(selectedImgState);
@@ -22,11 +23,13 @@ function MainContent() {
   const navigate = useNavigate();
   const code = useRecoilValue(foodCodeState);
   const file = useRecoilValue(fileState);
+  const data = useRecoilValue(resultDataState)
+  const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
       setAlert({ visible: true, message: '링크를 복사했어요!', success: true });
-      setTimeout(() => setAlert({ ...alert, visible: false }), 1000); 
+      setTimeout(() => setAlert({ ...alert, visible: false }), 1000);
     }).catch((error) => {
       setAlert({ visible: true, message: '링크 복사에 실패했습니다.', success: false });
       setTimeout(() => setAlert({ ...alert, visible: false }), 1000);
@@ -35,30 +38,33 @@ function MainContent() {
   };
 
   const handleSave = async () => {
-    const token = sessionStorage.getItem('token');
-    
-    if (!token) {
-        navigate('/login');
-    } else {
-        try {
-            await saveClassification(file[selectedImg], code);
-            navigate('/add-schedule');
-        } catch (error) {
-            console.error('저장 중 오류 발생:', error);
-            alert('저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
-        }
+
+
+    try {
+      console.log('calories')
+      console.log(data.calorie)
+      await saveClassification(file[selectedImg], code);
+      
+      navigate('/add-schedule', { state: { calorie: data.calorie } });  
+      
+      
+      
+      
+    } catch (error) {
+      console.error('저장 중 오류 발생:', error);
+      alert('저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
     }
-};
+  };
 
   return (
     <Wrapper>
       <Title>업로드한 사진</Title>
       <PicContainer>
-        <Img src={gallery[selectedImg]} alt="gallery" fetchpriority="high"/>
+        <Img src={gallery[selectedImg]} alt="gallery" fetchpriority="high" />
       </PicContainer>
 
       <ResultContainer>
-        <TitleIcon src={icon} alt="icon" fetchpriority="high"/>
+        <TitleIcon src={icon} alt="icon" fetchpriority="high" />
         <ResultTitle>식단 분석 결과</ResultTitle>
       </ResultContainer>
 
@@ -78,7 +84,7 @@ function MainContent() {
       </FontContainer>
       <MenuCarousel />
 
-      <div style={{height:"3rem"}}><CustomAlert message={alert.message} visible={alert.visible} success={alert.success} /></div>
+      <div style={{ height: "3rem" }}><CustomAlert message={alert.message} visible={alert.visible} success={alert.success} /></div>
       <ShareContainer>
         <FontContainer
           style={{ color: "#fff", position: "absolute", left: "2rem" }}
@@ -87,17 +93,17 @@ function MainContent() {
         </FontContainer>
 
         <IconContainer>
-        <ButtonWrap>
-                <CopyLinkWrap>
-                    <IconImg src={link} onClick={copyLink} alt="link" fetchpriority="high"/>
-                </CopyLinkWrap>
-                <IconImg src={kakao} onClick={shareKakao} alt="kakao" fetchpriority="high"/>
-            </ButtonWrap>
+          <ButtonWrap>
+            <CopyLinkWrap>
+              <IconImg src={link} onClick={copyLink} alt="link" fetchpriority="high" />
+            </CopyLinkWrap>
+            <IconImg src={kakao} onClick={shareKakao} alt="kakao" fetchpriority="high" />
+          </ButtonWrap>
         </IconContainer>
       </ShareContainer>
 
       <ButtonContainer>
-        <StandardButton title="다시 해보기" width="18.7rem" height="4rem" onClick={() => navigate('/carb-counting')}/>
+        <StandardButton title="다시 해보기" width="18.7rem" height="4rem" onClick={() => navigate('/carb-counting')} />
         <StandardButton
           title="총 칼로리 기록하기"
           width="18.7rem"

@@ -5,18 +5,19 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
 import StandardInput from "../../../shared/components/StandardInput/StandardInput";
 import { augustState, septemberState, crntClickedMonthState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
+import { useLocation } from "react-router-dom";
 
 function TitleSection(){
     const [isChecked, setIsChecked] = useState(false)
-
+    const location = useLocation()
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState)
 
-    // eslint-disable-next-line
+    
     const [august, setAugust] = useRecoilState(augustState)
-    // eslint-disable-next-line
+    
     const [september, setSeptember] = useRecoilState(septemberState)
     const crntClickedMonth = useRecoilState(crntClickedMonthState)
-    // eslint-disable-next-line
+    
     const [crntClickedDay, setCrntClickedDay] = useRecoilState(crntClickedDayState)
     const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
 
@@ -44,19 +45,22 @@ function TitleSection(){
         }
     }
 
-    useEffect(()=>{
-        const crntSchedule = crntClickedMonth === 8 ? august[crntClickedDay][crntClickedIndexOfSchedules] : september[crntClickedDay][crntClickedIndexOfSchedules]
+    // useEffect(() => {
+    //     const crntSchedule = august[crntClickedDay]?.[crntClickedIndexOfSchedules];
 
-        setNewSchedule(crntSchedule ?? {
-            firstMeal: [],
-            secondMeal: [],
-            thirdMeal: [],
-            extraMeal: []
-        })
-        console.log('crntSchedule is ')
-        console.log(crntSchedule)
-        // eslint-disable-next-line
-    },[august, september, crntClickedDay, crntClickedIndexOfSchedules])
+    //     if (crntSchedule) {
+    //         if (location.state?.calorie) {
+    //             crntSchedule.calorie = location.state.calorie;
+    //         }
+    //         setNewSchedule(crntSchedule);
+    //     } else {
+    //         setNewSchedule((prev) => ({
+    //             ...prev,
+    //             calorie: location.state?.calorie || prev.calorie
+    //         }));
+    //     }
+        
+    // }, [crntClickedMonth, august, crntClickedDay, crntClickedIndexOfSchedules, location.state]);
     
     return(
         <MainLayout>

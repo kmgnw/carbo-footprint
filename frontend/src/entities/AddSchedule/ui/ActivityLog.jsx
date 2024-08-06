@@ -6,14 +6,14 @@ import { newScheduleState } from '../../../shared/state/AddSchedule';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import activityLog from '../../../assets/ActivityLog.svg';
 import { augustState, crntClickedDayState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { postSchedule, deleteSchedule } from "../api/api";
 import { crntClickedMonthState } from "../../../shared/state/calendar";
 import { isLogin } from "../../../shared/function/isLogin";
 
 function ActivityLog() {
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState);
-    // eslint-disable-next-line
+    const location = useLocation()
     const [august, setAugust] = useRecoilState(augustState);
     const crntClickedDay = useRecoilValue(crntClickedDayState);
     const crntClickedMonth = useRecoilValue(crntClickedMonthState);
@@ -29,7 +29,7 @@ function ActivityLog() {
         
         setNewSchedule((prev) => ({
             ...prev,
-            workoutTime: event
+            workoutTime: Number(event)
         }));
     }
 
@@ -37,7 +37,7 @@ function ActivityLog() {
         
         setNewSchedule((prev) => ({
             ...prev,
-            stepCount: event
+            stepCount: Number(event)
         }));
     }
 
@@ -58,7 +58,7 @@ function ActivityLog() {
             const newState = {
                 ...newSchedule,
                 day: crntClickedDay + 1,
-                month: crntClickedMonth,
+                month: crntClickedMonth
             };
 
             if (isLogin()) {
@@ -81,37 +81,52 @@ function ActivityLog() {
                         });
                     });
                 } else {
+                    if(newState.firstMeal === ''){
+                        newState.firstMeal = []
+                    }
+                    if(newState.secondMeal === ''){
+                        newState.secondMeal = []
+                    }
+                    if(newState.thirdMeal === ''){
+                        newState.thirdMeal = []
+                    }
+                    if(newState.extraMeal === ''){
+                        newState.extraMeal = []
+                    }
+                    console.log(newState)
+                    console.log('여기')
                     postSchedule(newState).then(() => {
-                        setAugustState((prev) => {
-                            const list = JSON.parse(JSON.stringify(prev));
-                            if (crntClickedIndexOfSchedules === -1) {
-                                if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
-                                    list[crntClickedDay] = [newState];
-                                } else {
-                                    list[crntClickedDay] = [...list[crntClickedDay], newState];
-                                }
-                            } else {
-                                list[crntClickedDay][crntClickedIndexOfSchedules] = newState;
-                            }
-                            return list;
-                        });
+                        // setAugustState((prev) => {
+                        //     const list = JSON.parse(JSON.stringify(prev));
+                        //     if (crntClickedIndexOfSchedules === -1) {
+                        //         if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
+                        //             list[crntClickedDay] = [newState];
+                        //         } else {
+                        //             list[crntClickedDay] = [...list[crntClickedDay], newState];
+                        //         }
+                        //     } else {
+                        //         list[crntClickedDay][crntClickedIndexOfSchedules] = newState;
+                        //     }
+                        //     return list;
+                        // });
                     });
                 }
-            } else {
-                setAugustState((prev) => {
-                    const list = JSON.parse(JSON.stringify(prev));
-                    if (crntClickedIndexOfSchedules === -1) {
-                        if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
-                            list[crntClickedDay] = [newState];
-                        } else {
-                            list[crntClickedDay] = [...list[crntClickedDay], newState];
-                        }
-                    } else {
-                        list[crntClickedDay][crntClickedIndexOfSchedules] = newState;
-                    }
-                    return list;
-                });
             }
+            //  else {
+            //     setAugustState((prev) => {
+            //         const list = JSON.parse(JSON.stringify(prev));
+            //         if (crntClickedIndexOfSchedules === -1) {
+            //             if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
+            //                 list[crntClickedDay] = [newState];
+            //             } else {
+            //                 list[crntClickedDay] = [...list[crntClickedDay], newState];
+            //             }
+            //         } else {
+            //             list[crntClickedDay][crntClickedIndexOfSchedules] = newState;
+            //         }
+            //         return list;
+            //     });
+            // }
 
             navigate('/');
             setNewScheduleState({
@@ -125,14 +140,22 @@ function ActivityLog() {
         }
     }
 
-    useEffect(() => {
-        setNewSchedule(crntSchedule ?? {
-            firstMeal: [],
-            secondMeal: [],
-            thirdMeal: [],
-            extraMeal: []
-        });
-    }, [crntSchedule, setNewSchedule]);
+    // useEffect(() => {
+    //     const crntSchedule = august[crntClickedDay]?.[crntClickedIndexOfSchedules];
+
+    //     if (crntSchedule) {
+    //         if (location.state?.calorie) {
+    //             crntSchedule.calorie = location.state.calorie;
+    //         }
+    //         setNewSchedule(crntSchedule);
+    //     } else {
+    //         setNewSchedule((prev) => ({
+    //             ...prev,
+    //             calorie: location.state?.calorie || prev.calorie
+    //         }));
+    //     }
+        
+    // }, [crntClickedMonth, august, crntClickedDay, crntClickedIndexOfSchedules, location.state]);
 
     return (
         <MainLayout>

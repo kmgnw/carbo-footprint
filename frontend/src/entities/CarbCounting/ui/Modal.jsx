@@ -88,8 +88,7 @@ const ModalOverlay = styled.div`
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 2rem;
+  padding: 32rem 2rem 2rem 2rem;
 `;
 
 const StyledWrap = styled.div`

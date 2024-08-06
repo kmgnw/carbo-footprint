@@ -35,8 +35,13 @@ function DietRecommend() {
 
     function handleButtonClick() {
         if (isActivate) {
-            sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult, setDietId)
-            navigate('/diet-recommend-result');
+            if(tab === 0){
+                setTab(1)
+            }else if(tab === 1){
+                sendPreferences(newAllergyType, newEatingHabitType, setRecommendedResult, setDietId)
+                navigate('/diet-recommend-result');    
+            }
+            
         }
     }
 
@@ -58,7 +63,7 @@ function DietRecommend() {
             {renderContent()}
             <ButtonWrap>
                 <StandardButton
-                    title='식단 추천받기'
+                    title={tab === 0 ? '식습관 탭으로 이동' : '식단 추천받기'}
                     color={isActivate ? 'white' : '#BABEC0'}
                     backgroundColor={isActivate ? 'black' : '#E3E5E7'}
                     onClick={handleButtonClick}

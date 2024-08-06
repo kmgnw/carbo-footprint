@@ -6,7 +6,7 @@ export const shareKakao = () => {
     if (window.Kakao) {
       const kakao = window.Kakao;
       if (!kakao.isInitialized()) {
-        kakao.init(process.env.REACT_APP_SHARE_KAKAO_LINK_KEY);
+        kakao.init("2e88fd569837e22e16158f3a5d708722");
         console.log(kakao.isInitialized()); 
       }
     

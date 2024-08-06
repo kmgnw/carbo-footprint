@@ -34,7 +34,7 @@ function ShareResult() {
                 <CopyLinkWrap>
                     <Img src={link} onClick={copyLink} alt="link" fetchpriority="high"/>
                 </CopyLinkWrap>
-                <Img src={kakao} onClick={shareKakao} alt="kakao" fetchpriority="high"/>
+                <Img src={kakao} onClick={shareKakao} alt="kakao" fetchpriority="high" />
             </ButtonWrap>
         </MainLayout>
         </>

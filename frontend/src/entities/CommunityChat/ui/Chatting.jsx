@@ -174,21 +174,21 @@ const Chatting = () => {
                                 key={index}
                                 date={e.date}
                                 chat={e.chat}
-                                name={e.name}
+                                name={e.sender_username}
                             />
                         );
                     } else if (e.type === 'in') {
                         return (
                             <EntryInfo
                                 key={index}
-                                name={e.name}
+                                name={e.sender_username}
                             />
                         );
                     } else if (e.type === 'out') {
                         return (
                             <ExitInfo
                                 key={index}
-                                name={e.name}
+                                name={e.sender_username}
                             />
                         );
                     } else {

@@ -19,7 +19,7 @@ function CommunityTab() {
 
     return (
         <MainLayout>
-            {true ? (
+            {myCommunity.length !== 0 ? (
                 myCommunity.map((e,i)=>(
                     <CommunityCell 
                     key={i}

@@ -12,12 +12,12 @@ import {
   galleryState,
   resultDataState,
   selectedImgState,
-  foodCodeState
+  foodCodeState,
 } from "../../../shared/state/Gallery";
 import bread from "../../../assets/breadIcon.svg";
 import { sendClassification } from "../api/api";
 
-function ChoosePic() {
+function ChoosePic({openModalHandler}) {
   const navigate = useNavigate();
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +28,7 @@ function ChoosePic() {
   // eslint-disable-next-line
   const [data, setData] = useRecoilState(resultDataState);
   // eslint-disable-next-line
-  const[foodCode, setFoodCode] = useRecoilState(foodCodeState);
+  const [foodCode, setFoodCode] = useRecoilState(foodCodeState);
 
   const handleTakePicture = () => {
     setIsCameraActive(true);
@@ -36,7 +36,8 @@ function ChoosePic() {
 
   const handleOpenModal = () => {
     setIsCameraActive(false);
-    setIsModalOpen(true);
+    // setIsModalOpen(true);
+    openModalHandler();
   };
 
   const handleCloseModal = () => {
@@ -45,62 +46,71 @@ function ChoosePic() {
 
   const handleResult = async () => {
     if (selectedImg >= 0 && file[selectedImg]) {
-        console.log("선택된 파일:", file[selectedImg]);
-        try {
-            const nuetritionList = await sendClassification(file[selectedImg]);
-            setData(nuetritionList);
-            setFoodCode(nuetritionList.food_code);
-            console.log("영양성분 목록:", nuetritionList);
-            navigate("/carb-counting-result");
-        } catch (error) {
-            console.error("통신 중 오류 발생:", error);
-        }
+      console.log("선택된 파일:", file[selectedImg]);
+      try {
+        const nuetritionList = await sendClassification(file[selectedImg]);
+        setData(nuetritionList);
+        setFoodCode(nuetritionList.food_code);
+        console.log("영양성분 목록:", nuetritionList);
+        navigate("/carb-counting-result");
+      } catch (error) {
+        console.error("통신 중 오류 발생:", error);
+      }
     } else {
-        console.log("유효한 이미지가 선택되지 않았습니다.");
+      console.log("유효한 이미지가 선택되지 않았습니다.");
     }
-};
+  };
 
   return (
-    <>
-      <ButtonContainer>
-        <StandardButton
-          title="사진 찍기"
-          width="18.7rem"
-          height="4rem"
-          onClick={handleTakePicture}
-        />
-        <StandardButton
-          title="사진 등록"
-          width="18.7rem"
-          height="4rem"
-          onClick={handleOpenModal}
-        />
-      </ButtonContainer>
+    <div style={{position: "relative"}}>
+      <div>
+        <ButtonContainer>
+          <StandardButton
+            title="사진 찍기"
+            width="18.7rem"
+            height="4rem"
+            onClick={handleTakePicture}
+          />
+          <StandardButton
+            title="사진 등록"
+            width="18.7rem"
+            height="4rem"
+            onClick={handleOpenModal}
+          />
+        </ButtonContainer>
 
-      <Title>업로드한 사진</Title>
-      <CameraContainer>
-        {!isCameraActive &&
-          (selectedImg !== null && selectedImg >= 0 && selectedImg < file.length ? (
-            <SelectedComponent />
-          ) : (
-            <DefaultComponent>
-              <DefaultIcon src={bread} alt="bread" fetchpriority="high"/>
-              <DefaultAleart>아직 업로드한 사진이 없어요.</DefaultAleart>
-            </DefaultComponent>
-          ))}
-        {isCameraActive && (
-          <CameraComponent onRetake={() => setIsCameraActive(false)} />
-        )}
-      </CameraContainer>
-
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <div style={{ padding: "2.4rem 2rem 0 2rem" }}>
-        <StandardButton title="탄수화물 함량 확인하기" onClick={handleResult} />
+        <Title>업로드한 사진</Title>
+        <CameraContainer>
+          {!isCameraActive &&
+            (selectedImg !== null &&
+            selectedImg >= 0 &&
+            selectedImg < file.length ? (
+              <SelectedComponent />
+            ) : (
+              <DefaultComponent>
+                <DefaultIcon src={bread} alt="bread" fetchpriority="high" />
+                <DefaultAleart>아직 업로드한 사진이 없어요.</DefaultAleart>
+              </DefaultComponent>
+            ))}
+          {isCameraActive && (
+            <CameraComponent onRetake={() => setIsCameraActive(false)} />
+          )}
+        </CameraContainer>
+        <div style={{ padding: "2.4rem 2rem 0 2rem" }}>
+          <StandardButton
+            title="탄수화물 함량 확인하기"
+            onClick={handleResult}
+          />
+        </div>
+        <div style={{ padding: "4rem 2rem 0 2rem" }}>
+          <RuleContainer />
+        </div>
       </div>
-      <div style={{ padding: "4rem 2rem 0 2rem"}}>
-        <RuleContainer/>
-      </div>
-    </>
+      {/* <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      /> */}
+    </div>
   );
 }
 

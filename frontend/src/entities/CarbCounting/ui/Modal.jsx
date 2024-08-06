@@ -161,6 +161,11 @@ const CustomButton = styled.div`
   line-height: 150%;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
+  @media (max-width: 390px) {
+    gap: 1rem;
+    font-size: 14px;
+  }
+
   @media (max-width: 370px) {
     gap: 1rem;
     font-size: 14px;

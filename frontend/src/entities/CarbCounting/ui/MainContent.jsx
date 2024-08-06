@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ChoosePic from "./ChoosePic";
 
-function MainContent() {
+function MainContent({openModalHandler}) {
   return (
     <Wrapper>
       <Title>사진 등록</Title>
@@ -14,7 +14,7 @@ function MainContent() {
           를 이용해보세요!
         </TipContent>
       </TipContainer>
-      <ChoosePic />
+      <ChoosePic  openModalHandler={openModalHandler} />
     </Wrapper>
   );
 }

@@ -21,7 +21,6 @@ const Chatting = () => {
     const [isActive, setIsActive] = useState(false);
     const [chattings, setChattings] = useState([]);
     const crntClickedId = useRecoilValue(crntClickedRoomIdState);
-    // eslint-disable-next-line
     const [wsUrl, _] = useState('https://api.carbofootprint.site/ws');
     const rooms = useRecoilValue(RoomState);
     const [chatRoomId, setChatRoomId] = useState(-1);
@@ -56,7 +55,6 @@ const Chatting = () => {
         return () => {
             disconnect();
         };
-        // eslint-disable-next-line
     }, [chatRoomId]);
 
     useEffect(() => {

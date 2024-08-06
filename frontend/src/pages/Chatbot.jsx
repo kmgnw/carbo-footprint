@@ -10,10 +10,12 @@ import { useEffect } from "react";
 import { sendQuestion } from "../entities/Chatbot/api/chatbotApi";
 
 export default function Chatbot() {
-  // eslint-disable-next-line no-unused-vars
+
   const [sendIcon, setSendIcon] = useState(send);
   const [inputValue, setInputValue] = useState("");
   const [questions, setQuestions] = useRecoilState(chatbotQuestionState);
+  const [isSending, setIsSending] = useState(false); 
+
   useEffect(() => {
     console.log(questions);
   }, [questions]);
@@ -23,7 +25,11 @@ export default function Chatbot() {
   };
 
   const handleSend = async () => {
-    setInputValue("");
+
+    if (isSending) return;
+    
+    setIsSending(true);
+
     setQuestions((prevQuestions) => [
       ...prevQuestions,
       { key: "0", question: inputValue },
@@ -41,6 +47,15 @@ export default function Chatbot() {
         console.error("Error sending question:", error);
       }
     }
+    setIsSending(false);
+    
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && !isSending) {
+      event.preventDefault();  
+      handleSend();
+    }
   };
 
   return (
@@ -54,12 +69,13 @@ export default function Chatbot() {
           placeholder="챗봇에게 질문을 해보세요."
           value={inputValue}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
         />
         <Send
           src={inputValue ? sendOrange : send}
           onClick={handleSend}
-          onMouseEnter={() => inputValue && setSendIcon(sendOrange)}
-          onMouseLeave={() => inputValue && setSendIcon(send)}
+          // onMouseEnter={() => inputValue && setSendIcon(sendOrange)}
+          // onMouseLeave={() => inputValue && setSendIcon(send)}
           onMouseDown={() => inputValue && setSendIcon(sendOrange)}
           onMouseUp={() => inputValue && setSendIcon(send)}
           fetchpriority="high"

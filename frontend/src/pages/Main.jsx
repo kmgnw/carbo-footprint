@@ -10,13 +10,14 @@ import { crntClickedDayState, crntClickedIndexOfSchedulesState } from "../shared
 import { useNavigate } from "react-router-dom"
 import { useRecoilState } from "recoil"
 import { useEffect } from "react"
-import { resultDataState } from "../shared/state/Gallery.js"
+import { resultDataState, selectedImgState } from "../shared/state/Gallery.js"
 
 function Main() {
     
     const [_, setCrntClickedDay] = useRecoilState(crntClickedDayState)
     const [__, setCrntClickedIndexOfSchedules] = useRecoilState(crntClickedIndexOfSchedulesState)
     const [___,setData] = useRecoilState(resultDataState)
+    const [____,setSelectedImg] = useRecoilState(selectedImgState)
 
     const navigate = useNavigate()
     
@@ -24,6 +25,7 @@ function Main() {
         setCrntClickedDay(-1)
         setCrntClickedIndexOfSchedules(-1)
         setData(null)
+        setSelectedImg(-1)
     }, [])
 
     return (

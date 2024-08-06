@@ -4,17 +4,14 @@ import HeadingTitle from '../entities/AddSchedule/ui/HeadingTitle'
 import DietLog from '../entities/AddSchedule/ui/DietLog'
 import InputCalorie from '../entities/AddSchedule/ui/InputCalorie'
 import ActivityLog from '../entities/AddSchedule/ui/ActivityLog'
-
-
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { newScheduleState } from '../shared/state/AddSchedule'
 import { useRecoilState, useRecoilValue } from "recoil";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { augustState, crntClickedDayState, crntClickedMonthState, crntClickedIndexOfSchedulesState } from '../shared/state/calendar'
 
 function AddSchedule(){
-    const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState);
-    const navigate = useNavigate();
+    const [_, setNewSchedule] = useRecoilState(newScheduleState);
     const location = useLocation();
 
     const august = useRecoilValue(augustState);
@@ -27,9 +24,14 @@ function AddSchedule(){
 
         if (crntSchedule) {
             if (location.state?.calorie) {
-                crntSchedule.calorie = location.state.calorie;
+                setNewSchedule((prev) => ({
+                    ...prev,
+                    calorie: location.state?.calorie || prev.calorie
+                }));
+            }else{
+                setNewSchedule(crntSchedule);
             }
-            setNewSchedule(crntSchedule);
+            
         } else {
             setNewSchedule((prev) => ({
                 ...prev,

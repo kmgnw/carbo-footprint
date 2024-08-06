@@ -7,30 +7,6 @@ import { newScheduleState } from "../../../shared/state/AddSchedule";
 import { useEffect } from "react";
 
 function DietLog(){
-
-    const august = useRecoilValue(augustState)
-    const september = useRecoilValue(septemberState)
-    const crntClickedMonth = useRecoilValue(crntClickedMonthState) 
-    const crntClickedDay = useRecoilValue(crntClickedDayState) 
-    const crntClickedIndexOfSchedules = useRecoilValue(crntClickedIndexOfSchedulesState)
-
-    // eslint-disable-next-line
-    const [_, setNewSchedule] = useRecoilState(newScheduleState)
-
-    useEffect(() => {
-
-        const crntSchedule = crntClickedMonth === 8 ? august[crntClickedDay][crntClickedIndexOfSchedules] : september[crntClickedDay][crntClickedIndexOfSchedules]
-
-
-        setNewSchedule((prev) => ({
-            ...prev,
-            firstMeal: crntSchedule?.firstMeal ?? '',
-            secondMeal: crntSchedule?.secondMeal ?? '',
-            thirdMeal: crntSchedule?.thirdMeal ?? '',
-            extraMeal: crntSchedule?.extraMeal ?? '',
-        }));
-        // eslint-disable-next-line
-    }, [crntClickedMonth, august, september, crntClickedDay, crntClickedIndexOfSchedules]);
     return(
         <MainLayout>
             <TitleWrap>

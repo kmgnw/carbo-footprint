@@ -10,10 +10,12 @@ import CarbTestResultTab from "../entities/Mypage/ui/CarbTestResultTab";
 import CommunityTab from "../entities/Mypage/ui/CommunityTab";
 import { isLogin } from "../shared/function/isLogin";
 import { useNavigate } from "react-router-dom";
+import { tabState } from "../shared/state/Mypage";
+import { useRecoilState } from "recoil";
 
 function Mypage (){
 
-    const [tab, setTab] = useState(0);
+    const [tab, setTab] = useRecoilState(tabState);
     const [section, setSection] = useState({})
     const navigate = useNavigate()
 

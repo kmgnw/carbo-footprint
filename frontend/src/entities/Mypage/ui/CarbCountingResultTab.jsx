@@ -23,6 +23,7 @@ function CarbCountingResultTab() {
                     name={e.name}
                     calorie={e.calorie}
                     prot={e.prot}
+                    carb={e.carb}
                     fat={e.fat}
                     sugar={e.sugar}
                     image_url={e.image_url}

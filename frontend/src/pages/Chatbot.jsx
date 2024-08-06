@@ -25,11 +25,12 @@ export default function Chatbot() {
   };
 
   const handleSend = async () => {
+    setInputValue("")
 
     if (isSending) return;
     
     setIsSending(true);
-
+    
     setQuestions((prevQuestions) => [
       ...prevQuestions,
       { key: "0", question: inputValue },
@@ -47,8 +48,9 @@ export default function Chatbot() {
         console.error("Error sending question:", error);
       }
     }
+
     setIsSending(false);
-    
+    setInputValue("")
   };
 
   const handleKeyDown = (event) => {

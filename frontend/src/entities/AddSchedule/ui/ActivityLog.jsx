@@ -120,21 +120,21 @@ function ActivityLog() {
                     });
                 }
             }
-            //  else {
-            //     setAugustState((prev) => {
-            //         const list = JSON.parse(JSON.stringify(prev));
-            //         if (crntClickedIndexOfSchedules === -1) {
-            //             if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
-            //                 list[crntClickedDay] = [newState];
-            //             } else {
-            //                 list[crntClickedDay] = [...list[crntClickedDay], newState];
-            //             }
-            //         } else {
-            //             list[crntClickedDay][crntClickedIndexOfSchedules] = newState;
-            //         }
-            //         return list;
-            //     });
-            // }
+             else {
+                setAugustState((prev) => {
+                    const list = JSON.parse(JSON.stringify(prev));
+                    if (crntClickedIndexOfSchedules === -1) {
+                        if (list[crntClickedDay].length === 1 && list[crntClickedDay][0].title === '') {
+                            list[crntClickedDay] = [newState];
+                        } else {
+                            list[crntClickedDay] = [...list[crntClickedDay], newState];
+                        }
+                    } else {
+                        list[crntClickedDay][crntClickedIndexOfSchedules] = newState;
+                    }
+                    return list;
+                });
+            }
 
             navigate('/');
             setNewScheduleState({

@@ -26,23 +26,31 @@ function ActivityLog() {
     const navigate = useNavigate();
 
     function handleWorkoutTimeChange(event) {
-        
-        setNewSchedule((prev) => ({
-            ...prev,
-            workoutTime: Number(event)
-        }));
+        console.log('value is ')
+        if(!isNaN(event)){
+            setNewSchedule((prev) => ({
+                ...prev,
+                workoutTime: Number(event)
+            }));
+        }else{
+            alert('숫자를 입력해주세요.')
+        }
     }
 
     function handleStepCountChange(event) {
-        
-        setNewSchedule((prev) => ({
-            ...prev,
-            stepCount: Number(event)
-        }));
+        console.log('value is ')
+        if(!isNaN(event)){
+            setNewSchedule((prev) => ({
+                ...prev,
+                stepCount: Number(event)
+            }));
+        }else{
+            alert('숫자를 입력해주세요.')
+        }
     }
 
     function isValidNumber(value) {
-        return !isNaN(value) && !isNaN(parseFloat(value));
+        return value !== '' || (!isNaN(value) && !isNaN(parseFloat(value)));
     }
 
     function handleSaveButtonClick() {

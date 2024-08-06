@@ -19,7 +19,7 @@ function CommunityCell({room_name, room_current_capacity, room_max_capacity, unc
 
     return(
         <MainLayout onClick={handleCellClick}>
-            <DateWrap>00.00.0요일</DateWrap>
+            <DateWrap></DateWrap>
 
             <TitleWrap>
                 <HeadingWrap>

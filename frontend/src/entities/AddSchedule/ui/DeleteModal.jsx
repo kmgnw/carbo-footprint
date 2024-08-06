@@ -29,7 +29,9 @@ function DeleteModal({setIsDeleteModalVisible}){
         deleteSchedule(crntSchedule.schedule_id, setAugust, crntClickedDay, crntClickedIndexOfSchedules)
         
 
-        navigate(-1)
+        setTimeout(() => {
+            navigate('/');    
+        }, 300);
         setNewSchedule({
             firstMeal:[],
             secondMeal:[],

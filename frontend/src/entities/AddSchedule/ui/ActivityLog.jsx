@@ -135,8 +135,10 @@ function ActivityLog() {
                     return list;
                 });
             }
-
-            navigate('/');
+            setTimeout(() => {
+                navigate('/');    
+            }, 300);
+            
             setNewScheduleState({
                 firstMeal: [],
                 secondMeal: [],

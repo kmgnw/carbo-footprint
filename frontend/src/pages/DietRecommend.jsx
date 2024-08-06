@@ -46,6 +46,14 @@ function DietRecommend() {
     }
 
     useEffect(() => {
+        if(tab === 0){
+            if(newAllergyType.length !== 0){
+            setIsActivate(true);    
+            }else {
+            setIsActivate(false);    
+            }
+        }else if(tab === 1){
+            
         if (
             newAllergyType.length !== 0 &&
             newEatingHabitType.length !== 0
@@ -53,6 +61,7 @@ function DietRecommend() {
             setIsActivate(true);
         } else {
             setIsActivate(false);
+        }
         }
     }, [newAllergyType, newEatingHabitType]);
 

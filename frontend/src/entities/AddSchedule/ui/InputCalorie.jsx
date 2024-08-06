@@ -5,6 +5,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { useLocation, useNavigate } from "react-router-dom";
 import { augustState, crntClickedDayState, crntClickedMonthState, crntClickedIndexOfSchedulesState } from "../../../shared/state/calendar";
 import { hoverGrow } from "../../../shared/animation/hoverGrow";
+import { isLogin } from "../../../shared/function/isLogin";
 
 function InputCalorie() {
     const [newSchedule, setNewSchedule] = useRecoilState(newScheduleState);
@@ -24,7 +25,12 @@ function InputCalorie() {
     }
 
     function handleBtnClick() {
-        navigate('/carb-counting');
+        if(isLogin()){
+            navigate('/carb-counting');
+        }else{
+            alert('로그인 후 이용가능합니다.')
+        }
+        
     }
 
     // useEffect(() => {

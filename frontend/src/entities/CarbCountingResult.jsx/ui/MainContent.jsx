@@ -14,6 +14,7 @@ import MenuCarousel from "./MenuCarousel";
 import { useNavigate } from "react-router-dom";
 import { saveClassification } from "../api/api";
 import { newScheduleState } from "../../../shared/state/AddSchedule";
+import { isLogin } from "../../../shared/function/isLogin";
 
 function MainContent() {
   const selectedImg = useRecoilValue(selectedImgState);
@@ -38,21 +39,19 @@ function MainContent() {
   };
 
   const handleSave = async () => {
-
-
     try {
       console.log('calories')
       console.log(data.calorie)
       await saveClassification(file[selectedImg], code);
-      
-      navigate('/add-schedule', { state: { calorie: data.calorie } });  
-      
-      
-      
+      if(isLogin()){
+        navigate('/add-schedule', { state: { calorie: data.calorie } });  
+      }else{
+        navigate('/login')
+      }
       
     } catch (error) {
       console.error('저장 중 오류 발생:', error);
-      alert('저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
+      window.alert('저장 중 오류가 발생했습니다. 다시 시도해 주세요.');
     }
   };
 
